@@ -1,0 +1,19 @@
+{
+  "name": "getpetvet",
+  "version": "1.0.0",
+  "description": "Virtual Vet Visit App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikolaslenning/GetPetVet.git"
+  },
+  "author": "Seth Martineau, Syndey Goodwill, Nikolas Lenning, Zacarie LaFleur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikolaslenning/GetPetVet/issues"
+  },
+  "homepage": "https://github.com/nikolaslenning/GetPetVet#readme"
+}
