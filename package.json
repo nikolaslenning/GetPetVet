@@ -4,7 +4,19 @@
   "description": "Virtual Vet Visit App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/server.js",
+    "start:server": "nodemon server/server.js",
+    "start:client": "cd client && npm run start",
+    "dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "install": "cd client && npm i",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.7",
+    "nodemon": "^2.0.6"
   },
   "repository": {
     "type": "git",
