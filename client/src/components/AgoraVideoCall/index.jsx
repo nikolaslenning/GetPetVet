@@ -1,9 +1,17 @@
 import React from 'react'
 import { merge } from 'lodash'
 import AgoraRTC from 'agora-rtc-sdk'
+// import '../../library/AgoraRTCS'
 
 import './canvas.css'
 import '../../assets/fonts/css/icons.css'
+
+let client = AgoraRTC.createClient({
+  mode: "rtc",
+  codec: "vp8",
+});
+
+client.init(process.env.AGORA_KEY);
 
 const tile_canvas = {
   '1': ['span 12/span 24'],
@@ -30,7 +38,9 @@ class AgoraCanvas extends React.Component {
     this.state = {
       displayMode: 'pip',
       streamList: [],
-      readyState: false
+      readyState: false,
+      localStream: {}
+
     }
   }
 
@@ -46,11 +56,12 @@ class AgoraCanvas extends React.Component {
         console.log('At ' + new Date().toLocaleTimeString())
         // create local stream
         // It is not recommended to setState in function addStream
-        this.localStream = this.streamInit(uid, $.attendeeMode, $.videoProfile)
-        this.localStream.init(() => {
+        this.setState({ ...this.state, localStream: this.streamInit(uid, $.attendeeMode, $.videoProfile) })
+        // this.localStream = this.streamInit(uid, $.attendeeMode, $.videoProfile)
+        this.state.localStream.init(() => {
           if ($.attendeeMode !== 'audience') {
-            this.addStream(this.localStream, true)
-            this.client.publish(this.localStream, err => {
+            this.addStream(this.state.localStream, true)
+            this.client.publish(this.state.localStream, err => {
               console.log("Publish local stream error: " + err);
             })
           }
@@ -143,9 +154,9 @@ class AgoraCanvas extends React.Component {
     }
   }
 
-  componentWillUnmount () {
-    this.client && this.client.unpublish(this.localStream)
-    this.localStream && this.localStream.close()
+  componentWillUnmount() {
+    this.client && this.client.unpublish(this.state.localStream)
+    this.state.localStream && this.state.localStream.close()
     this.client && this.client.leave(() => {
       console.log('Client succeed to leave.')
     }, () => {
@@ -154,6 +165,10 @@ class AgoraCanvas extends React.Component {
   }
 
   streamInit = (uid, attendeeMode, videoProfile, config) => {
+    console.log(uid)
+    console.log(attendeeMode)
+    console.log(videoProfile)
+    console.log(config)
     let defaultConfig = {
       streamID: uid,
       audio: true,
@@ -256,14 +271,15 @@ class AgoraCanvas extends React.Component {
 
   handleCamera = (e) => {
     e.currentTarget.classList.toggle('off')
-    this.localStream.isVideoOn() ?
-      this.localStream.disableVideo() : this.localStream.enableVideo()
+    console.log(this.state.localStream)
+    this.state.localStream.isVideoOn() ?
+      this.state.localStream.disableVideo() : this.state.localStream.enableVideo()
   }
 
   handleMic = (e) => {
     e.currentTarget.classList.toggle('off')
-    this.localStream.isAudioOn() ?
-      this.localStream.disableAudio() : this.localStream.enableAudio()
+    this.state.localStream.isAudioOn() ?
+      this.state.localStream.disableAudio() : this.state.localStream.enableAudio()
   }
 
   switchDisplay = (e) => {
@@ -307,8 +323,8 @@ class AgoraCanvas extends React.Component {
       return
     }
     try {
-      this.client && this.client.unpublish(this.localStream)
-      this.localStream && this.localStream.close()
+      this.client && this.client.unpublish(this.state.localStream)
+      this.state.localStream && this.state.localStream.close()
       this.client && this.client.leave(() => {
         console.log('Client succeed to leave.')
       }, () => {
@@ -316,9 +332,10 @@ class AgoraCanvas extends React.Component {
       })
     }
     finally {
-      this.setState({ readyState: false })
+      // this.setState({ readyState: false })
+      this.setState({ ...this.state, localStream: null, readyState: false })
       this.client = null
-      this.localStream = null
+      // this.state.localStream = null
       // redirect to index
       window.location.hash = ''
     }
