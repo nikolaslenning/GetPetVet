@@ -8,15 +8,32 @@
     "start:server": "nodemon server/server.js",
     "start:client": "cd client && npm run start",
     "dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
-    "install": "cd client && npm i",
+    "install": "npm i",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "dependencies": {
+    "agora-rtc-sdk": "^3.3.1",
+    "bootstrap": "^4.5.3",
     "concurrently": "^5.3.0",
     "express": "^4.17.1",
-    "mongoose": "^5.11.7",
-    "nodemon": "^2.0.6"
+    "js-cookie": "^2.2.1",
+    "mongoose": "^5.11.8",
+    "nodemon": "^2.0.6",
+    "path": "^0.12.7",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
+    "react-dom": "^17.0.1",
+    "react-native": "^0.63.4",
+    "react-native-agora": "^3.1.5",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.1"
   },
   "repository": {
     "type": "git",

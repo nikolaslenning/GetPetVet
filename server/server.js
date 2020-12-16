@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 require('./config/db')();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 // parsing middleware
 app.use(express.urlencoded({ extended: true }));
