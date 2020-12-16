@@ -6,12 +6,16 @@ import AgoraRTC from 'agora-rtc-sdk'
 import './canvas.css'
 import '../../assets/fonts/css/icons.css'
 
-let client = AgoraRTC.createClient({
-  mode: "rtc",
-  codec: "vp8",
-});
+// let client = AgoraRTC.createClient({
+//   mode: "rtc",
+//   codec: "vp8",
+// });
 
-client.init(process.env.AGORA_KEY);
+// client.init(process.env.AGORA_KEY);
+
+// client.join("yourToken", "myChannel", null, (uid) => {
+//   // Create a local stream
+// }, handleError);
 
 const tile_canvas = {
   '1': ['span 12/span 24'],
@@ -32,7 +36,7 @@ class AgoraCanvas extends React.Component {
   constructor(props) {
     super(props)
     this.client = {}
-    this.localStream = {}
+    // this.localStream = {}
     this.shareClient = {}
     this.shareStream = {}
     this.state = {
