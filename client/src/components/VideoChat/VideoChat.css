@@ -1,0 +1,17 @@
+.video {
+    border: 1px solid blue;
+    width: 50%;
+    height: 50%;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
