@@ -11,7 +11,6 @@ io.on('connection', socket => {
     if (!users[socket.id]) {
         users[socket.id] = {
             id: socket.id,
-            name: "Zach"
         };
     }
 

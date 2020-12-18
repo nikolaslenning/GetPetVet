@@ -50,7 +50,6 @@ function App() {
   const [callAccepted, setCallAccepted] = useState(false);
   const [callerName, setCallerName] = useState(null);
   const [initiatorName, setInitiatorName] = useState(null);
-  const [name, setName] = useState("Zach")
 
   const userVideo = useRef();
   const partnerVideo = useRef();
@@ -94,7 +93,7 @@ function App() {
     })
 
     peer.on("signal", data => {
-      socket.current.emit("callUser", { userToCall: id, signalData: data, from: name })
+      socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID })
     });
 
     peer.on("stream", stream => {
