@@ -66,7 +66,6 @@ function App() {
 
     socket.current.on("yourID", (id) => {
       setYourID(id);
-      setName(name);
     })
 
     socket.current.on("allUsers", (users) => {
