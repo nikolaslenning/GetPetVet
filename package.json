@@ -11,8 +11,8 @@
     "socket.io": "^2.3.0"
   },
   "scripts": {
-    "start": "node server.js",
-    "start:server": "node server.js",
+    "start": "node server/server.js",
+    "start:server": "node server/server.js",
     "start:client": "cd client && yarn run start",
     "dev": "concurrently \"yarn run start:server\" \"yarn run start:client\"",
     "install": "cd client && yarn",
