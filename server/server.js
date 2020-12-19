@@ -1,10 +1,13 @@
 const express = require("express");
+const bodyParser = require('body-parser');
+const passport = require('./passport/index.js');
+const session = require('express-session');
 const http = require("http");
 const app = express();
 const server = http.createServer(app);
 const socket = require("socket.io");
 const io = socket(server);
-const routes = require('./routes');
+const routes = require('./routes/user');
 const path = require('path');
 require('./config/db')();
 
@@ -14,6 +17,10 @@ const PORT = process.env.PORT || 8000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
+
+// Passport
+app.use(passport.initialize())
+app.use(passport.session()) // calls the deserializeUser
 
 const users = {};
 
