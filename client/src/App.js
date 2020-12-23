@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 // components
 import Signup from './components/Sign-up/Sign-up';
 import LoginForm from './components/Login-form/Login-form';
 import Navbar from './components/Navbar/Navbar';
-import VideoChat from './components/VideoChat/VideoChat';
+import Home from './components/Home/Home';
+// import VideoChat from './components/VideoChat/VideoChat';
 
 class App extends Component {
   constructor() {
@@ -24,7 +25,7 @@ class App extends Component {
     this.getUser()
   }
 
-  updateUser (userObject) {
+  updateUser(userObject) {
     this.setState(userObject)
   }
 
@@ -52,32 +53,32 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         <Router>
-          
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
         {this.state.loggedIn &&
           <p>Join the party, {this.state.username}!</p>
         }
         {/* Routes to different components */}
-        <Route
-          exact path="/"
-          component={Signup} />
-        <Route
-          path="/login"
-          render={() =>
-            <LoginForm
-              updateUser={this.updateUser}
-            />}
-        />
-        <Route
-          path="/signup"
-          render={() =>
-            <Signup/>}
-        />
+          <Route
+            exact path="/"
+            component={Home} />
+          <Route
+            exact path="/login"
+            render={() =>
+              <LoginForm
+                updateUser={this.updateUser}
+              />}
+          />
+          <Route
+            exact path="/signup"
+            render={() =>
+              <Signup />}
+          />
+        </Router>
 
-        <VideoChat />
-   </Router>
+        {/* <VideoChat /> */}
 
       </div>
     );
