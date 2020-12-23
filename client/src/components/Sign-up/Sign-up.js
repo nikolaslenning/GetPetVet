@@ -6,9 +6,15 @@ class Signup extends Component {
   constructor() {
     super()
     this.state = {
-      username: '',
+      email: '',
       password: '',
       confirmPassword: '',
+      firstName: '',
+      lastName: '',
+      address: '',
+      province: '',
+      zipCode: '',
+      phoneNumber: '',
       redirectTo: null
 
     }
@@ -23,13 +29,13 @@ class Signup extends Component {
   }
 
   handleSubmit(event) {
-    console.log('sign-up handleSubmit, username: ')
-    console.log(this.state.username)
+    console.log('sign-up handleSubmit, email: ')
+    console.log(this.state.email)
     event.preventDefault()
 
-    //request to server to add a new username/password
+    //request to server to add a new email/password
     axios.post('/user', {
-      username: this.state.username,
+      email: this.state.email,
       password: this.state.password
     })
       .then(response => {
@@ -41,7 +47,7 @@ class Signup extends Component {
             redirectTo: '/login'
           })
         } else {
-          console.log('username already taken')
+          console.log('email already taken')
         }
       }).catch(error => {
         console.log('signup error: ')
@@ -60,15 +66,15 @@ class Signup extends Component {
           <form className="form-horizontal">
             <div className="form-group">
               <div className="col-1 col-ml-auto">
-                <label className="form-label" htmlFor="username">Username</label>
+                <label className="form-label" htmlFor="email">Email</label>
               </div>
               <div className="col-3 col-mr-auto">
                 <input className="form-input"
                   type="text"
-                  id="username"
-                  name="username"
-                  placeholder="Username"
-                  value={this.state.username}
+                  id="email"
+                  name="email"
+                  placeholder="email"
+                  value={this.state.email}
                   onChange={this.handleChange}
                 />
               </div>
@@ -81,8 +87,99 @@ class Signup extends Component {
                 <input className="form-input"
                   placeholder="password"
                   type="password"
+                  id="password"
                   name="password"
                   value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-1 col-ml-auto">
+                <label className="form-label" htmlFor="password">First Name: </label>
+              </div>
+              <div className="col-3 col-mr-auto">
+                <input className="form-input"
+                  placeholder="first name"
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  value={this.state.firstName}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-1 col-ml-auto">
+                <label className="form-label" htmlFor="password">Last Name: </label>
+              </div>
+              <div className="col-3 col-mr-auto">
+                <input className="form-input"
+                  placeholder="last name"
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  value={this.state.lastName}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-1 col-ml-auto">
+                <label className="form-label" htmlFor="password">Address: </label>
+              </div>
+              <div className="col-3 col-mr-auto">
+                <input className="form-input"
+                  placeholder="address"
+                  type="text"
+                  id="address"
+                  name="address"
+                  value={this.state.address}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-1 col-ml-auto">
+                <label className="form-label" htmlFor="password">State: </label>
+              </div>
+              <div className="col-3 col-mr-auto">
+                <input className="form-input"
+                  placeholder="state"
+                  type="text"
+                  id="province"
+                  name="province"
+                  value={this.state.province}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-1 col-ml-auto">
+                <label className="form-label" htmlFor="password">Zip Code: </label>
+              </div>
+              <div className="col-3 col-mr-auto">
+                <input className="form-input"
+                  placeholder="zip code"
+                  type="number"
+                  id="zipCode"
+                  name="zipCode"
+                  value={this.state.zipCode}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-1 col-ml-auto">
+                <label className="form-label" htmlFor="password">Phone Number: </label>
+              </div>
+              <div className="col-3 col-mr-auto">
+                <input className="form-input"
+                  placeholder="phone number"
+                  type="number"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  value={this.state.phoneNumber}
                   onChange={this.handleChange}
                 />
               </div>
