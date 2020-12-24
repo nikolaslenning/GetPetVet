@@ -22,7 +22,7 @@ function NameSelf({
   );
 }
 
-function Stream() {
+function Stream(prop) {
   const [yourID, setYourID] = useState("");
   const [users, setUsers] = useState({});
   const [stream, setStream] = useState();
@@ -30,7 +30,7 @@ function Stream() {
   const [caller, setCaller] = useState("");
   const [callerSignal, setCallerSignal] = useState();
   const [callAccepted, setCallAccepted] = useState(false);
-  const [callerName, setCallerName] = useState(null);
+  // const [callerName, setCallerName] = useState(null);
   const [initiatorName, setInitiatorName] = useState(null);
 
   const userVideo = useRef();
@@ -125,7 +125,7 @@ function Stream() {
   if (receivingCall) {
     incomingCall = (
       <div>
-        <h1>{initiatorName} is calling you</h1>
+        <h1>{prop.username} is calling you</h1>
         <button onClick={acceptCall}>Accept</button>
       </div>
     )
@@ -136,20 +136,20 @@ function Stream() {
     setInitiatorName(value);
   }
 
-  function handleCallerName(target) {
-    setCallerName(target.value)
-  }
+  // function handleCallerName(target) {
+  //   setCallerName(target.value)
+  // }
 
   return (
     <container className="container">
       <row className="row">
         {!initiatorName && (<NameSelf setName={handleInitiatorname} />)}
         <column>
-          <h1>{initiatorName}</h1>
+          <h1>{prop.username}</h1>
           {UserVideo}
         </column>
         <column>
-          <h1>{callerName}</h1>
+          {/* <h1>{callerName}</h1> */}
           {PartnerVideo}
         </column>
       </row >
@@ -159,7 +159,7 @@ function Stream() {
             return null;
           }
           return (
-            <button onClick={() => callPeer(key)}>Call {key}</button>
+            <button onClick={() => callPeer(key)}>Call {prop.username}</button>
           );
         })}
       </row >

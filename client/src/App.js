@@ -6,7 +6,7 @@ import Signup from './components/Sign-up/Sign-up';
 import LoginForm from './components/Login-form/Login-form';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
-// import VideoChat from './components/VideoChat/VideoChat';
+import VideoChat from './components/VideoChat/VideoChat';
 
 class App extends Component {
   constructor() {
@@ -78,7 +78,7 @@ class App extends Component {
           />
         </Router>
 
-        {/* <VideoChat /> */}
+        <VideoChat username={this.state.email} />
 
       </div>
     );

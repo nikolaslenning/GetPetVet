@@ -42,8 +42,6 @@ class Passport extends Component {
       }
     })
   }
-
-
 }
 
 export default Passport;
