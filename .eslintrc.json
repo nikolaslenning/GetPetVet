@@ -31,8 +31,8 @@
         "camelcase": "error",
         "brace-style": "error",
         "indent": [
-            // "error",
-            // 2
+            "off",
+            0
         ],
         // "parserOptions": {
         //     "ecmaVersion": 6,
