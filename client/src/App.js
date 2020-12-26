@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -5,11 +6,11 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 // components
 
-// import Signup from './components/Sign-up/Sign-up';
-// import LoginForm from './components/Login-form/Login-form';
-// import Navbar from './components/Navbar/Navbar';
+import Signup from './components/Sign-up/Sign-up';
+import LoginForm from './components/Login-form/Login-form';
+import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
-// import VideoChat from './components/VideoChat/VideoChat';
+import VideoChat from './components/VideoChat/VideoChat';
 
 class App extends Component {
   constructor() {
