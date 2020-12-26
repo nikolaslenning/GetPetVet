@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+// eslint-disable-next-line no-unused-vars
+import React, { Component } from 'react';
 
 class Home extends Component {
   // constructor() {
@@ -10,9 +11,9 @@ class Home extends Component {
       <div>
         <p>It's good to be home</p>
       </div>
-    )
+    );
 
   }
 }
 
-export default Home
+export default Home;

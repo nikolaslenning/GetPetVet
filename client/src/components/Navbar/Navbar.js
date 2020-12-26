@@ -1,33 +1,36 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+// eslint-disable-next-line no-unused-vars
+import React, { Component } from 'react';
+// eslint-disable-next-line no-unused-vars
+import { Link } from 'react-router-dom';
 // import '../App.css';
-import axios from 'axios'
+import axios from 'axios';
 
 class Navbar extends Component {
   constructor() {
-    super()
-    this.logout = this.logout.bind(this)
+    super();
+    this.logout = this.logout.bind(this);
   }
 
   logout(event) {
-    event.preventDefault()
-    console.log('logging out')
+    event.preventDefault();
+    console.log('logging out');
     axios.post('/user/logout').then(response => {
-      console.log(response.data)
+      console.log(response.data);
       if (response.status === 200) {
         this.props.updateUser({
           loggedIn: false,
           email: null
-        })
+        });
       }
+    // eslint-disable-next-line no-unused-vars
     }).catch(error => {
-      console.log('Logout error')
-    })
+      console.log('Logout error');
+    });
   }
 
   render() {
     const loggedIn = this.props.loggedIn;
-    console.log('navbar render, props: ')
+    console.log('navbar render, props: ');
     console.log(this.props);
 
     return (
@@ -66,4 +69,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar
+export default Navbar;
