@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.0",
+    "babel-eslint": "^10.1.0",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "concurrently": "^5.3.0",
@@ -14,7 +15,12 @@
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "typescript-eslint": "^0.0.1-alpha.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikolaslenning/GetPetVet.git"
   },
   "scripts": {
     "start": "node server/server.js",
@@ -23,6 +29,16 @@
     "dev": "concurrently \"yarn run start:server\" \"yarn run start:client\"",
     "install": "cd client && yarn",
     "build": "cd client && yarn run build",
-    "heroku-postbuild": "yarn run build"
+    "heroku-postbuild": "yarn run build",
+    "lint": "eslint \"**/*.js\""
+  },
+  "devDependencies": {
+    "eslint": "^7.16.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "ignorePatterns": [
+      "node_modules/"
+    ]
   }
 }

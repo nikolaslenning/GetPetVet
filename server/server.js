@@ -24,14 +24,14 @@ app.use(
     resave: false, //required
     saveUninitialized: false //required
   })
-)
+);
 
 // Passport
-app.use(passport.initialize())
-app.use(passport.session()) // calls the deserializeUser
+app.use(passport.initialize());
+app.use(passport.session()); // calls the deserializeUser
 
 // routes
-app.use('/user', routes)
+app.use('/user', routes);
 
 // sockets
 const users = {};
@@ -46,19 +46,19 @@ io.on('connection', socket => {
   socket.emit("yourID", socket.id);
 
   io.sockets.emit("allUsers", users);
-  console.log(users)
+  console.log(users);
 
   socket.on('disconnect', () => {
     delete users[socket.id];
-  })
+  });
 
   socket.on("callUser", (data) => {
     io.to(data.userToCall).emit('hey', { signal: data.signalData, from: data.from });
-  })
+  });
 
   socket.on("acceptCall", (data) => {
     io.to(data.to).emit('callAccepted', data.signal);
-  })
+  });
 
   socket.on('nameSelf', (data) => {
     const id = data.id;
@@ -69,7 +69,7 @@ io.on('connection', socket => {
     } else {
       io.to(id).emit('invalid', { errors: ['Invalid name'] });
     }
-  })
+  });
 });
 
 // server
