@@ -36,6 +36,7 @@ export function register(config) {
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
+        // eslint-disable-next-line no-use-before-define
         checkValidServiceWorker(swUrl, config);
 
         // Add some additional logging to localhost, pointing developers to the
@@ -48,6 +49,7 @@ export function register(config) {
         });
       } else {
         // Is not localhost. Just register service worker
+        // eslint-disable-next-line no-use-before-define
         registerValidSW(swUrl, config);
       }
     });
@@ -60,6 +62,7 @@ function registerValidSW(swUrl, config) {
     .then(registration => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
+        // eslint-disable-next-line eqeqeq
         if (installingWorker == null) {
           return;
         }
@@ -108,6 +111,7 @@ function checkValidServiceWorker(swUrl, config) {
       const contentType = response.headers.get('content-type');
       if (
         response.status === 404 ||
+        // eslint-disable-next-line eqeqeq
         (contentType != null && contentType.indexOf('javascript') === -1)
       ) {
         // No service worker found. Probably a different app. Reload the page.
