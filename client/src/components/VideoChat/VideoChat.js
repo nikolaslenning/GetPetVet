@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useRef } from 'react';
 import './VideoChat.css';
 import io from "socket.io-client";
@@ -44,22 +45,22 @@ function Stream(prop) {
       if (userVideo.current) {
         userVideo.current.srcObject = stream;
       }
-    })
+    });
 
     socket.current.on("yourID", (id) => {
       setYourID(id);
-    })
+    });
 
     socket.current.on("allUsers", (users) => {
       setUsers(users);
-    })
+    });
 
     socket.current.on("hey", (data) => {
       console.log(data);
       setReceivingCall(true);
       setCaller(data.from);
       setCallerSignal(data.signal);
-    })
+    });
   }, []);
 
   useEffect(() => {
@@ -71,10 +72,10 @@ function Stream(prop) {
       initiator: true,
       trickle: false,
       stream: stream,
-    })
+    });
 
     peer.on("signal", data => {
-      socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID })
+      socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID });
     });
 
     peer.on("stream", stream => {
@@ -86,7 +87,7 @@ function Stream(prop) {
     socket.current.on("callAccepted", signal => {
       setCallAccepted(true);
       peer.signal(signal);
-    })
+    });
   }
 
   function acceptCall() {
@@ -128,7 +129,7 @@ function Stream(prop) {
         <h1>{prop.username} is calling you</h1>
         <button onClick={acceptCall}>Accept</button>
       </div>
-    )
+    );
   }
 
 

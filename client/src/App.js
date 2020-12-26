@@ -1,53 +1,56 @@
+// eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+// eslint-disable-next-line no-unused-vars
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 // components
-import Signup from './components/Sign-up/Sign-up';
-import LoginForm from './components/Login-form/Login-form';
-import Navbar from './components/Navbar/Navbar';
+
+// import Signup from './components/Sign-up/Sign-up';
+// import LoginForm from './components/Login-form/Login-form';
+// import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
-import VideoChat from './components/VideoChat/VideoChat';
+// import VideoChat from './components/VideoChat/VideoChat';
 
 class App extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       loggedIn: false,
       email: null
-    }
+    };
 
-    this.getUser = this.getUser.bind(this)
-    this.componentDidMount = this.componentDidMount.bind(this)
-    this.updateUser = this.updateUser.bind(this)
+    this.getUser = this.getUser.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.updateUser = this.updateUser.bind(this);
   }
 
   componentDidMount() {
-    this.getUser()
+    this.getUser();
   }
 
   updateUser(userObject) {
-    this.setState(userObject)
+    this.setState(userObject);
   }
 
   getUser() {
     axios.get('/user/').then(response => {
-      console.log('Get user response: ')
-      console.log(response.data)
+      console.log('Get user response: ');
+      console.log(response.data);
       if (response.data.user) {
-        console.log('Get User: There is a user saved in the server session: ')
+        console.log('Get User: There is a user saved in the server session: ');
 
         this.setState({
           loggedIn: true,
           email: response.data.user.email
-        })
+        });
       } else {
         console.log('Get user: no user');
         this.setState({
           loggedIn: false,
           email: null
-        })
+        });
       }
-    })
+    });
   }
 
   render() {

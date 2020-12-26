@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import axios from 'axios'
+/* eslint-disable no-unused-vars */
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 class Signup extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       email: '',
       password: '',
@@ -17,21 +18,21 @@ class Signup extends Component {
       phoneNumber: '',
       redirectTo: null
 
-    }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
-    })
+    });
   }
 
   handleSubmit(event) {
-    console.log('sign-up handleSubmit, email: ')
-    console.log(this.state.email)
-    event.preventDefault()
+    console.log('sign-up handleSubmit, email: ');
+    console.log(this.state.email);
+    event.preventDefault();
 
     //request to server to add a new email/password
     axios.post('/user', {
@@ -39,26 +40,26 @@ class Signup extends Component {
       password: this.state.password
     })
       .then(response => {
-        console.log(response)
-        console.log(response.data)
+        console.log(response);
+        console.log(response.data);
         if (!response.data.errmsg) {
-          console.log('successful signup')
+          console.log('successful signup');
           this.setState({ //redirect to login page
             redirectTo: '/login'
-          })
+          });
         } else {
-          console.log('email already taken')
+          console.log('email already taken');
         }
       }).catch(error => {
-        console.log('signup error: ')
-        console.log(error)
+        console.log('signup error: ');
+        console.log(error);
 
-      })
+      });
   }
 
   render() {
     if (this.state.redirectTo) {
-      return <Redirect to={{ pathname: this.state.redirectTo }} />
+      return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
         <div className="SignupForm">
@@ -195,9 +196,9 @@ class Signup extends Component {
           </form>
         </div>
 
-      )
+      );
     }
   }
 }
 
-export default Signup
+export default Signup;
