@@ -33,7 +33,7 @@
     "lint": "eslint \"**/*.js\""
   },
   "devDependencies": {
-    "eslint": "^7.16.0"
+    
   },
   "eslintConfig": {
     "extends": "react-app",
