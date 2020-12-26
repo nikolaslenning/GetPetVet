@@ -29,8 +29,8 @@
     "dev": "concurrently \"yarn run start:server\" \"yarn run start:client\"",
     "install": "cd client && yarn",
     "build": "cd client && yarn run build",
-    "heroku-postbuild": "yarn run build",
-    "lint": "eslint src"
+    "heroku-postbuild": "yarn run build"
+    
   },
   "devDependencies": {
     
