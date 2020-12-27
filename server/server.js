@@ -52,6 +52,7 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     delete users[socket.id];
     console.log("line 54" + users);
+    console.log(users);
   });
 
   socket.on("callUser", (data) => {
