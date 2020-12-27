@@ -8,6 +8,7 @@ const socket = require("socket.io");
 const io = socket(server);
 const routes = require('./routes/user');
 const path = require('path');
+// const users = require("./models/user");
 require('./config/db')();
 
 // PORT
@@ -46,10 +47,11 @@ io.on('connection', socket => {
   socket.emit("yourID", socket.id);
 
   io.sockets.emit("allUsers", users);
-  console.log(users);
+  console.log("line 50" + users);
 
   socket.on('disconnect', () => {
     delete users[socket.id];
+    console.log("line 54" + users);
   });
 
   socket.on("callUser", (data) => {
