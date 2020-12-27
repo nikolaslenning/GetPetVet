@@ -10,6 +10,7 @@ class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
+      firstName: "",
       redirectTo: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,7 +30,8 @@ class LoginForm extends Component {
     axios
       .post('/user/login', {
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
+        firstName: this.state.firstname
       })
       .then(response => {
         console.log('login response: ');
@@ -38,7 +40,8 @@ class LoginForm extends Component {
           // update App.js state
           this.props.updateUser({
             loggedIn: true,
-            email: response.data.email
+            email: response.data.email,
+            firstName: response.data.firstName
           });
           // update the state to redirect to home
           this.setState({
