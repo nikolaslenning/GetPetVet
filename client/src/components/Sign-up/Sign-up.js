@@ -37,7 +37,13 @@ class Signup extends Component {
     //request to server to add a new email/password
     axios.post('/user', {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      address: this.state.address,
+      province: this.state.province,
+      zipCode: this.state.zipCode,
+      phoneNumber: this.state.phoneNumber
     })
       .then(response => {
         console.log(response);

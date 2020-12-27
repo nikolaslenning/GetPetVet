@@ -6,7 +6,7 @@ const passport = require('../passport');
 router.post('/', (req, res) => {
     console.log('user signup');
 
-    const { email, password } = req.body;
+    const { email, password, firstName, lastName, address, province, zipCode, phoneNumber } = req.body;
     // ADD VALIDATION
     User.findOne({ email: email }, (err, user) => {
         if (err) {
@@ -20,7 +20,13 @@ router.post('/', (req, res) => {
         else {
             const newUser = new User({
                 email: email,
-                password: password
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+                address: address,
+                province: province,
+                zipCode: zipCode,
+                phoneNumber: phoneNumber
             });
             newUser.save((err, savedUser) => {
                 // eslint-disable-next-line curly
