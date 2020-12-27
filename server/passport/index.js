@@ -5,7 +5,7 @@ const User = require('../models/user');
 // called on login, saves the id to session req.session.passport.user = {id:'..'}
 passport.serializeUser((user, done) => {
 	console.log('*** serializeUser called, user: ');
-	console.log(user); // the whole raw user object!
+	console.log("line 8 passport index js" + user); // the whole raw user object!
 	console.log('---------');
 	done(null, { _id: user._id });
 });
@@ -18,7 +18,7 @@ passport.deserializeUser((id, done) => {
 		'email',
 		(err, user) => {
 			console.log('*** Deserialize user, user:');
-			console.log(user);
+			console.log("line 21 index.js" + user);
 			console.log('--------------');
 			done(null, user);
 		}

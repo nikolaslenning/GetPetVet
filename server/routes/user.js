@@ -6,7 +6,7 @@ const passport = require('../passport');
 router.post('/', (req, res) => {
     console.log('user signup');
 
-    const { email, password } = req.body;
+    const { email, password, firstName, lastName, address, province, zipCode, phoneNumber } = req.body;
     // ADD VALIDATION
     User.findOne({ email: email }, (err, user) => {
         if (err) {
@@ -20,7 +20,13 @@ router.post('/', (req, res) => {
         else {
             const newUser = new User({
                 email: email,
-                password: password
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+                address: address,
+                province: province,
+                zipCode: zipCode,
+                phoneNumber: phoneNumber
             });
             newUser.save((err, savedUser) => {
                 // eslint-disable-next-line curly
@@ -51,8 +57,8 @@ router.post(
 // eslint-disable-next-line no-unused-vars
 router.get('/', (req, res, next) => {
     console.log('===== user!!======');
-    console.log(req.user);
-    console.log(req.session.passport);
+    console.log("line 60 user.js" + req.user);
+    console.log("line 61 user.js" + req.session.passport);
     if (req.user) {
         res.json({ user: req.user });
     } else {
