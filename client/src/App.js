@@ -11,6 +11,7 @@ import LoginForm from './components/Login-form/Login-form';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import VideoChat from './components/VideoChat/VideoChat';
+import Scheduler from './components/Scheduler/Scheduler';
 
 class App extends Component {
   constructor() {
@@ -38,6 +39,7 @@ class App extends Component {
     axios.get('/user/').then(response => {
       console.log('Get user response: ');
       console.log("response data" + response.data);
+      console.log( response.data);
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ');
 
@@ -83,9 +85,14 @@ class App extends Component {
             render={() =>
               <Signup />}
           />
+          <Route
+            exact path="/Scheduler"
+            render={() =>
+              <Scheduler />}
+          />
         </Router>
 
-        <VideoChat username={this.state.firstName} />
+        {/* <VideoChat username={this.state.firstName} /> */}
 
       </div>
     );
