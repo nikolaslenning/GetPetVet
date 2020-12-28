@@ -11,6 +11,7 @@ import LoginForm from './components/Login-form/Login-form';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import VideoChat from './components/VideoChat/VideoChat';
+import Scheduler from './components/Scheduler/Scheduler';
 
 class App extends Component {
   constructor() {
@@ -84,9 +85,14 @@ class App extends Component {
             render={() =>
               <Signup />}
           />
+          <Route
+            exact path="/Scheduler"
+            render={() =>
+              <Scheduler />}
+          />
         </Router>
 
-        <VideoChat username={this.state.firstName} />
+        {/* <VideoChat username={this.state.firstName} /> */}
 
       </div>
     );
