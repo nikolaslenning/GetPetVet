@@ -1,0 +1,15 @@
+.welcome {
+  text-align: center;
+  color: #adcbd6;
+  padding: 2%;
+}
+
+#carouselExampleCaptions {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#captionTxt {
+  font-size: 200%;
+  text-shadow: 2px 2px 8px black;
+}

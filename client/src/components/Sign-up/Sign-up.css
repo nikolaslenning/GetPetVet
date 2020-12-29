@@ -1,0 +1,19 @@
+h1 {
+  color: #adcbd6;
+  text-align: center;
+}
+
+.form-horizontal {
+  text-align: center;
+}
+
+.form-label {
+  text-align: center;
+}
+
+#signupform {
+  align-self: center;
+  text-align: center;
+  background-color: white;
+  
+}
