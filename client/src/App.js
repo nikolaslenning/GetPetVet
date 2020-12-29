@@ -86,7 +86,7 @@ class App extends Component {
               <Signup />}
           />
           <Route
-            exact path="/Scheduler"
+            exact path="/scheduler"
             render={() =>
               <Scheduler />}
           />
