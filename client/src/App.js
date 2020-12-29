@@ -4,15 +4,21 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // eslint-disable-next-line no-unused-vars
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-// components
+import { createBrowserHistory as createHistory } from "history";
+import Nav from "react-bootstrap/Nav";
+import "./App.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "react-datepicker/dist/react-datepicker.css";
 
+
+// components
 import Signup from './components/Sign-up/Sign-up';
 import LoginForm from './components/Login-form/Login-form';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import VideoChat from './components/VideoChat/VideoChat';
 import Scheduler from './components/Scheduler/Scheduler';
-
+const history = createHistory();
 class App extends Component {
   constructor() {
     super();
@@ -60,6 +66,9 @@ class App extends Component {
   }
 
   render() {
+    // const history = createHistory();
+    const {calendarStore} = this.props;
+
     return (
       <div className="App">
 
@@ -88,7 +97,11 @@ class App extends Component {
           <Route
             exact path="/scheduler"
             render={() =>
-              <Scheduler />}
+              <Scheduler
+              component={props => (
+                <Home {...props} calendarStore={calendarStore} />
+              )}
+            />}
           />
         </Router>
 
