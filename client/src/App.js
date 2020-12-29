@@ -86,7 +86,7 @@ class App extends Component {
           />
         </Router>
 
-        <VideoChat username={this.state.firstName} />
+        {/* <VideoChat username={this.state.firstName} /> */}
 
       </div>
     );
