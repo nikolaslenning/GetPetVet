@@ -52,6 +52,7 @@ class CreateEventWithNoOverlap extends React.Component {
           localizer={localizer}
           events={this.state.events}
           defaultView={Views.WEEK}
+          style={{ height: 600,width: '95%' }}
           scrollToTime={new Date(1970, 1, 1, 6)}
           defaultDate={new Date()}
           onSelectEvent={event => alert(event.title)}
