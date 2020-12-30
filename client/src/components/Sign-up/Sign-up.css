@@ -1,9 +1,27 @@
-h1 {
-  color: #adcbd6;
+body {
   text-align: center;
+  background-color: #323F4B !important;
+}
+
+form {
+  display: inline-block;
+}
+
+h1 {
+  text-align: center;
+  padding: 2%;
+  color: #adcbd6;
 }
 
 .form-horizontal {
+  text-align: center;
+}
+
+.form-group {
+  text-align: center;
+}
+
+.form-input {
   text-align: center;
 }
 
@@ -11,9 +29,8 @@ h1 {
   text-align: center;
 }
 
-#signupform {
-  align-self: center;
+#signupCentering {
   text-align: center;
-  background-color: white;
-  
+  align-items: center;
+  align-content: center;
 }

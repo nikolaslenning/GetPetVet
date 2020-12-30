@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  background-color: #323F4B !important;
 }
 
 form {
@@ -32,11 +33,11 @@ h1 {
   text-align: center;
 }
 
-.box {
+/* .box {
   background-color: white;
   text-align: center;
   align-items: center;
-}
+} */
 
 #email {
   text-align: center;

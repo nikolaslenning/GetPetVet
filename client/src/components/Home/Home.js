@@ -26,7 +26,7 @@ class Home extends Component {
       <div class="carousel-caption" id="captionTxt">
                 <h5 id="carouselExampleCaptions">Schedule Online</h5>
       <div class="carousel-caption d-none d-md-block" id="captionTxt">
-        <p>GetPetVet allows you to schedule vet appointments by connecting directly with your veterinarian online.</p>
+        <p>Connect directly with your veterinarian online with GetPetVet.</p>
                 </div>
       </div>
     </div>
@@ -35,7 +35,7 @@ class Home extends Component {
       <div class="carousel-caption" id="captionTxt">
                 <h5 id="carouselExampleCaptions">All from Home</h5>
       <div class="carousel-caption d-none d-md-block" id="captionTxt">
-        <p>Our Virtual Vet Visits are an excellent way to interact with your veterinarian without having to leave the house.</p>
+        <p>Virtual visits offer interaction with your veterinarian from a distance.</p>
                 </div>
       </div>
     </div>
@@ -44,7 +44,7 @@ class Home extends Component {
       <div class="carousel-caption" id="captionTxt">
                 <h5 id="carouselExampleCaptions">Quality Care</h5>
       <div class="carousel-caption d-none d-md-block" id="captionTxt">
-        <p>Connect with the veterinarians you know and trust. Urgent Care doctors are also always on call.</p>
+        <p>Connect with the veterinarians you trust.</p>
                 </div>
       </div>
     </div>
