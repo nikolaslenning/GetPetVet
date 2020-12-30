@@ -12,6 +12,8 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import VideoChat from './components/VideoChat/VideoChat';
 import Scheduler from './components/Scheduler/Scheduler';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
 
 class App extends Component {
   constructor() {
