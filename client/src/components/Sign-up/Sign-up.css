@@ -1,6 +1,6 @@
 body {
   text-align: center;
-  background-color: #323F4B !important;
+  background-color: #323F4B;
 }
 
 form {
@@ -33,4 +33,5 @@ h1 {
   text-align: center;
   align-items: center;
   align-content: center;
+  background-color: #323F4B;
 }

@@ -12,7 +12,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div id="homeDiv">
         <h1 id="welcome">Welcome!</h1>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   <ol class="carousel-indicators">
