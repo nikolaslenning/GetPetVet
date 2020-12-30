@@ -1,3 +1,11 @@
+body {
+  text-align: center;
+}
+
+form {
+  display: inline-block;
+}
+
 h1 {
   text-align: center;
   padding: 2%;
@@ -32,4 +40,10 @@ h1 {
 
 #email {
   text-align: center;
+}
+
+#loginCentering {
+  text-align: center;
+  align-items: center;
+  align-content: center;
 }
