@@ -13,6 +13,9 @@ import Home from './components/Home/Home';
 import VideoChat from './components/VideoChat/VideoChat';
 import Scheduler from './components/Scheduler/Scheduler';
 
+
+// import { Calendar } from 'react-big-calendar';
+
 class App extends Component {
   constructor() {
     super();
@@ -39,7 +42,7 @@ class App extends Component {
     axios.get('/user/').then(response => {
       console.log('Get user response: ');
       console.log("response data" + response.data);
-      console.log( response.data);
+      console.log(response.data);
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ');
 
@@ -64,12 +67,12 @@ class App extends Component {
       <div className="App">
 
         <Router>
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        {/* greet user if logged in: */}
-        {this.state.loggedIn &&
-          <p>Join the party, {this.state.firstName}!</p>
-        }
-        {/* Routes to different components */}
+          <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+          {/* greet user if logged in: */}
+          {this.state.loggedIn &&
+            <p>Join the party, {this.state.firstName}!</p>
+          }
+          {/* Routes to different components */}
           <Route
             exact path="/"
             component={Home} />
