@@ -40,7 +40,10 @@
     "heroku-postbuild": "yarn run build",
     "lint": "eslint \"**/*.js\""
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.12"
+  },
   "eslintConfig": {
     "extends": "react-app",
     "ignorePatterns": [

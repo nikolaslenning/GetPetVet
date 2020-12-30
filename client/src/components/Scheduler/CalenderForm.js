@@ -4,36 +4,44 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import DatePicker from "react-datepicker";
 import Button from "react-bootstrap/Button";
+
 import {
   addCalendar,
   editCalendar,
   getCalendar,
   deleteCalendar
 } from "./requests";
+
 import { observer } from "mobx-react";
 const buttonStyle = { marginRight: 10 };
+
 function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
   const [start, setStart] = React.useState(null);
   const [end, setEnd] = React.useState(null);
   const [title, setTitle] = React.useState("");
   const [id, setId] = React.useState(null);
-React.useEffect(() => {
+
+  React.useEffect(() => {
     setTitle(calendarEvent.title);
     setStart(calendarEvent.start);
     setEnd(calendarEvent.end);
     setId(calendarEvent.id);
-  }, [
-    calendarEvent.title,
-    calendarEvent.start,
-    calendarEvent.end,
-    calendarEvent.id
-  ]);
-const handleSubmit = async ev => {
+  },
+    [
+      calendarEvent.title,
+      calendarEvent.start,
+      calendarEvent.end,
+      calendarEvent.id
+    ]);
+
+  const handleSubmit = async ev => {
     ev.preventDefault();
+
     if (!title || !start || !end) {
       return;
     }
-if (+start > +end) {
+
+    if (+start > +end) {
       alert("Start date must be earlier than end date");
       return;
     }
@@ -57,7 +65,7 @@ if (+start > +end) {
   const handleStartChange = date => setStart(date);
   const handleEndChange = date => setEnd(date);
   const handleTitleChange = ev => setTitle(ev.target.value);
-const deleteCalendarEvent = async () => {
+  const deleteCalendarEvent = async () => {
     await deleteCalendar(calendarEvent.id);
     const response = await getCalendar();
     const evs = response.data.map(d => {
@@ -70,7 +78,7 @@ const deleteCalendarEvent = async () => {
     calendarStore.setCalendarEvents(evs);
     onCancel();
   };
-return (
+  return (
     <Form noValidate onSubmit={handleSubmit}>
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="title">
@@ -86,7 +94,7 @@ return (
           <Form.Control.Feedback type="invalid">{!title}</Form.Control.Feedback>
         </Form.Group>
       </Form.Row>
-<Form.Row>
+      <Form.Row>
         <Form.Group as={Col} md="12" controlId="start">
           <Form.Label>Start</Form.Label>
           <br />
@@ -98,7 +106,7 @@ return (
           />
         </Form.Group>
       </Form.Row>
-<Form.Row>
+      <Form.Row>
         <Form.Group as={Col} md="12" controlId="end">
           <Form.Label>End</Form.Label>
           <br />

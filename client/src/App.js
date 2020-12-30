@@ -5,10 +5,12 @@ import axios from 'axios';
 // eslint-disable-next-line no-unused-vars
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { createBrowserHistory as createHistory } from "history";
-import Nav from "react-bootstrap/Nav";
+// import Nav from "react-bootstrap/Nav";
+// import CalenderPage from './components/Scheduler/CalenderPage';
+import CalenderApp from './components/Scheduler/CalenderAPP';
+import CalenderPage from './components/Scheduler/CalenderPage';
 import "./App.css";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import "react-datepicker/dist/react-datepicker.css";
+
 
 
 // components
@@ -17,7 +19,7 @@ import LoginForm from './components/Login-form/Login-form';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import VideoChat from './components/VideoChat/VideoChat';
-import Scheduler from './components/Scheduler/Scheduler';
+import Scheduler from './components/Scheduler/CalenderAPP';
 const history = createHistory();
 class App extends Component {
   constructor() {
@@ -67,7 +69,7 @@ class App extends Component {
 
   render() {
     // const history = createHistory();
-    const {calendarStore} = this.props;
+    // const {calendarStore} = this.props;
 
     return (
       <div className="App">
@@ -97,9 +99,9 @@ class App extends Component {
           <Route
             exact path="/scheduler"
             render={() =>
-              <Scheduler
+              <CalenderApp
               component={props => (
-                <Home {...props} calendarStore={calendarStore} />
+                <CalenderPage {...props} calendarStore={calendarStore} />
               )}
             />}
           />

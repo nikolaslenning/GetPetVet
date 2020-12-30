@@ -3,10 +3,11 @@ import React from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import Modal from "react-bootstrap/Modal";
-import CalendarForm from "./CalendarForm";
+import CalendarForm from "./CalenderForm";
 import { observer } from "mobx-react";
 import { getCalendar } from "./requests";
 const localizer = momentLocalizer(moment);
+
 function HomePage({ calendarStore }) {
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showEditModal, setShowEditModal] = React.useState(false);
@@ -49,6 +50,7 @@ function HomePage({ calendarStore }) {
       getCalendarEvents();
     }
   });
+
   return (
     <div className="page">
       <Modal show={showAddModal} onHide={hideModals}>
