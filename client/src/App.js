@@ -13,6 +13,7 @@ import Home from './components/Home/Home';
 import VideoChat from './components/VideoChat/VideoChat';
 import Scheduler from './components/Scheduler/Scheduler';
 
+import { CalendarStore } from "../src/components/Scheduler/store";
 
 // import { Calendar } from 'react-big-calendar';
 
@@ -90,8 +91,8 @@ class App extends Component {
           />
           <Route
             exact path="/scheduler"
-            render={() =>
-              <Scheduler />}
+            render={(props) =>
+              <Scheduler {...props} calendarStore={CalendarStore}/>}
           />
         </Router>
 

@@ -1,15 +1,14 @@
-import { makeObservable, observable, action, } from "mobx";
+import { observable, action, makeObservable } from "mobx";
 
 class CalendarStore {
     calendarEvents = [];
 
-    CalendarStore = makeObservable(CalendarStore, {
-        calendarEvents: observable,
-        setCalendarEvents: action
-    });
-
     setCalendarEvents(calendarEvents) {
-        this.calendarEvents = calendarEvents;
+      this.calendarEvents = calendarEvents;
     }
-}
+  }
+  CalendarStore = makeObservable(CalendarStore, {
+      calendarEvents: observable,
+      setCalendarEvents: action
+  });
 export { CalendarStore };
