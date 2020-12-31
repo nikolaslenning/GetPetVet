@@ -7,7 +7,7 @@ import ExampleControlSlot from './ExampleControlSlot';
 import _ from 'lodash';
 
 const propTypes = {};
-const { localizer } = momentLocalizer(moment);
+const localizer = momentLocalizer(moment);
 
 class CreateEventWithNoOverlap extends React.Component {
   constructor(...args) {
