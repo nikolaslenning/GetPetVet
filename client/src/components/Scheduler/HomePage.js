@@ -23,6 +23,7 @@ function HomePage({ calendarStore }) {
 
   const getCalendarEvents = async () => {
     const response = await getCalendar();
+    console.log(response.data);
     const evs = response.data.map(d => {
       return {
         ...d,
