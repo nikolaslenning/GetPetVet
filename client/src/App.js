@@ -14,6 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
 import { CalendarStore } from "../src/components/Scheduler/store";
+const calendarStore = new CalendarStore();
 
 // import { Calendar } from 'react-big-calendar';
 
@@ -42,7 +43,7 @@ class App extends Component {
   getUser() {
     axios.get('/user/').then(response => {
       console.log('Get user response: ');
-      console.log("response data" + response.data);
+      console.log("response data", response.data);
       console.log(response.data);
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ');
@@ -129,7 +130,8 @@ class App extends Component {
             render={() => {
               if (this.state.loggedIn) {
                 return (
-                  <Scheduler />
+                  <Scheduler
+                  calendarStore={calendarStore} />
                 );
               } else {
                 return (

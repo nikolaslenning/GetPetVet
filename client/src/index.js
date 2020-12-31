@@ -9,7 +9,7 @@ const calendarStore = new CalendarStore();
 
 ReactDOM.render(
   <React.Fragment>
-    <App />
+    <App calendarStore={calendarStore} />
   </React.Fragment>,
   document.getElementById('root')
 );

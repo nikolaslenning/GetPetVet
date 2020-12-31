@@ -10,14 +10,17 @@ import {
   getCalendar,
   deleteCalendar
 } from "./requests";
+
 import { observer } from "mobx-react";
 const buttonStyle = { marginRight: 10 };
+
 function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
   const [start, setStart] = React.useState(null);
   const [end, setEnd] = React.useState(null);
   const [title, setTitle] = React.useState("");
   const [id, setId] = React.useState(null);
-React.useEffect(() => {
+
+  React.useEffect(() => {
     setTitle(calendarEvent.title);
     setStart(calendarEvent.start);
     setEnd(calendarEvent.end);
@@ -28,22 +31,28 @@ React.useEffect(() => {
     calendarEvent.end,
     calendarEvent.id
   ]);
-const handleSubmit = async ev => {
+
+  const handleSubmit = async ev => {
     ev.preventDefault();
     if (!title || !start || !end) {
       return;
     }
-if (+start > +end) {
+
+    if (+start > +end) {
       alert("Start date must be earlier than end date");
       return;
     }
+
     const data = { id, title, start, end };
+
     if (!edit) {
       await addCalendar(data);
     } else {
       await editCalendar(data);
     }
+
     const response = await getCalendar();
+
     const evs = response.data.map(d => {
       return {
         ...d,
@@ -51,15 +60,19 @@ if (+start > +end) {
         end: new Date(d.end)
       };
     });
+
     calendarStore.setCalendarEvents(evs);
     onCancel();
   };
+
   const handleStartChange = date => setStart(date);
   const handleEndChange = date => setEnd(date);
   const handleTitleChange = ev => setTitle(ev.target.value);
-const deleteCalendarEvent = async () => {
+
+  const deleteCalendarEvent = async () => {
     await deleteCalendar(calendarEvent.id);
     const response = await getCalendar();
+
     const evs = response.data.map(d => {
       return {
         ...d,
@@ -67,10 +80,12 @@ const deleteCalendarEvent = async () => {
         end: new Date(d.end)
       };
     });
+
     calendarStore.setCalendarEvents(evs);
     onCancel();
   };
-return (
+
+  return (
     <Form noValidate onSubmit={handleSubmit}>
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="title">
@@ -86,7 +101,7 @@ return (
           <Form.Control.Feedback type="invalid">{!title}</Form.Control.Feedback>
         </Form.Group>
       </Form.Row>
-<Form.Row>
+      <Form.Row>
         <Form.Group as={Col} md="12" controlId="start">
           <Form.Label>Start</Form.Label>
           <br />
@@ -98,7 +113,7 @@ return (
           />
         </Form.Group>
       </Form.Row>
-<Form.Row>
+      <Form.Row>
         <Form.Group as={Col} md="12" controlId="end">
           <Form.Label>End</Form.Label>
           <br />
