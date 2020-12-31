@@ -89,15 +89,36 @@ class App extends Component {
           />
           <Route
             exact path="/login"
-            render={() =>
-              <LoginForm
-                updateUser={this.updateUser}
-              />}
+            render={() => {
+
+              if (!this.state.loggedIn) {
+                return (
+                  <LoginForm
+                  updateUser={this.updateUser}
+                  />
+                  );
+                } else {
+                  return (
+                    <Redirect to="/" />
+                  );
+                }
+              }
+            }
           />
           <Route
             exact path="/signup"
-            render={() =>
-              <Signup />}
+            render={() => {
+              if (!this.state.loggedIn) {
+                return(
+                  <Signup />
+                );
+              } else {
+                return(
+                  <Redirect to="/" />
+                );
+              }
+            }
+          }
           />
           <Route
             exact path="/scheduler"
