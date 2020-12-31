@@ -23,7 +23,7 @@ class Navbar extends Component {
           email: null
         });
       }
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     }).catch(error => {
       console.log('Logout error');
     });
@@ -41,35 +41,35 @@ class Navbar extends Component {
             <a class="navbar-brand" href="#">GetPetVet</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-            {loggedIn ? (
-              <section className="navbar-section">
-              <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
-                <span className="text-secondary">logout</span></Link>
-
-            </section>
-                  ) : (
-                    <section className="navbar-section">
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                {loggedIn ? (
+                  <section className="navbar-section">
                     <Link to="/" className="btn btn-link text-secondary">
                       <span className="text-secondary">Home</span>
                     </Link>
-                    <Link to="/login" className="btn btn-link text-secondary">
-                      <span className="text-secondary">Login</span>
-                    </Link>
-                    <Link to="/signup" className="btn btn-link">
-                      <span className="text-secondary">Sign up</span>
-                    </Link>
-                    <Link to="/scheduler" classname="btn btn-link">
+                    <Link to="/scheduler" className="btn btn-link text-secondary">
                       <span className="text-secondary">Scheduler</span>
                     </Link>
+                    <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
+                      <span className="text-secondary">Logout</span></Link>
+
                   </section>
-            )}
-      </ul>
-    </div>
-  </div>
-</nav>
+                ) : (
+                    <section className="navbar-section">
+                      <Link to="/login" className="btn btn-link text-secondary">
+                        <span className="text-secondary">Login</span>
+                      </Link>
+                      <Link to="/signup" className="btn btn-link">
+                        <span className="text-secondary">Sign up</span>
+                      </Link>
+                    </section>
+                  )}
+              </ul>
+            </div>
+          </div>
+        </nav>
 
         {/* <header className="navbar App-header" id="nav-container">
             <div className="col-4" >
@@ -77,13 +77,15 @@ class Navbar extends Component {
                 <section className="navbar-section">
                   <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
                     <span className="text-secondary">logout</span></Link>
-
-                </section>
-              ) : (
-                  <section className="navbar-section">
                     <Link to="/" className="btn btn-link text-secondary">
                       <span className="text-secondary">Home</span>
                     </Link>
+                    <Link to="/Scheduler" className="btn btn-link">
+                      <span className="text-secondary">Scheduler</span>
+                    </Link>
+                </section>
+              ) : (
+                  <section className="navbar-section">
                     <Link to="/login" className="btn btn-link text-secondary">
                       <span className="text-secondary">Login</span>
                     </Link>
