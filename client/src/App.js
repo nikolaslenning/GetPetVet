@@ -13,6 +13,10 @@ import Scheduler from './components/Scheduler/Scheduler';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
+import { CalendarStore } from "../src/components/Scheduler/store";
+
+// import { Calendar } from 'react-big-calendar';
+
 class App extends Component {
   constructor() {
     super();
