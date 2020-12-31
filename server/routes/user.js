@@ -48,7 +48,14 @@ router.post(
     (req, res) => {
         console.log('logged in', req.user);
         var userInfo = {
-            email: req.user.email
+            email: req.user.email,
+            firstName: req.user.firstName,
+            lastName: req.user.lastName,
+            address: req.user.address,
+            province: req.user.province,
+            zipCode: req.user.zipCode,
+            phoneNumber: req.user.phoneNumber,
+
         };
         res.send(userInfo);
     }
@@ -59,6 +66,7 @@ router.get('/', (req, res, next) => {
     console.log('===== user!!======');
     console.log("line 60 user.js" + req.user);
     console.log("line 61 user.js" + req.session.passport);
+    console.log(req.session.passport);
     if (req.user) {
         res.json({ user: req.user });
     } else {

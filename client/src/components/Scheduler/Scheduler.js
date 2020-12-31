@@ -5,6 +5,8 @@ import { Calendar, momentLocalizer, Views } from 'react-big-calendar';
 import events from './events';
 import ExampleControlSlot from './ExampleControlSlot';
 import _ from 'lodash';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import "./Scheduler.css";
 
 const propTypes = {};
 const localizer = momentLocalizer(moment);
@@ -52,7 +54,7 @@ class CreateEventWithNoOverlap extends React.Component {
           events={this.state.events}
           defaultView={Views.WEEK}
           scrollToTime={new Date(1970, 1, 1, 6)}
-          defaultDate={new Date(2015, 3, 12)}
+          defaultDate={new Date()}
           onSelectEvent={event => alert(event.title)}
           onSelectSlot={this.handleSelect}
           dayLayoutAlgorithm={this.state.dayLayoutAlgorithm}
