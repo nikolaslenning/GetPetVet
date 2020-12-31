@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import '../App.css';
 import axios from 'axios';
+import "./Navbar.css";
 
 class Navbar extends Component {
   constructor() {
@@ -22,7 +23,7 @@ class Navbar extends Component {
           email: null
         });
       }
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     }).catch(error => {
       console.log('Logout error');
     });
@@ -35,19 +36,56 @@ class Navbar extends Component {
 
     return (
       <div>
-          <header className="navbar App-header" id="nav-container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav-container">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">GetPetVet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                {loggedIn ? (
+                  <section className="navbar-section">
+                    <Link to="/" className="btn btn-link text-secondary">
+                      <span className="text-secondary">Home</span>
+                    </Link>
+                    <Link to="/scheduler" className="btn btn-link text-secondary">
+                      <span className="text-secondary">Scheduler</span>
+                    </Link>
+                    <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
+                      <span className="text-secondary">Logout</span></Link>
+
+                  </section>
+                ) : (
+                    <section className="navbar-section">
+                      <Link to="/login" className="btn btn-link text-secondary">
+                        <span className="text-secondary">Login</span>
+                      </Link>
+                      <Link to="/signup" className="btn btn-link">
+                        <span className="text-secondary">Sign up</span>
+                      </Link>
+                    </section>
+                  )}
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        {/* <header className="navbar App-header" id="nav-container">
             <div className="col-4" >
               {loggedIn ? (
                 <section className="navbar-section">
                   <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
                     <span className="text-secondary">logout</span></Link>
-
-                </section>
-              ) : (
-                  <section className="navbar-section">
                     <Link to="/" className="btn btn-link text-secondary">
                       <span className="text-secondary">Home</span>
                     </Link>
+                    <Link to="/Scheduler" className="btn btn-link">
+                      <span className="text-secondary">Scheduler</span>
+                    </Link>
+                </section>
+              ) : (
+                  <section className="navbar-section">
                     <Link to="/login" className="btn btn-link text-secondary">
                       <span className="text-secondary">Login</span>
                     </Link>
@@ -62,9 +100,9 @@ class Navbar extends Component {
             </div>
             <div className="col-4 col-mr-auto">
               <div id="top-filler"></div>
-              <h1 className="App-title">MERN Passport</h1>
+              <h1 className="App-title">GetPetVet</h1>
             </div>
-          </header>
+              </header> */}
       </div>
 
     );

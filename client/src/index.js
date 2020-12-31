@@ -8,9 +8,9 @@ import { CalendarStore } from "./components/Scheduler/store";
 const calendarStore = new CalendarStore();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App calendarStore={calendarStore} />
-  </React.StrictMode>,
+  <React.Fragment>
+    <App />
+  </React.Fragment>,
   document.getElementById('root')
 );
 

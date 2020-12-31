@@ -1,3 +1,7 @@
+#homeDiv {
+  background-color: #323F4B;
+}
+
 .welcome {
   text-align: center;
   color: #adcbd6;
@@ -10,6 +14,6 @@
 }
 
 #captionTxt {
-  font-size: 200%;
+  font-size: 130%;
   text-shadow: 2px 2px 8px black;
 }
