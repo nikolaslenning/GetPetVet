@@ -6,6 +6,7 @@ import events from './events';
 import ExampleControlSlot from './ExampleControlSlot';
 import _ from 'lodash';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import "./Scheduler.css";
 
 const propTypes = {};
 const localizer = momentLocalizer(moment);
