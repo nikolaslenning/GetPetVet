@@ -6,9 +6,15 @@ class CalendarStore {
     setCalendarEvents(calendarEvents) {
       this.calendarEvents = calendarEvents;
     }
+    constructor() {
+      makeObservable(this, {
+        calendarEvents: observable,
+        setCalendarEvents: action
+      });
+    }
   }
-  CalendarStore = makeObservable(CalendarStore, {
-      calendarEvents: observable,
-      setCalendarEvents: action
-  });
+  // CalendarStore = makeObservable(CalendarStore, {
+  //     calendarEvents: observable,
+  //     setCalendarEvents: action
+  // });
 export { CalendarStore };

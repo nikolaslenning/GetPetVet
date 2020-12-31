@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const history = createHistory();
 
 function Scheduler({ calendarStore }) {
+  console.log("Calendar store variable" + calendarStore);
   return (
     <div>
       <Router history={history}>
