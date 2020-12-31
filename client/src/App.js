@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
-// eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react';
 import axios from 'axios';
-// eslint-disable-next-line no-unused-vars
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 // components
 
@@ -72,7 +70,12 @@ class App extends Component {
         {/* Routes to different components */}
           <Route
             exact path="/"
-            component={Home} />
+            render={() =>
+              <Home
+                updateUser={this.updateUser}
+              />
+            }
+          />
           <Route
             exact path="/login"
             render={() =>
