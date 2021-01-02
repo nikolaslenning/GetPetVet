@@ -2,7 +2,7 @@
 const router = require("express").Router();
 const apiRoutes = require("./calendar");
 
-// API Routes
+// API Routes   /api/scheduler
 router.use("/scheduler", apiRoutes);
 
 
