@@ -10,6 +10,8 @@ import { getCalendar } from "./requests";
 const localizer = momentLocalizer(moment);
 
 function HomePage({ calendarStore }) {
+  console.log("calendarStore.calendarEvents");
+  console.log(calendarStore.calendarEvents);
 
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showEditModal, setShowEditModal] = React.useState(false);
@@ -23,8 +25,8 @@ function HomePage({ calendarStore }) {
 
   const getCalendarEvents = async () => {
     const response = await getCalendar();
-    console.log(response.data);
-    const evs = response.data.map(d => {
+    console.log(response.data.data);
+    const evs = [response.data.data].map(d => {
       return {
         ...d,
         start: new Date(d.start),
@@ -38,6 +40,7 @@ function HomePage({ calendarStore }) {
 
   const handleSelect = (event, e) => {
     const { start, end } = event;
+    console.log(event);
     const data = { title: "", start, end, allDay: false };
     setShowAddModal(true);
     setShowEditModal(false);
@@ -98,6 +101,7 @@ function HomePage({ calendarStore }) {
       <Calendar
         localizer={localizer}
         events={calendarStore.calendarEvents}
+        // events={getCalendar}
         startAccessor="start"
         endAccessor="end"
         selectable={true}

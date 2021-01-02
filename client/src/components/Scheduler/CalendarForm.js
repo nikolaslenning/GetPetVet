@@ -52,14 +52,14 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
 
     const response = await getCalendar();
 
-    const evs = response.data.map(d => {
+    const evs = [response.data.data].map(d => {
       return {
         ...d,
-        start: new Date(d.start),
-        end: new Date(d.end)
+        // start: new Date(d.start),
+        // end: new Date(d.end)
       };
     });
-
+    console.log(evs);
     calendarStore.setCalendarEvents(evs);
     onCancel();
   };
@@ -68,15 +68,29 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
   const handleEndChange = date => setEnd(date);
   const handleTitleChange = ev => setTitle(ev.target.value);
 
+  const addCalendarEvent = async () => {
+    console.log(calendarEvent);
+    await addCalendar(calendarEvent);
+    const response = await getCalendar();
+
+    const evs = [response.data.data].map(d => {
+      return {
+        ...d,
+        // start: new Date(d.start),
+        // end: new Date(d.end)
+      };
+    });
+  };
+
   const deleteCalendarEvent = async () => {
     await deleteCalendar(calendarEvent.id);
     const response = await getCalendar();
 
-    const evs = response.data.map(d => {
+    const evs = [response.data.data].map(d => {
       return {
         ...d,
-        start: new Date(d.start),
-        end: new Date(d.end)
+        // start: new Date(d.start),
+        // end: new Date(d.end)
       };
     });
 
@@ -124,7 +138,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
           />
         </Form.Group>
       </Form.Row>
-      <Button type="submit" style={buttonStyle}>
+      <Button type="submit" style={buttonStyle} onClick={addCalendarEvent}>
         Save
       </Button>
       <Button type="button" style={buttonStyle} onClick={deleteCalendarEvent}>
