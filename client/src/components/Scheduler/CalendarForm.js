@@ -55,11 +55,11 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
     const evs = [response.data.data].map(d => {
       return {
         ...d,
-        // start: new Date(d.start),
-        // end: new Date(d.end)
+        start: new Date(d.start),
+        end: new Date(d.end)
       };
     });
-    console.log(evs);
+
     calendarStore.setCalendarEvents(evs);
     onCancel();
   };
@@ -69,33 +69,39 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
   const handleTitleChange = ev => setTitle(ev.target.value);
 
   const addCalendarEvent = async () => {
-    console.log(calendarEvent);
+    // console.log(calendarEvent);
     await addCalendar(calendarEvent);
     const response = await getCalendar();
 
     const evs = [response.data.data].map(d => {
       return {
         ...d,
-        // start: new Date(d.start),
-        // end: new Date(d.end)
+        start: new Date(d.start),
+        end: new Date(d.end)
       };
     });
+    calendarStore.setCalendarEvents(evs);
+    onCancel();
   };
 
   const deleteCalendarEvent = async () => {
-    await deleteCalendar(calendarEvent.id);
+    console.log(calendarEvent);
+    await deleteCalendar(calendarEvent._id);
     const response = await getCalendar();
+    // console.log(response);
+    // console.log(response.data);
 
     const evs = [response.data.data].map(d => {
       return {
         ...d,
-        // start: new Date(d.start),
-        // end: new Date(d.end)
+        start: new Date(d.start),
+        end: new Date(d.end)
       };
     });
 
     calendarStore.setCalendarEvents(evs);
     onCancel();
+    getCalendar();
   };
 
   return (
@@ -141,7 +147,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
       <Button type="submit" style={buttonStyle} onClick={addCalendarEvent}>
         Save
       </Button>
-      <Button type="button" style={buttonStyle} onClick={deleteCalendarEvent}>
+      <Button type="button" style={buttonStyle} onClick={() => deleteCalendarEvent(calendarStore._id)}>
         Delete
       </Button>
       <Button type="button" onClick={onCancel}>

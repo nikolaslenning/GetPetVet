@@ -35,6 +35,7 @@ router
 router
   .route('/:id')
   .delete((req, res) => {
+    console.log("pet req params");
     console.log(req.params);
 
     Pet

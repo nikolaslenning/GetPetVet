@@ -10,8 +10,8 @@ import { getCalendar } from "./requests";
 const localizer = momentLocalizer(moment);
 
 function HomePage({ calendarStore }) {
-  console.log("calendarStore.calendarEvents");
-  console.log(calendarStore.calendarEvents);
+  // console.log("calendarStore.calendarEvents");
+  // console.log(calendarStore.calendarEvents);
 
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showEditModal, setShowEditModal] = React.useState(false);
@@ -33,14 +33,17 @@ function HomePage({ calendarStore }) {
         end: new Date(d.end)
       };
     });
+    // console.log("evs evs evs evs");
+    // console.log(evs);
 
-    calendarStore.setCalendarEvents(evs);
+    calendarStore.setCalendarEvents(response.data.data);
+    // calendarStore.setCalendarEvents(evs);
     setInitialized(true);
   };
 
   const handleSelect = (event, e) => {
     const { start, end } = event;
-    console.log(event);
+    // console.log(event);
     const data = { title: "", start, end, allDay: false };
     setShowAddModal(true);
     setShowEditModal(false);

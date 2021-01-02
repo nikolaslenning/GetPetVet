@@ -4,7 +4,6 @@ const Calendar = require("../models/calendar");
 
 module.exports = {
 
-
     createEvent: function (req, res) {
         console.log(req.body);
         Calendar.create({
@@ -27,16 +26,29 @@ module.exports = {
             .catch(err => {
                 res.json({ success: false });
             });
+    },
+
+    remove: function (req, res) {
+        console.log("req.params");
+        console.log(req.params);
+        Calendar
+            .findByIdAndDelete(req.params.id)
+            .then(data => {
+                res.json({ success: true });
+            })
+            .catch(err => {
+                res.json({ success: false });
+            });
     }
-// };
+    // };
 
 
-// module.exports = {
-//     createEvent: function (req, res) {
-//         Calendar.findOneAndUpdate({ _id: req.params.id }, req.body)
-//             .then(dbModel => res.json(dbModel))
-//             .catch(err => res.status(422).json(err));
-//     },
+    // module.exports = {
+    //     createEvent: function (req, res) {
+    //         Calendar.findOneAndUpdate({ _id: req.params.id }, req.body)
+    //             .then(dbModel => res.json(dbModel))
+    //             .catch(err => res.status(422).json(err));
+    //     },
 
     // findAll: function (req, res) {
     //     res.json([]);
