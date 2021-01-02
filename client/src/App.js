@@ -10,6 +10,8 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 // import VideoChat from './components/VideoChat/VideoChat';
 import Scheduler from './components/Scheduler/Scheduler';
+import Profile from './components/Profile/Profile';
+import AddPet from './components/AddPet/AddPet';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
@@ -143,6 +145,16 @@ class App extends Component {
               }
             }
             }
+          />
+          <Route
+            exact path="/profile"
+            render={() =>
+              <Profile />}
+          />
+          <Route
+            exact path="/addpet"
+            render={() =>
+              <AddPet />}
           />
         </Router>
 

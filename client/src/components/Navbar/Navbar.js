@@ -52,6 +52,12 @@ class Navbar extends Component {
                     <Link to="/scheduler" className="btn btn-link text-secondary">
                       <span className="text-secondary">Scheduler</span>
                     </Link>
+                    <Link to="/profile" className="btn btn-link text-secondary">
+                      <span className="text-secondary">Profile</span>
+                    </Link>
+                    <Link to="/addpet" className="btn btn-link text-secondary">
+                      <span className="text-secondary">Add Pet</span>
+                    </Link>
                     <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
                       <span className="text-secondary">Logout</span></Link>
 
@@ -103,7 +109,7 @@ class Navbar extends Component {
               <h1 className="App-title">GetPetVet</h1>
             </div>
               </header> */}
-      </div>
+      </div >
 
     );
 
