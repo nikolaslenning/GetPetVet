@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 const express = require('express');
 const router = express.Router();
-const Pet = require('../models/pet');
+const Pet = require('../../models/pet');
 
 // create
 router
