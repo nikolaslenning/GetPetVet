@@ -1,19 +1,23 @@
 /* eslint-disable no-unused-vars */
-// eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react';
 import axios from 'axios';
-// eslint-disable-next-line no-unused-vars
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 // components
 
 import Signup from './components/Sign-up/Sign-up';
 import LoginForm from './components/Login-form/Login-form';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
-import VideoChat from './components/VideoChat/VideoChat';
+// import VideoChat from './components/VideoChat/VideoChat';
 import Scheduler from './components/Scheduler/Scheduler';
 import Profile from './components/Profile/Profile';
 import AddPet from './components/AddPet/AddPet';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
+
+import { CalendarStore } from "../src/components/Scheduler/store";
+
+// import { Calendar } from 'react-big-calendar';
 
 class App extends Component {
   constructor() {
@@ -41,7 +45,7 @@ class App extends Component {
     axios.get('/user/').then(response => {
       console.log('Get user response: ');
       console.log("response data" + response.data);
-      console.log( response.data);
+      console.log(response.data);
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ');
 
@@ -66,31 +70,76 @@ class App extends Component {
       <div className="App">
 
         <Router>
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        {/* greet user if logged in: */}
-        {this.state.loggedIn &&
-          <p>Join the party, {this.state.firstName}!</p>
-        }
-        {/* Routes to different components */}
+          <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+          {/* greet user if logged in: */}
+          {this.state.loggedIn &&
+            <p>Join the party, {this.state.firstName}!</p>
+          }
+          {/* Routes to different components */}
           <Route
             exact path="/"
-            component={Home} />
+            render={() => {
+              if (this.state.loggedIn) {
+                return (
+                  <Home
+                    updateUser={this.updateUser}
+                  />
+                );
+              } else {
+                return (
+                  <Redirect to="/login" />
+                );
+              }
+            }
+            }
+          />
           <Route
             exact path="/login"
-            render={() =>
-              <LoginForm
-                updateUser={this.updateUser}
-              />}
+            render={() => {
+
+              if (!this.state.loggedIn) {
+                return (
+                  <LoginForm
+                  updateUser={this.updateUser}
+                  />
+                  );
+                } else {
+                  return (
+                    <Redirect to="/" />
+                  );
+                }
+              }
+            }
           />
           <Route
             exact path="/signup"
-            render={() =>
-              <Signup />}
+            render={() => {
+              if (!this.state.loggedIn) {
+                return(
+                  <Signup />
+                );
+              } else {
+                return(
+                  <Redirect to="/" />
+                );
+              }
+            }
+          }
           />
           <Route
             exact path="/scheduler"
-            render={() =>
-              <Scheduler />}
+            render={() => {
+              if (this.state.loggedIn) {
+                return (
+                  <Scheduler />
+                );
+              } else {
+                return (
+                  <Redirect to="/login" />
+                );
+              }
+            }
+            }
           />
           <Route
             exact path="/profile"

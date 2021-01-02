@@ -1,0 +1,51 @@
+body {
+  text-align: center;
+  background-color: #323F4B;
+}
+
+form {
+  display: inline-block;
+}
+
+h1 {
+  text-align: center;
+  padding: 2%;
+  color: #adcbd6;
+}
+
+.form-horizontal {
+  text-align: center;
+}
+
+.form-group {
+  text-align: center;
+}
+
+.form-input {
+  text-align: center;
+}
+
+#form1 {
+  text-align: center;
+}
+
+.form-label {
+  text-align: center;
+}
+
+/* .box {
+  background-color: white;
+  text-align: center;
+  align-items: center;
+} */
+
+#email {
+  text-align: center;
+}
+
+#loginCentering {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  background-color: #323F4B;
+}
