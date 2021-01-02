@@ -26,7 +26,6 @@ h1 {
 }
 
 .form-label {
-  text-align: center;
 }
 
 #signupCentering {
@@ -34,4 +33,5 @@ h1 {
   align-items: center;
   align-content: center;
   background-color: #323F4B;
+  color: #adcbd6
 }
