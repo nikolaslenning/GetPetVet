@@ -11,11 +11,11 @@ import "react-datepicker/dist/react-datepicker.css";
 const history = createHistory();
 
 function Scheduler({ calendarStore }) {
-  console.log("Calendar store variable" + calendarStore);
+  console.log("Calendar store variable ", calendarStore);
   return (
     <div>
       <Router history={history}>
-        <Navbar bg="primary" expand="lg" variant="dark">
+        {/* <Navbar bg="primary" expand="lg" variant="dark">
           <Navbar.Brand href="#home">Calendar App</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -23,11 +23,11 @@ function Scheduler({ calendarStore }) {
               <Nav.Link href="/">Home</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-        </Navbar>
+        </Navbar> */}
         <Route
-          path="/homepage"
+          path="/"
           exact
-          component={props => (
+          render={props => (
             <HomePage {...props} calendarStore={calendarStore} />
           )}
         />

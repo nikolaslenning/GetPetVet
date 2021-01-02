@@ -14,6 +14,12 @@ const userSchema = new Schema({
 	province: { type: String, unique: false, required: false },
 	zipCode: { type: Number, unique: false, required: false },
 	phoneNumber: { type: Number, unique: false, required: false },
+	events: [{
+		_id: false,
+		title: { type: String, required: false },
+		start: { type: Date, default: "" },
+		end: { type: Date, default: "" }
+	}]
 
 });
 

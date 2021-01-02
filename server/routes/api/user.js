@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user');
-const passport = require('../passport');
+const User = require('../../models/user');
+const passport = require('../../passport');
 
 router.post('/', (req, res) => {
     console.log('user signup');
@@ -82,5 +83,28 @@ router.post('/logout', (req, res) => {
         res.send({ msg: 'no user to log out' });
     }
 });
+
+router.get('/scheduler', (req, res) => {
+    // console.log(req);
+    // console.log(res);
+    // if (req.user) {
+    //     req.logout();
+    //     res.send({ msg: 'logging out' });
+    // } else {
+    //     res.send({ msg: 'no user to log out' });
+    // }
+});
+
+router.post('/scheduler', (req, res) => {
+    // console.log(req);
+    // console.log(res);
+    // if (req.user) {
+    //     req.logout();
+    //     res.send({ msg: 'logging out' });
+    // } else {
+    //     res.send({ msg: 'no user to log out' });
+    // }
+});
+
 
 module.exports = router;
