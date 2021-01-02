@@ -104,31 +104,31 @@ class App extends Component {
               if (!this.state.loggedIn) {
                 return (
                   <LoginForm
-                  updateUser={this.updateUser}
+                    updateUser={this.updateUser}
                   />
-                  );
-                } else {
-                  return (
-                    <Redirect to="/" />
-                  );
-                }
+                );
+              } else {
+                return (
+                  <Redirect to="/" />
+                );
               }
+            }
             }
           />
           <Route
             exact path="/signup"
             render={() => {
               if (!this.state.loggedIn) {
-                return(
+                return (
                   <Signup />
                 );
               } else {
-                return(
+                return (
                   <Redirect to="/" />
                 );
               }
             }
-          }
+            }
           />
           <Route
             exact path="/scheduler"
@@ -136,7 +136,7 @@ class App extends Component {
               if (this.state.loggedIn) {
                 return (
                   <Scheduler
-                  calendarStore={calendarStore} />
+                    calendarStore={calendarStore} />
                 );
               } else {
                 return (
@@ -148,13 +148,33 @@ class App extends Component {
           />
           <Route
             exact path="/profile"
-            render={() =>
-              <Profile />}
+            render={() => {
+              if (this.state.loggedIn) {
+                return (
+                  <Profile />
+                );
+              } else {
+                return (
+                  <Redirect to="/login" />
+                );
+              }
+            }
+            }
           />
           <Route
             exact path="/addpet"
-            render={() =>
-              <AddPet />}
+            render={() => {
+              if (this.state.loggedIn) {
+                return (
+                  <AddPet />
+                );
+              } else {
+                return (
+                  <Redirect to="/login" />
+                );
+              }
+            }
+            }
           />
         </Router>
 
