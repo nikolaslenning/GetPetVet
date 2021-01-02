@@ -1,69 +1,38 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import moment from "moment";
-import { Calendar, momentLocalizer, Views } from 'react-big-calendar';
-import events from './events';
-import ExampleControlSlot from './ExampleControlSlot';
-import _ from 'lodash';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+import React from "react";
+import { Router, Route } from "react-router-dom";
+import HomePage from "./HomePage";
+import { createBrowserHistory as createHistory } from "history";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 import "./Scheduler.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "react-datepicker/dist/react-datepicker.css";
+const history = createHistory();
 
-const propTypes = {};
-const localizer = momentLocalizer(moment);
-
-class CreateEventWithNoOverlap extends React.Component {
-  constructor(...args) {
-    super(...args);
-
-    this.state = {
-      events: _.cloneDeep(events),
-      dayLayoutAlgorithm: 'no-overlap',
-    };
-  }
-
-  handleSelect = ({ start, end }) => {
-    const title = window.prompt('New Event name');
-    // eslint-disable-next-line curly
-    if (title)
-      this.setState({
-        events: [
-          ...this.state.events,
-          {
-            start,
-            end,
-            title,
-          },
-        ],
-      });
-  }
-
-  render() {
-    return (
-      <>
-        <ExampleControlSlot.Entry waitForOutlet>
-          <strong>
-            Click an event to see more info, or drag the mouse over the calendar
-            to select a date/time range.
-            <br />
-            The events are being arranged by `no-overlap` algorithm.
-          </strong>
-        </ExampleControlSlot.Entry>
-        <Calendar
-          selectable
-          localizer={localizer}
-          events={this.state.events}
-          defaultView={Views.WEEK}
-          scrollToTime={new Date(1970, 1, 1, 6)}
-          defaultDate={new Date()}
-          onSelectEvent={event => alert(event.title)}
-          onSelectSlot={this.handleSelect}
-          dayLayoutAlgorithm={this.state.dayLayoutAlgorithm}
+function Scheduler({ calendarStore }) {
+  console.log("Calendar store variable ", calendarStore);
+  return (
+    <div>
+      <Router history={history}>
+        {/* <Navbar bg="primary" expand="lg" variant="dark">
+          <Navbar.Brand href="#home">Calendar App</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="/">Home</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar> */}
+        <Route
+          path="/"
+          exact
+          render={props => (
+            <HomePage {...props} calendarStore={calendarStore} />
+          )}
         />
-      </>
-    );
-  }
+      </Router>
+    </div>
+  );
 }
-
-CreateEventWithNoOverlap.propTypes = propTypes;
-
-export default CreateEventWithNoOverlap;
+export default Scheduler;
