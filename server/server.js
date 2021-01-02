@@ -6,7 +6,8 @@ const app = express();
 const server = http.createServer(app);
 const socket = require("socket.io");
 const io = socket(server);
-const routes = require('./routes/user');
+const userRoute = require('./routes/user');
+const petRoute = require('./routes/pet');
 const path = require('path');
 // const users = require("./models/user");
 require('./config/db')();
@@ -32,7 +33,8 @@ app.use(passport.initialize());
 app.use(passport.session()); // calls the deserializeUser
 
 // routes
-app.use('/user', routes);
+app.use('/user', userRoute);
+app.use('/pet', petRoute);
 
 // sockets
 const users = {};

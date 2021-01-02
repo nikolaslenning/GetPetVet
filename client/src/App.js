@@ -12,6 +12,8 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import VideoChat from './components/VideoChat/VideoChat';
 import Scheduler from './components/Scheduler/Scheduler';
+import Profile from './components/Profile/Profile';
+import AddPet from './components/AddPet/AddPet';
 
 class App extends Component {
   constructor() {
@@ -86,9 +88,19 @@ class App extends Component {
               <Signup />}
           />
           <Route
-            exact path="/Scheduler"
+            exact path="/scheduler"
             render={() =>
               <Scheduler />}
+          />
+          <Route
+            exact path="/profile"
+            render={() =>
+              <Profile />}
+          />
+          <Route
+            exact path="/addpet"
+            render={() =>
+              <AddPet />}
           />
         </Router>
 

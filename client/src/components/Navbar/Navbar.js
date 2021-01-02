@@ -22,7 +22,7 @@ class Navbar extends Component {
           email: null
         });
       }
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     }).catch(error => {
       console.log('Logout error');
     });
@@ -35,36 +35,42 @@ class Navbar extends Component {
 
     return (
       <div>
-          <header className="navbar App-header" id="nav-container">
-            <div className="col-4" >
-              {loggedIn ? (
-                <section className="navbar-section">
-                  <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
-                    <span className="text-secondary">logout</span></Link>
+        <header className="navbar App-header" id="nav-container">
+          <div className="col-4" >
+            {loggedIn ? (
+              <section className="navbar-section">
+                <Link to="/profile" className="btn btn-link text-secondary">
+                  <span className="text-secondary">Profile</span>
+                </Link>
+                <Link to="/addpet" className="btn btn-link text-secondary">
+                  <span className="text-secondary">Add Pet</span>
+                </Link>
+                <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
+                  <span className="text-secondary">Logout</span></Link>
 
+              </section>
+            ) : (
+                <section className="navbar-section">
+                  <Link to="/" className="btn btn-link text-secondary">
+                    <span className="text-secondary">Home</span>
+                  </Link>
+                  <Link to="/login" className="btn btn-link text-secondary">
+                    <span className="text-secondary">Login</span>
+                  </Link>
+                  <Link to="/signup" className="btn btn-link">
+                    <span className="text-secondary">Sign up</span>
+                  </Link>
+                  <Link to="/Scheduler" className="btn btn-link">
+                    <span className="text-secondary">Scheduler</span>
+                  </Link>
                 </section>
-              ) : (
-                  <section className="navbar-section">
-                    <Link to="/" className="btn btn-link text-secondary">
-                      <span className="text-secondary">Home</span>
-                    </Link>
-                    <Link to="/login" className="btn btn-link text-secondary">
-                      <span className="text-secondary">Login</span>
-                    </Link>
-                    <Link to="/signup" className="btn btn-link">
-                      <span className="text-secondary">Sign up</span>
-                    </Link>
-                    <Link to="/Scheduler" classname="btn btn-link">
-                      <span className="text-secondary">Scheduler</span>
-                    </Link>
-                  </section>
-                )}
-            </div>
-            <div className="col-4 col-mr-auto">
-              <div id="top-filler"></div>
-              <h1 className="App-title">MERN Passport</h1>
-            </div>
-          </header>
+              )}
+          </div>
+          <div className="col-4 col-mr-auto">
+            <div id="top-filler"></div>
+            <h1 className="App-title">MERN Passport</h1>
+          </div>
+        </header>
       </div>
 
     );
