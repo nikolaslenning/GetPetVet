@@ -29,12 +29,12 @@ module.exports = {
     },
 
     remove: function (req, res) {
-        console.log("req.params");
+        console.log(req);
         console.log(req.params);
         Calendar
             .findByIdAndDelete(req.params.id)
             .then(data => {
-                res.json({ success: true });
+                res.json({ success: true, data });
             })
             .catch(err => {
                 res.json({ success: false });

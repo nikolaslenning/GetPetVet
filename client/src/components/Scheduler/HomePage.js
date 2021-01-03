@@ -51,12 +51,17 @@ function HomePage({ calendarStore }) {
   };
 
   const handleSelectEvent = (event, e) => {
+    console.log("event");
+    console.log(event);
     setShowAddModal(false);
     setShowEditModal(true);
-    let { id, title, start, end, allDay } = event;
+    let { _id, title, start, end, allDay } = event;
+
     start = new Date(start);
     end = new Date(end);
-    const data = { id, title, start, end, allDay };
+    const data = { _id, title, start, end, allDay };
+     console.log("data");
+    console.log(data);
     setCalendarEvent(data);
   };
 

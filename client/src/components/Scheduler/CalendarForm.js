@@ -32,6 +32,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
   ]);
 
   const handleSubmit = async ev => {
+    console.log(ev);
     ev.preventDefault();
     if (!title || !start || !end) {
       return;
@@ -60,7 +61,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
       };
     });
 
-    calendarStore.setCalendarEvents(evs);
+    calendarStore.setCalendarEvents(response.data.data);
     onCancel();
   };
 
@@ -72,6 +73,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
     // console.log(calendarEvent);
     await addCalendar(calendarEvent);
     const response = await getCalendar();
+    console.log(response.data.data);
 
     const evs = [response.data.data].map(d => {
       return {
@@ -80,16 +82,19 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
         end: new Date(d.end)
       };
     });
-    calendarStore.setCalendarEvents(evs);
+    calendarStore.setCalendarEvents(response.data.data);
     onCancel();
+    getCalendar();
   };
 
   const deleteCalendarEvent = async () => {
-    console.log(calendarEvent);
+    console.log(calendarEvent._id);
     await deleteCalendar(calendarEvent._id);
     const response = await getCalendar();
     // console.log(response);
-    // console.log(response.data);
+    console.log(response.data);
+    console.log(response.data.data);
+    console.log(response.data.data._id);
 
     const evs = [response.data.data].map(d => {
       return {
@@ -98,10 +103,11 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
         end: new Date(d.end)
       };
     });
-
-    calendarStore.setCalendarEvents(evs);
+    // console.log(evs);
+    calendarStore.setCalendarEvents(response.data.data);
     onCancel();
     getCalendar();
+
   };
 
   return (
@@ -147,7 +153,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
       <Button type="submit" style={buttonStyle} onClick={addCalendarEvent}>
         Save
       </Button>
-      <Button type="button" style={buttonStyle} onClick={() => deleteCalendarEvent(calendarStore._id)}>
+      <Button type="button" style={buttonStyle} onClick={deleteCalendarEvent}>
         Delete
       </Button>
       <Button type="button" onClick={onCancel}>
