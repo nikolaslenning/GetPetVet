@@ -23,15 +23,16 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
     setTitle(calendarEvent.title);
     setStart(calendarEvent.start);
     setEnd(calendarEvent.end);
-    setId(calendarEvent.id);
+    setId(calendarEvent._id);
   }, [
     calendarEvent.title,
     calendarEvent.start,
     calendarEvent.end,
-    calendarEvent.id
+    calendarEvent._id
   ]);
 
   const handleSubmit = async ev => {
+    console.log(" CalenderForm ln 35");
     console.log(ev);
     ev.preventDefault();
     if (!title || !start || !end) {
@@ -44,6 +45,8 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
     }
 
     const data = { id, title, start, end };
+    console.log("data calendarForm ln 49");
+    console.log(data);
 
     if (!edit) {
       await addCalendar(data);
@@ -53,13 +56,13 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
 
     const response = await getCalendar();
 
-    const evs = [response.data.data].map(d => {
-      return {
-        ...d,
-        start: new Date(d.start),
-        end: new Date(d.end)
-      };
-    });
+    // const evs = [response.data.data].map(d => {
+    //   return {
+    //     ...d,
+    //     start: new Date(d.start),
+    //     end: new Date(d.end)
+    //   };
+    // });
 
     calendarStore.setCalendarEvents(response.data.data);
     onCancel();
@@ -73,41 +76,52 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
     // console.log(calendarEvent);
     await addCalendar(calendarEvent);
     const response = await getCalendar();
-    console.log(response.data.data);
+    // console.log(response.data.data);
 
-    const evs = [response.data.data].map(d => {
-      return {
-        ...d,
-        start: new Date(d.start),
-        end: new Date(d.end)
-      };
-    });
+    // const evs = [response.data.data].map(d => {
+    //   return {
+    //     ...d,
+    //     start: new Date(d.start),
+    //     end: new Date(d.end)
+    //   };
+    // });
     calendarStore.setCalendarEvents(response.data.data);
     onCancel();
     getCalendar();
   };
 
   const deleteCalendarEvent = async () => {
-    console.log(calendarEvent._id);
+    // console.log(calendarEvent._id);
     await deleteCalendar(calendarEvent._id);
     const response = await getCalendar();
     // console.log(response);
-    console.log(response.data);
-    console.log(response.data.data);
-    console.log(response.data.data._id);
+    // console.log(response.data);
+    // console.log(response.data.data);
+    // console.log(response.data.data._id);
 
-    const evs = [response.data.data].map(d => {
-      return {
-        ...d,
-        start: new Date(d.start),
-        end: new Date(d.end)
-      };
-    });
+    // const evs = [response.data.data].map(d => {
+    //   return {
+    //     ...d,
+    //     start: new Date(d.start),
+    //     end: new Date(d.end)
+    //   };
+    // });
     // console.log(evs);
     calendarStore.setCalendarEvents(response.data.data);
     onCancel();
     getCalendar();
 
+  };
+
+  const editCalendarEvent = async () => {
+    // console.log(calendarEvent);
+    await editCalendar(calendarEvent._id);
+    const response = await getCalendar();
+    console.log(response.data.data);
+
+    calendarStore.setCalendarEvents(response.data.data);
+    onCancel();
+    getCalendar();
   };
 
   return (
@@ -150,9 +164,14 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
           />
         </Form.Group>
       </Form.Row>
+      {!edit ? (
       <Button type="submit" style={buttonStyle} onClick={addCalendarEvent}>
         Save
+      </Button>) : (
+        <Button type="submit" style={buttonStyle} onClick={editCalendarEvent}>
+        Edit
       </Button>
+      )}
       <Button type="button" style={buttonStyle} onClick={deleteCalendarEvent}>
         Delete
       </Button>

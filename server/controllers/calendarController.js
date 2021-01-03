@@ -29,7 +29,7 @@ module.exports = {
     },
 
     remove: function (req, res) {
-        console.log(req);
+        // console.log(req);
         console.log(req.params);
         Calendar
             .findByIdAndDelete(req.params.id)
@@ -39,8 +39,16 @@ module.exports = {
             .catch(err => {
                 res.json({ success: false });
             });
-    }
+    },
     // };
+    update: function(req, res) {
+        console.log('HELP FIND IT');
+        console.log(req.body);
+        console.log(req.params);
+        Calendar.findOneAndUpdate({ _id: req.body.id }, req.body)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      },
 
 
     // module.exports = {
