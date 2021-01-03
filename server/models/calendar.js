@@ -3,13 +3,15 @@ const Schema = mongoose.Schema;
 mongoose.promise = Promise;
 
 // Define eventSchema
-const eventSchema = new Schema({
+const calendarSchema = new Schema({
 
-    title: {type: String, unique: false, required: true},
-    start: {type: Date, unique: false, required: true},
-    end: {type: Date, unique: false, required: true}
+    title: { type: String, unique: false, required: true },
+    start: { type: Date, unique: false, required: true },
+    end: { type: Date, unique: false, required: true },
+    allDay: {type: Boolean},
+    // resource: {any},
 
 });
 
-const Event = mongoose.model('Event', eventSchema);
-module.exports = Event;
+const Calendar = mongoose.model('Calendar', calendarSchema);
+module.exports = Calendar;
