@@ -40,7 +40,8 @@
     "install": "cd client && yarn",
     "build": "cd client && yarn run build",
     "heroku-postbuild": "yarn run build",
-    "lint": "eslint \"**/*.js\""
+    "lint": "eslint \"**/*.js\"",
+    "seed": "node server/seeds/seedDB.js"
   },
   "devDependencies": {},
   "eslintConfig": {

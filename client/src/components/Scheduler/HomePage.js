@@ -10,6 +10,8 @@ import { getCalendar } from "./requests";
 const localizer = momentLocalizer(moment);
 
 function HomePage({ calendarStore }) {
+  // console.log("calendarStore.calendarEvents");
+  // console.log(calendarStore.calendarEvents);
 
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showEditModal, setShowEditModal] = React.useState(false);
@@ -23,21 +25,25 @@ function HomePage({ calendarStore }) {
 
   const getCalendarEvents = async () => {
     const response = await getCalendar();
-    console.log(response.data);
-    const evs = response.data.map(d => {
-      return {
-        ...d,
-        start: new Date(d.start),
-        end: new Date(d.end)
-      };
-    });
+    // console.log(response.data.data);
+    // const evs = [response.data.data].map(d => {
+    //   return {
+    //     ...d,
+    //     start: new Date(d.start),
+    //     end: new Date(d.end)
+    //   };
+    // });
+    // console.log("evs evs evs evs");
+    // console.log(evs);
 
-    calendarStore.setCalendarEvents(evs);
+    calendarStore.setCalendarEvents(response.data.data);
+    // calendarStore.setCalendarEvents(evs);
     setInitialized(true);
   };
 
   const handleSelect = (event, e) => {
     const { start, end } = event;
+    // console.log(event);
     const data = { title: "", start, end, allDay: false };
     setShowAddModal(true);
     setShowEditModal(false);
@@ -45,12 +51,17 @@ function HomePage({ calendarStore }) {
   };
 
   const handleSelectEvent = (event, e) => {
+    // console.log("event");
+    // console.log(event);
     setShowAddModal(false);
     setShowEditModal(true);
-    let { id, title, start, end, allDay } = event;
+    let { _id, title, start, end, allDay } = event;
+
     start = new Date(start);
     end = new Date(end);
-    const data = { id, title, start, end, allDay };
+    const data = { _id, title, start, end, allDay };
+    //  console.log("data");
+    // console.log(data);
     setCalendarEvent(data);
   };
 
@@ -98,6 +109,7 @@ function HomePage({ calendarStore }) {
       <Calendar
         localizer={localizer}
         events={calendarStore.calendarEvents}
+        // events={getCalendar}
         startAccessor="start"
         endAccessor="end"
         selectable={true}

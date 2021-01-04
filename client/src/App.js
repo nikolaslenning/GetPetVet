@@ -14,6 +14,7 @@ import Profile from './components/Profile/Profile';
 import AddPet from './components/AddPet/AddPet';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import Doctors from "./components/Doctors/Doctors";
 
 import { CalendarStore } from "../src/components/Scheduler/store";
 const calendarStore = new CalendarStore();
@@ -32,9 +33,9 @@ class App extends Component {
     this.getUser = this.getUser.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.updateUser = this.updateUser.bind(this);
-    axios.get("/api/scheduler").then(e => {
-      console.log("ajklsdfdfsjkl ", e);
-    });
+    // axios.get("/api/scheduler").then(e => {
+    //   console.log("ajklsdfdfsjkl ", e);
+    // });
   }
 
   componentDidMount() {
@@ -167,6 +168,21 @@ class App extends Component {
               if (this.state.loggedIn) {
                 return (
                   <AddPet />
+                );
+              } else {
+                return (
+                  <Redirect to="/login" />
+                );
+              }
+            }
+            }
+          />
+          <Route
+            exact path="/doctors"
+            render={() => {
+              if (this.state.loggedIn) {
+                return (
+                  <Doctors />
                 );
               } else {
                 return (

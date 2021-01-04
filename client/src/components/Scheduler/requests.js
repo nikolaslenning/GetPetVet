@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-export const getCalendar = () => axios.get(`/api/scheduler`);
+export const getCalendar = (data) => axios.get(`/api/scheduler`, data);
 
 export const addCalendar = data => axios.post(`/api/scheduler`, data);
 

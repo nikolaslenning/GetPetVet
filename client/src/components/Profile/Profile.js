@@ -9,7 +9,6 @@ class Profile extends Component {
       pet: []
     };
   }
-
   getPet() {
     axios.get('/pet')
       .then(res => {
