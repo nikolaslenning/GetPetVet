@@ -11,10 +11,11 @@ class DoctorCards extends Component {
     }
 
     getDoctor() {
-        axios.get('/users')
+        axios.get('/doctors')
             .then(res => {
                 console.log("res.data");
                 console.log(res.data.data);
+                console.log(res.data);
                 this.setState({
                     doctor: res.data.data
                 });
@@ -31,23 +32,23 @@ class DoctorCards extends Component {
             <div>
                 <h3>Doctor Profiles</h3>
                 {console.log(this.state.doctor)}
-                {this.state.doctor.map(doctor =>
-                    <div className="card text-center">
-                        <div className="content">
-                            <ul>
-                                <li>
-                                    <strong>Name:</strong> {doctor.name}
+                <div className="card text-center">
+                    <div className="content">
+                        <ul>
+                            {this.state.doctor.map(doctor =>
+                                <li key={doctor._id} >
+                                    <strong>Name:</strong> Dr. {doctor.firstName} {doctor.lastName}
                                 </li>
-                                {/* <li>
+                            )}
+                        </ul>
+                    </div>
+                </div>
+                {/* <li>
                                     <strong>Breed:</strong> {pet.petBreed}
                                 </li>
                                 <li>
                                     <strong>Age:</strong> {pet.petAge}
                                 </li> */}
-                            </ul>
-                        </div>
-                    </div>
-                )}
             </div>
 
         );
