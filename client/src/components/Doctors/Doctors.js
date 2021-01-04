@@ -38,12 +38,12 @@ class DoctorCards extends Component {
                                 <li>
                                     <strong>Name:</strong> {doctor.name}
                                 </li>
-                                <li>
+                                {/* <li>
                                     <strong>Breed:</strong> {pet.petBreed}
                                 </li>
                                 <li>
                                     <strong>Age:</strong> {pet.petAge}
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </div>
