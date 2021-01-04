@@ -32,23 +32,25 @@ class DoctorCards extends Component {
             <div>
                 <h3>Doctor Profiles</h3>
                 {console.log(this.state.doctor)}
-                <div className="card text-center">
-                    <div className="content">
-                        <ul>
-                            {this.state.doctor.map(doctor =>
-                                <li key={doctor._id} >
-                                    <strong>Name:</strong> Dr. {doctor.firstName} {doctor.lastName}
-                                </li>
-                            )}
-                        </ul>
+                {this.state.doctor.map(doctor =>
+                    <div className="card text-center">
+                        <div className="card-header">
+                            <img src={doctor.imageLinks} alt={doctor.title} />
+                        </div>
+                        <div className="card-body">
+                            <h2>Dr. {doctor.firstName} {doctor.lastName}</h2>
+                            <p>Address: {doctor.address}</p>
+                            <p>Province: {doctor.province}</p>
+                            <p>Zip Code: {doctor.zipCode}</p>
+                            <p>Phone Number: {doctor.phoneNumber}</p>
+                            <p>Email: {doctor.email}</p>
+                            {/* <a href="{doctor.email}" target="_blank" rel="noreferrer" >Book Info</a>
+                            <br></br>
+                            <button className="btn btn-primary" onClick={onClick}>Save</button> */}
+                        </div>
                     </div>
-                </div>
-                {/* <li>
-                                    <strong>Breed:</strong> {pet.petBreed}
-                                </li>
-                                <li>
-                                    <strong>Age:</strong> {pet.petAge}
-                                </li> */}
+                )
+                }
             </div>
 
         );
