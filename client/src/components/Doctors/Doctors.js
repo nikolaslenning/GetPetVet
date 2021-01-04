@@ -1,22 +1,57 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { Component } from "react";
+import axios from "axios";
 
-function DoctorCards(props) {
+class DoctorCards extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            doctor: []
+        };
+    }
 
-    return (
-        <div className="card text-center">
-            <div className="card-header">
-                <img src="#" alt="Doctor Face or something" />
+    getDoctor() {
+        axios.get('/users')
+            .then(res => {
+                console.log("res.data");
+                console.log(res.data.data);
+                this.setState({
+                    doctor: res.data.data
+                });
+            })
+            .catch(err => console.log(err));
+    }
+
+    componentDidMount() {
+        this.getDoctor();
+    }
+
+    render() {
+        return (
+            <div>
+                <h3>Doctor Profiles</h3>
+                {console.log(this.state.doctor)}
+                {this.state.doctor.map(doctor =>
+                    <div className="card text-center">
+                        <div className="content">
+                            <ul>
+                                <li>
+                                    <strong>Name:</strong> {doctor.name}
+                                </li>
+                                <li>
+                                    <strong>Breed:</strong> {pet.petBreed}
+                                </li>
+                                <li>
+                                    <strong>Age:</strong> {pet.petAge}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                )}
             </div>
-            <div className="card-body">
-                <h2>Hello, my name is Dr. Frankenstien</h2>
-                <p>I'm baby woke palo santo pabst edison bulb pok pok. Photo booth velit salvia, fixie coloring book neutra ennui palo santo ut ipsum. Deserunt narwhal williamsburg gluten-free. Tempor truffaut cred trust fund, organic activated charcoal qui post-ironic aliquip succulents. Selfies chillwave ad, eiusmod in quis keffiyeh irony lumbersexual cillum qui polaroid you probably haven't heard of them photo booth jean shorts.</p>
-                <a href="#" target="_blank" rel="noreferrer" >Book Info</a>
-                <br></br>
-                <button className="btn btn-primary">Save</button>
-            </div>
-        </div>
-    );
+
+        );
+    }
 }
 
 export default DoctorCards;
