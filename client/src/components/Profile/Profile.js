@@ -9,6 +9,7 @@ class Profile extends Component {
       pet: []
     };
   }
+
   getPet() {
     axios.get('/pet')
       .then(res => {
@@ -37,11 +38,23 @@ class Profile extends Component {
         {console.log("this.state.pet")}
         {console.log(this.state.pet)}
         {this.state.pet.map(pet =>
-          <button onClick={() => this.deletePet(pet._id)}>
-            {pet.petName}
-          </button>
-        )
-        }
+          <div className="card">
+          <div className="content">
+            <ul>
+              <li>
+                <strong>Name:</strong> {pet.petName}
+              </li>
+              <li>
+                <strong>Breed:</strong> {pet.petBreed}
+              </li>
+              <li>
+                <strong>Age:</strong> {pet.petAge}
+              </li>
+            </ul>
+          </div>
+          <button onClick={() => this.deletePet(pet._id)}>Delete</button>
+        </div>
+        )}
       </div>
     );
   }
