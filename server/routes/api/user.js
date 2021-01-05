@@ -56,6 +56,7 @@ router.post(
             province: req.user.province,
             zipCode: req.user.zipCode,
             phoneNumber: req.user.phoneNumber,
+            isDoctor: req.user.isDoctor
 
         };
         res.send(userInfo);
@@ -69,7 +70,7 @@ router.get('/', (req, res, next) => {
     console.log("line 61 user.js" + req.session.passport);
     console.log(req.session.passport);
     if (req.user) {
-        res.json({ user: req.user });
+        res.json({ user: req.user, data: req.body });
     } else {
         res.json({ user: null });
     }

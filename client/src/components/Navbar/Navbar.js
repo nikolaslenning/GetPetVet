@@ -7,6 +7,7 @@ import axios from 'axios';
 import "./Navbar.css";
 
 class Navbar extends Component {
+
   constructor() {
     super();
     this.logout = this.logout.bind(this);
@@ -17,10 +18,12 @@ class Navbar extends Component {
     console.log('logging out');
     axios.post('/user/logout').then(response => {
       console.log(response.data);
+
       if (response.status === 200) {
         this.props.updateUser({
           loggedIn: false,
-          email: null
+          email: null,
+          isDoctor: true
         });
       }
       // eslint-disable-next-line no-unused-vars
@@ -30,6 +33,7 @@ class Navbar extends Component {
   }
 
   render() {
+    const isDoctor = this.props.isDoctor;
     const loggedIn = this.props.loggedIn;
     console.log('navbar render, props: ');
     console.log(this.props);
@@ -49,22 +53,25 @@ class Navbar extends Component {
                     <Link to="/" className="btn btn-link text-secondary">
                       <span className="text-secondary">Home</span>
                     </Link>
-                    <Link to="/scheduler" className="btn btn-link text-secondary">
-                      <span className="text-secondary">Scheduler</span>
-                    </Link>
+                    {isDoctor ? (
+                      <Link to="/scheduler" className="btn btn-link text-secondary">
+                        <span className="text-secondary">Scheduler</span>
+                      </Link>
+                    ) : (<span></span>)}
                     <Link to="/profile" className="btn btn-link text-secondary">
                       <span className="text-secondary">Profile</span>
                     </Link>
                     <Link to="/addpet" className="btn btn-link text-secondary">
                       <span className="text-secondary">Add Pet</span>
                     </Link>
+                    {!isDoctor ? (
                     <Link to="/doctors" className="btn btn-link text-secondary">
                       <span className="text-secondary">Doctors</span>
                     </Link>
+                    ) : (<span></span>)}
                     <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
                       <span className="text-secondary">Logout</span>
                     </Link>
-
                   </section>
                 ) : (
                     <section className="navbar-section">
@@ -80,7 +87,6 @@ class Navbar extends Component {
             </div>
           </div>
         </nav>
-
         {/* <header className="navbar App-header" id="nav-container">
             <div className="col-4" >
               {loggedIn ? (
@@ -114,10 +120,7 @@ class Navbar extends Component {
             </div>
               </header> */}
       </div >
-
     );
-
   }
 }
-
 export default Navbar;

@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const Doctor = require("../models/doctor");
+const Doctor = require("../models/user");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/getpetvet");
 
 const doctorSeed = [
     {
       email: "gene_w@gmail.com",
-      password: "1234",
+      password: "$2a$10$YWK2X64B8gdiiEkg4vqHIuz6uW.OmswUsF1aLCjaCUQxbUX1yLolu",
       firstName: "Victor",
       lastName: "Frankenstien",
       address: "345 Creepy Castle Rd",
@@ -17,7 +17,7 @@ const doctorSeed = [
     },
     {
       email: "j_kevorkian@gmail.com",
-      password: "1234",
+      password: "$2a$10$YWK2X64B8gdiiEkg4vqHIuz6uW.OmswUsF1aLCjaCUQxbUX1yLolu",
       firstName: "Jack",
       lastName: "Kevorkian",
       address: "2011 Royal Oak Rd",
