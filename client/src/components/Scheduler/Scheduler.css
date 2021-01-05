@@ -1,5 +1,6 @@
 .page {
     padding: 20px;
+    background-color: white;
   }
   .form-control.react-datepicker-ignore-onclickoutside,
   .react-datepicker-wrapper {

@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import "./AddPet.css";
 
 class AddPet extends Component {
   constructor() {
@@ -58,8 +59,8 @@ class AddPet extends Component {
     } else {
       return (
         <div className="ProfileForm">
-          <h4>Pet Profile</h4>
           <form className="form-horizontal">
+          <h4>New Pet Profile</h4>
             <div className="form-group">
               <div className="col-1 col-ml-auto">
                 <label className="form-label">Pet Name: </label>
@@ -108,7 +109,7 @@ class AddPet extends Component {
             <div className="form-group ">
               <div className="col-7"></div>
               <button
-                className="btn btn-primary col-1 col-mr-auto"
+                className="btn btn-primary"
                 onClick={this.handleSubmit}
                 type="submit"
               >Create</button>
