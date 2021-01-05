@@ -65,9 +65,9 @@ class Navbar extends Component {
                     <Link to="/" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                       <span className="text-secondary">Home</span>
                     </Link>
-                    </li>
+                      </li>
                     {isDoctor ? (
-                      <li>
+                        <li>
                       <Link to="/scheduler" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                         <span className="text-secondary">Scheduler</span>
                       </Link>
@@ -82,7 +82,7 @@ class Navbar extends Component {
                     <Link to="/addpet" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                       <span className="text-secondary">Add Pet</span>
                     </Link>
-                    </li>
+                      </li>
                     {!isDoctor ? (
                       <li>
                     <Link to="/doctors" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
@@ -94,8 +94,8 @@ class Navbar extends Component {
                     <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
                       <span className="text-secondary">Logout</span>
                     </Link>
-                    </li>
-                  </ul>
+                      </li>
+                    </ul>
                   </section>
                 ) : (
                     <section className="navbar-section">
