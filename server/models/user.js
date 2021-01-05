@@ -13,7 +13,17 @@ const userSchema = new Schema({
 	address: { type: String, unique: false, required: false },
 	province: { type: String, unique: false, required: false },
 	zipCode: { type: Number, unique: false, required: false },
-	phoneNumber: { type: Number, unique: false, required: false }
+  phoneNumber: { type: Number, unique: false, required: false },
+  pet : [{
+    type: Schema.Types.ObjectId,
+    ref: "Pet",
+    required: false
+  }],
+  calendar: [{
+    type: Schema.Types.ObjectId,
+    ref: "Calendar",
+    required: false
+  }]
 });
 
 // Define schema methods

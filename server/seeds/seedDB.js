@@ -8,9 +8,9 @@ const doctorSeed = [
       email: "gene_w@gmail.com",
       password: "1234",
       firstName: "Victor",
-      lastName: "Frankenstien",
+      lastName: "Frankenstein",
       address: "345 Creepy Castle Rd",
-      province: "Transelvania, RO",
+      province: "Transylvania, RO",
       zipCode: 500326,
       phoneNumber: 403592513588,
       isDoctor: true

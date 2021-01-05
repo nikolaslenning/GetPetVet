@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
+import axios from "axios";
+import "./AddPet.css";
 
 class AddPet extends Component {
   constructor() {
@@ -29,6 +30,7 @@ class AddPet extends Component {
     event.preventDefault();
 
     //request to server to add a pet profile
+
     axios.post('/pet', {
       petName: this.state.petName,
       petBreed: this.state.petBreed,
@@ -57,7 +59,7 @@ class AddPet extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <div className="ProfileForm">
+        <div id="addPetCentering">
           <h4>Pet Profile</h4>
           <form className="form-horizontal">
             <div className="form-group">
@@ -108,7 +110,7 @@ class AddPet extends Component {
             <div className="form-group ">
               <div className="col-7"></div>
               <button
-                className="btn btn-primary col-1 col-mr-auto"
+                className="btn btn-primary"
                 onClick={this.handleSubmit}
                 type="submit"
               >Create</button>

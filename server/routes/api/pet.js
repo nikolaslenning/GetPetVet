@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const Pet = require('../../models/pet');
 
-// create
+// get/create
 router
   .route('/')
   .get((req, res) => {

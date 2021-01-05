@@ -38,22 +38,16 @@ class Profile extends Component {
         {console.log("this.state.pet")}
         {console.log(this.state.pet)}
         {this.state.pet.map(pet =>
-          <div className="card">
-          <div className="content">
-            <ul>
-              <li>
-                <strong>Name:</strong> {pet.petName}
-              </li>
-              <li>
-                <strong>Breed:</strong> {pet.petBreed}
-              </li>
-              <li>
-                <strong>Age:</strong> {pet.petAge}
-              </li>
-            </ul>
+          <div className="card text-center">
+            <div className="card-header">
+            </div>
+            <div className="card-body">
+              <h2>{pet.petName}</h2>
+              <p>Breed: {pet.petBreed}</p>
+              <p>Age: {pet.petAge}</p>
+            </div>
+            <button onClick={() => this.deletePet(pet._id)}>Delete</button>
           </div>
-          <button onClick={() => this.deletePet(pet._id)}>Delete</button>
-        </div>
         )}
       </div>
     );
