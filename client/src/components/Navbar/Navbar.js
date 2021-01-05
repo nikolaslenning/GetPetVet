@@ -30,6 +30,7 @@ class Navbar extends Component {
   }
 
   render() {
+    const isDoctor = this.props.isDoctor;
     const loggedIn = this.props.loggedIn;
     console.log('navbar render, props: ');
     console.log(this.props);
@@ -49,9 +50,14 @@ class Navbar extends Component {
                     <Link to="/" className="btn btn-link text-secondary">
                       <span className="text-secondary">Home</span>
                     </Link>
+
+                    {isDoctor ? (
                     <Link to="/scheduler" className="btn btn-link text-secondary">
                       <span className="text-secondary">Scheduler</span>
                     </Link>
+
+                    ) : (<span></span>)}
+
                     <Link to="/profile" className="btn btn-link text-secondary">
                       <span className="text-secondary">Profile</span>
                     </Link>

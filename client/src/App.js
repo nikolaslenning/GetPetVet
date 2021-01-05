@@ -134,7 +134,7 @@ class App extends Component {
           <Route
             exact path="/scheduler"
             render={() => {
-              if (this.state.loggedIn) {
+              if (this.state.isDoctor) {
                 return (
                   <Scheduler
                     calendarStore={calendarStore} />
