@@ -1,0 +1,15 @@
+h3 {
+  text-align: center;
+  color: #adcbd6;
+}
+
+.card {
+  padding: 2%;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+}
