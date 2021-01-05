@@ -33,7 +33,7 @@ class DoctorCards extends Component {
                 <h3>Doctor Profiles</h3>
                 {console.log(this.state.doctor)}
                 {this.state.doctor.map(doctor =>
-                    <div className="card text-center">
+                    <div key={doctor._id} className="card text-center">
                         <div className="card-header">
                             <img src={doctor.imageLinks} alt={doctor.title} />
                         </div>
