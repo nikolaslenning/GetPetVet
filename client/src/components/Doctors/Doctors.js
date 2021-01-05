@@ -14,7 +14,7 @@ class DoctorCards extends Component {
         axios.get('/doctors')
             .then(res => {
                 console.log("res.data");
-                console.log(res.data.data);
+                console.log(res);
                 console.log(res.data);
                 this.setState({
                     doctor: res.data.data
@@ -33,7 +33,7 @@ class DoctorCards extends Component {
                 <h3>Doctor Profiles</h3>
                 {console.log(this.state.doctor)}
                 {this.state.doctor.map(doctor =>
-                    <div className="card text-center">
+                    <div key={doctor._id} className="card text-center">
                         <div className="card-header">
                             <img src={doctor.imageLinks} alt={doctor.title} />
                         </div>

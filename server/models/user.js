@@ -13,7 +13,8 @@ const userSchema = new Schema({
 	address: { type: String, unique: false, required: false },
 	province: { type: String, unique: false, required: false },
 	zipCode: { type: Number, unique: false, required: false },
-	phoneNumber: { type: Number, unique: false, required: false }
+	phoneNumber: { type: Number, unique: false, required: false },
+	isDoctor: { type: Boolean, default: false}
 });
 
 // Define schema methods

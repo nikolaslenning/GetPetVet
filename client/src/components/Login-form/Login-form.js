@@ -12,7 +12,8 @@ class LoginForm extends Component {
       email: '',
       password: '',
       firstName: "",
-      redirectTo: null
+      redirectTo: null,
+      isDoctor: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -32,6 +33,7 @@ class LoginForm extends Component {
       .post('/user/login', {
         email: this.state.email,
         password: this.state.password,
+        isDoctor: this.state.isDoctor
         // firstName: this.state.firstname
       })
       .then(response => {
@@ -42,7 +44,8 @@ class LoginForm extends Component {
           this.props.updateUser({
             loggedIn: true,
             email: response.data.email,
-            firstName: response.data.firstName
+            firstName: response.data.firstName,
+            isDoctor: response.data.isDoctor
           });
           // update the state to redirect to home
           this.setState({

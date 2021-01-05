@@ -7,7 +7,8 @@ class Passport extends Component {
     super();
     this.state = {
       loggedIn: false,
-      email: null
+      email: null,
+      isDoctor: false
     };
 
     this.getUser = this.getUser.bind(this);
@@ -32,7 +33,8 @@ class Passport extends Component {
 
         this.setState({
           loggedIn: true,
-          email: response.data.user.email
+          email: response.data.user.email,
+          isDoctor: response.data.user.isDoctor
         });
       } else {
         console.log('Get user: no user');
