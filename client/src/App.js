@@ -27,7 +27,8 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       email: null,
-      firstName: null
+      firstName: null,
+      isDoctor: false
     };
 
     this.getUser = this.getUser.bind(this);
@@ -57,7 +58,8 @@ class App extends Component {
         this.setState({
           loggedIn: true,
           email: response.data.user.email,
-          firstName: response.data.user.firstName
+          firstName: response.data.user.firstName,
+          isDoctor: response.data.user.isDoctor
         });
       } else {
         console.log('Get user: no user');
@@ -134,7 +136,7 @@ class App extends Component {
           <Route
             exact path="/scheduler"
             render={() => {
-              if (this.state.isDoctor) {
+              if (this.state.loggedIn) {
                 return (
                   <Scheduler
                     calendarStore={calendarStore} />
