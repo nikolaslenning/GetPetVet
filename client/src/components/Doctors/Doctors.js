@@ -14,7 +14,7 @@ class DoctorCards extends Component {
         axios.get('/doctors')
             .then(res => {
                 console.log("res.data");
-                console.log(res.data.data);
+                console.log(res);
                 console.log(res.data);
                 this.setState({
                     doctor: res.data.data
