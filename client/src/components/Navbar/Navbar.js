@@ -23,7 +23,7 @@ class Navbar extends Component {
         this.props.updateUser({
           loggedIn: false,
           email: null,
-          isDoctor: true
+
         });
       }
       // eslint-disable-next-line no-unused-vars
