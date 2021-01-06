@@ -9,6 +9,7 @@ const calendarSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "user"
     },
+    docID: { type: Number, unique: false, required: true },
     title: { type: String, unique: false, required: true },
     start: { type: Date, unique: false, required: true },
     end: { type: Date, unique: false, required: true },

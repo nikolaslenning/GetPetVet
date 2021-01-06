@@ -8,6 +8,7 @@ module.exports = {
     Calendar
       .create({
         user: req.user._id,
+        docID: req.body.docID,
         title: req.body.title,
         start: req.body.start,
         end: req.body.end,
