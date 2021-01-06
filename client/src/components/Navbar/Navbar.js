@@ -62,38 +62,38 @@ class Navbar extends Component {
                   <section className="navbar-section" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                     <ul className="navList">
                       <li>
-                    <Link to="/" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                      <span className="text-secondary">Home</span>
-                    </Link>
+                        <Link to="/" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+                          <span className="text-secondary">Home</span>
+                        </Link>
                       </li>
-                    {isDoctor ? (
+                      {isDoctor ? (
                         <li>
-                      <Link to="/scheduler" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                        <span className="text-secondary">Scheduler</span>
-                      </Link>
+                          <Link to="/scheduler" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+                            <span className="text-secondary">Scheduler</span>
+                          </Link>
                         </li>
-                    ) : (<span></span>)}
+                      ) : (<span></span>)}
+                      <li>
+                        <Link to="/profile" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+                          <span className="text-secondary">Profile</span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/addpet" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+                          <span className="text-secondary">Add Pet</span>
+                        </Link>
+                      </li>
+                      {!isDoctor ? (
                         <li>
-                    <Link to="/profile" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                      <span className="text-secondary">Profile</span>
-                    </Link>
-                      </li>
+                          <Link to="/doctors" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+                            <span className="text-secondary">Doctors</span>
+                          </Link>
+                        </li>
+                      ) : (<span></span>)}
                       <li>
-                    <Link to="/addpet" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                      <span className="text-secondary">Add Pet</span>
-                    </Link>
-                      </li>
-                    {!isDoctor ? (
-                      <li>
-                    <Link to="/doctors" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                      <span className="text-secondary">Doctors</span>
-                    </Link>
-                      </li>
-                    ) : (<span></span>)}
-                      <li>
-                    <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
-                      <span className="text-secondary">Logout</span>
-                    </Link>
+                        <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
+                          <span className="text-secondary">Logout</span>
+                        </Link>
                       </li>
                     </ul>
                   </section>
