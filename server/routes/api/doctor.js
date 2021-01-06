@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const Doctor = require("../../models/doctor");
+const Doctor = require("../../models/user");
 
 // create
 router
     .route("/")
     .get((req, res) => {
         Doctor
-            .find({})
+            .find({isDoctor: { $eq: true }})
             .then(data => {
                 res.json({success: true, data});
             })

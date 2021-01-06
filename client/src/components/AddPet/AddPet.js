@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import axios from "axios";
+import axios from 'axios';
 import "./AddPet.css";
 
 class AddPet extends Component {
@@ -59,9 +59,9 @@ class AddPet extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <div id="addPetCentering">
-          <h4>Pet Profile</h4>
+        <div className="ProfileForm">
           <form className="form-horizontal">
+          <h4>New Pet Profile</h4>
             <div className="form-group">
               <div className="col-1 col-ml-auto">
                 <label className="form-label">Pet Name: </label>

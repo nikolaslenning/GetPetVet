@@ -27,7 +27,8 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       email: null,
-      firstName: null
+      firstName: null,
+      isDoctor: false
     };
 
     this.getUser = this.getUser.bind(this);
@@ -57,7 +58,8 @@ class App extends Component {
         this.setState({
           loggedIn: true,
           email: response.data.user.email,
-          firstName: response.data.user.firstName
+          firstName: response.data.user.firstName,
+          isDoctor: response.data.user.isDoctor
         });
       } else {
         console.log('Get user: no user');
@@ -75,10 +77,10 @@ class App extends Component {
       <div className="App">
 
         <Router>
-          <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+          <Navbar isDoctor={this.state.isDoctor} updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
           {/* greet user if logged in: */}
           {this.state.loggedIn &&
-            <p>Join the party, {this.state.firstName}!</p>
+            <h2>Welcome, {this.state.firstName}!</h2>
           }
           {/* Routes to different components */}
           <Route

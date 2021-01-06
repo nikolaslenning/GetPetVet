@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import axios from 'axios';
+import "./Profile.css";
 
 class Profile extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Profile extends Component {
               <p>Breed: {pet.petBreed}</p>
               <p>Age: {pet.petAge}</p>
             </div>
-            <button onClick={() => this.deletePet(pet._id)}>Delete</button>
+            <button className="btn btn-primary" onClick={() => this.deletePet(pet._id)}>Delete This Profile</button>
           </div>
         )}
       </div>

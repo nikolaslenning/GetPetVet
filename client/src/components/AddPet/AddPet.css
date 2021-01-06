@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
   text-align: center;
   background-color: #323F4B;
@@ -34,4 +35,19 @@ h1 {
   align-items: center;
   align-content: center;
   background-color: #323F4B;
+=======
+.form-label, h4 {
+  color: #adcbd6;
+}
+
+.ProfileForm {
+  padding: 2%;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+>>>>>>> ffd170ddb2c2e27117c66b7e623e1a86921045ae
 }

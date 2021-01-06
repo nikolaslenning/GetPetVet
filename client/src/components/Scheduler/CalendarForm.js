@@ -56,7 +56,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
 
     const response = await getCalendar();
 
-    // const evs = [response.data.data].map(d => {
+    // const evs = [...response.data.data].map(d => {
     //   return {
     //     ...d,
     //     start: new Date(d.start),
@@ -78,7 +78,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
     const response = await getCalendar();
     // console.log(response.data.data);
 
-    // const evs = [response.data.data].map(d => {
+    // const evs = [...response.data.data].map(d => {
     //   return {
     //     ...d,
     //     start: new Date(d.start),
@@ -99,7 +99,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
     // console.log(response.data.data);
     // console.log(response.data.data._id);
 
-    // const evs = [response.data.data].map(d => {
+    // const evs = [...response.data.data].map(d => {
     //   return {
     //     ...d,
     //     start: new Date(d.start),
@@ -117,7 +117,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
     // console.log(calendarEvent);
     await editCalendar(calendarEvent._id);
     const response = await getCalendar();
-    console.log(response.data.data);
+    //console.log(evs);
 
     calendarStore.setCalendarEvents(response.data.data);
     onCancel();
