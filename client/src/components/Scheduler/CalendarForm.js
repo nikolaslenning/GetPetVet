@@ -18,17 +18,20 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
   const [end, setEnd] = React.useState(null);
   const [title, setTitle] = React.useState("");
   const [id, setId] = React.useState(null);
+  const [docID, setDocId] = React.useState(null);
 
   React.useEffect(() => {
     setTitle(calendarEvent.title);
     setStart(calendarEvent.start);
     setEnd(calendarEvent.end);
     setId(calendarEvent._id);
+    setDocId(calendarEvent.docID);
   }, [
     calendarEvent.title,
     calendarEvent.start,
     calendarEvent.end,
-    calendarEvent._id
+    calendarEvent._id,
+    calendarEvent.docID
   ]);
 
   const handleSubmit = async ev => {
@@ -44,7 +47,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
       return;
     }
 
-    const data = { id, title, start, end };
+    const data = { id, title, start, end, docID };
     console.log("data calendarForm ln 49");
     console.log(data);
 
@@ -71,6 +74,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
   const handleStartChange = date => setStart(date);
   const handleEndChange = date => setEnd(date);
   const handleTitleChange = ev => setTitle(ev.target.value);
+  const handleDocIDChange = ev => setDocId(ev.target.value);
 
   const addCalendarEvent = async () => {
     // console.log(calendarEvent);
@@ -126,6 +130,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
 
   return (
     <Form noValidate onSubmit={handleSubmit}>
+
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="title">
           <Form.Label>Title</Form.Label>
@@ -140,6 +145,22 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
           <Form.Control.Feedback type="invalid">{!title}</Form.Control.Feedback>
         </Form.Group>
       </Form.Row>
+
+      <Form.Row>
+        <Form.Group as={Col} md="12" controlId="docID">
+          <Form.Label>DocID</Form.Label>
+          <Form.Control
+            type="number"
+            name="docID"
+            placeholder="DocID"
+            value={docID || ""}
+            onChange={handleDocIDChange}
+            isInvalid={!docID}
+          />
+          <Form.Control.Feedback type="invalid">{!docID}</Form.Control.Feedback>
+        </Form.Group>
+      </Form.Row>
+
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="start">
           <Form.Label>Start</Form.Label>
@@ -152,6 +173,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
           />
         </Form.Group>
       </Form.Row>
+
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="end">
           <Form.Label>End</Form.Label>
@@ -164,6 +186,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
           />
         </Form.Group>
       </Form.Row>
+
       {!edit ? (
       <Button type="submit" style={buttonStyle} onClick={addCalendarEvent}>
         Save
@@ -172,6 +195,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
         Edit
       </Button>
       )}
+
       <Button type="button" style={buttonStyle} onClick={deleteCalendarEvent}>
         Delete
       </Button>

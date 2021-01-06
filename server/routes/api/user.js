@@ -7,7 +7,7 @@ const passport = require('../../passport');
 router.post('/', (req, res) => {
     console.log('user signup');
 
-    const { email, password, firstName, lastName, address, province, zipCode, phoneNumber } = req.body;
+    const { email, password, firstName, lastName, address, province, zipCode, phoneNumber, userID } = req.body;
     // ADD VALIDATION
     User.findOne({ email: email }, (err, user) => {
         if (err) {
@@ -27,7 +27,8 @@ router.post('/', (req, res) => {
                 address: address,
                 province: province,
                 zipCode: zipCode,
-                phoneNumber: phoneNumber
+                phoneNumber: phoneNumber,
+                userID: userID
             });
             newUser.save((err, savedUser) => {
                 // eslint-disable-next-line curly
@@ -47,7 +48,7 @@ router.post(
     },
     passport.authenticate('local'),
     (req, res) => {
-        console.log('logged in', req.user);
+        console.log('routes/api/user.js logged in', req.user);
         var userInfo = {
             email: req.user.email,
             firstName: req.user.firstName,
@@ -56,7 +57,8 @@ router.post(
             province: req.user.province,
             zipCode: req.user.zipCode,
             phoneNumber: req.user.phoneNumber,
-            isDoctor: req.user.isDoctor
+            isDoctor: req.user.isDoctor,
+            userID: req.user._id
 
         };
         res.send(userInfo);

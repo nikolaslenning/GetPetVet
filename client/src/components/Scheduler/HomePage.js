@@ -44,7 +44,7 @@ function HomePage({ calendarStore }) {
   const handleSelect = (event, e) => {
     const { start, end } = event;
     // console.log(event);
-    const data = { title: "", start, end, allDay: false };
+    const data = { title: "", start, end, allDay: false, };
     setShowAddModal(true);
     setShowEditModal(false);
     setCalendarEvent(data);
@@ -55,11 +55,11 @@ function HomePage({ calendarStore }) {
     // console.log(event);
     setShowAddModal(false);
     setShowEditModal(true);
-    let { _id, title, start, end, allDay } = event;
+    let { _id, title, start, end, allDay, docID } = event;
 
     start = new Date(start);
     end = new Date(end);
-    const data = { _id, title, start, end, allDay };
+    const data = { _id, title, start, end, allDay, docID };
     //  console.log("data");
     // console.log(data);
     setCalendarEvent(data);

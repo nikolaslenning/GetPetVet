@@ -8,6 +8,7 @@ const calendarSchema = new Schema({
     title: { type: String, unique: false, required: true },
     start: { type: Date, unique: false, required: true },
     end: { type: Date, unique: false, required: true },
+    docID: { type: Number, unique: false, required: true },
     allDay: {type: Boolean},
     // resource: {any},
 

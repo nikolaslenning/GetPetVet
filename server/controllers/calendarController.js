@@ -5,11 +5,13 @@ const Calendar = require("../models/calendar");
 module.exports = {
 
     createEvent: function (req, res) {
+        console.log("FIND ME calendarController in req.body");
         console.log(req.body);
         Calendar.create({
             title: req.body.title,
             start: req.body.start,
             end: req.body.end,
+            docID: req.body.docID
         }).then(data => {
             res.json({ success: true, data });
         }).catch(err => {
