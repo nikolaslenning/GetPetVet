@@ -8,6 +8,8 @@ import Nav from "react-bootstrap/Nav";
 import "./Scheduler.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
+import "./Scheduler.css";
+
 const history = createHistory();
 
 function Scheduler({ calendarStore }) {

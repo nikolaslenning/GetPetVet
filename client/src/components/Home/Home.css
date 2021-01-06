@@ -1,5 +1,10 @@
+body {
+  border-width: 0;
+}
+
 #homeDiv {
   background-color: #323F4B;
+  border-width: 0;
 }
 
 .welcome {

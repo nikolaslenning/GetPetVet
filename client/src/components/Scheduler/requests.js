@@ -1,10 +1,10 @@
 const axios = require("axios");
 
-export const getCalendar = (data) => axios.get(`/api/scheduler`, data);
+export const getCalendar = (data) => axios.get(`/scheduler`, data);
 
-export const addCalendar = data => axios.post(`/api/scheduler`, data);
+export const addCalendar = data => axios.post(`/scheduler`, data);
 
 export const editCalendar = data =>
-  axios.put(`/api/scheduler/${data.id}`, data);
+  axios.put(`/scheduler/${data.id}`, data);
 
-export const deleteCalendar = id => axios.delete(`/api/scheduler/${id}`);
+export const deleteCalendar = id => axios.delete(`/scheduler/${id}`);

@@ -1,5 +1,6 @@
 html {
   background-color: #323F4B;
+  border-width: 0;
 }
 
 body {
@@ -10,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  border-width: 0;
 }
 
 code {
@@ -18,5 +20,6 @@ code {
 }
 
 .App {
-  background-color: transparent;
+  background-color: #323F4B;
+  border-width: 0;
 }

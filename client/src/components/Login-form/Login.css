@@ -1,13 +1,18 @@
 body {
   text-align: center;
   background-color: #323F4B;
+  outline-color: transparent;
+  margin: 0%;
+  padding: 0%;
+  border-color: transparent;
+  border: 0%;
 }
 
 form {
   display: inline-block;
 }
 
-h1 {
+h1, h2 {
   text-align: center;
   padding: 2%;
   color: #adcbd6;
@@ -48,4 +53,5 @@ h1 {
   align-items: center;
   align-content: center;
   background-color: #323F4B;
+  color: #adcbd6;
 }

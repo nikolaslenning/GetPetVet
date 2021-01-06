@@ -9,9 +9,9 @@ const doctorSeed = [
       email: "gene_w@gmail.com",
       password: "$2a$10$YWK2X64B8gdiiEkg4vqHIuz6uW.OmswUsF1aLCjaCUQxbUX1yLolu",
       firstName: "Victor",
-      lastName: "Frankenstien",
+      lastName: "Frankenstein",
       address: "345 Creepy Castle Rd",
-      province: "Transelvania, RO",
+      province: "Transylvania, RO",
       zipCode: 500326,
       phoneNumber: 403592513588
     },

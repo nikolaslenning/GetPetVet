@@ -3,7 +3,8 @@ const calendarController = require("../../controllers/calendarController");
 
 router
   .route("/")
-  .get(calendarController.findAll)
+  // .get(calendarController.findAll)
+  .get(calendarController.find)
   .post(calendarController.createEvent);
 
 // router.get("/", (req, res) => {
@@ -12,7 +13,7 @@ router
 router
   .route("/:id")
   //   .get(calendarController.findById)
-    .put(calendarController.update)
+  .put(calendarController.update)
   .delete(calendarController.remove);
 
 module.exports = router;
