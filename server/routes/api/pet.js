@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 const express = require('express');
 const router = express.Router();
-const Pet = require('../../models/pet');
+const User = require('../../models/user');
 
 // get/create
 router
   .route('/')
   .get((req, res) => {
-    Pet
+    User
       .find({})
       .then(data => {
         res.json({ success: true, data });
@@ -16,19 +16,21 @@ router
         res.json({ success: false });
       });
   }).post((req, res) => {
-    console.log('pet added');
+    console.log('pet params:');
+    console.log(req.params);
 
     const { petName, petBreed, petAge } = req.body;
 
-    Pet.create({
-      petName: petName,
-      petBreed: petBreed,
-      petAge: petAge
-    }).then(data => {
-      res.json({ success: true, data });
-    }).catch(err => {
-      res.json({ success: false });
-    });
+    User
+      .create({
+          petName: petName,
+          petBreed: petBreed,
+          petAge: petAge
+      }).then(data => {
+        res.json({ success: true, data });
+      }).catch(err => {
+        res.json({ success: false });
+      });
   });
 
 // delete
@@ -38,7 +40,7 @@ router
     console.log("pet req params");
     console.log(req.params);
 
-    Pet
+    User
       .findByIdAndDelete(req.params.id)
       .then(data => {
         res.json({ success: true });

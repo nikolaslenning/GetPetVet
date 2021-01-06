@@ -32,7 +32,7 @@ class LoginForm extends Component {
       .post('/user/login', {
         email: this.state.email,
         password: this.state.password,
-        // firstName: this.state.firstname
+        // firstName: this.state.firstName
       })
       .then(response => {
         console.log('login response: ');
