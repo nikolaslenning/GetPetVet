@@ -14,7 +14,7 @@ import Profile from './components/Profile/Profile';
 import AddPet from './components/AddPet/AddPet';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import Doctors from "./components/Doctors/Doctors";
+import Doctor from "./components/Doctor/Doctor";
 
 import { CalendarStore } from "../src/components/Scheduler/store";
 const calendarStore = new CalendarStore();
@@ -184,7 +184,7 @@ class App extends Component {
             render={() => {
               if (this.state.loggedIn) {
                 return (
-                  <Doctors />
+                  <Doctor />
                 );
               } else {
                 return (

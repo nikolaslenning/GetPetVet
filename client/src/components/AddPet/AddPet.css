@@ -1,3 +1,41 @@
+<<<<<<< HEAD
+body {
+  text-align: center;
+  background-color: #323F4B;
+}
+
+form {
+  display: inline-block;
+}
+
+h1 {
+  text-align: center;
+  padding: 2%;
+  color: #adcbd6;
+}
+
+.form-horizontal {
+  text-align: center;
+}
+
+.form-group {
+  text-align: center;
+}
+
+.form-input {
+  text-align: center;
+}
+
+.form-label {
+  text-align: center;
+}
+
+#addPetCentering {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  background-color: #323F4B;
+=======
 .form-label, h4 {
   color: #adcbd6;
 }
@@ -11,4 +49,5 @@
   width: 75%;
   display: flex;
   justify-content: center;
+>>>>>>> ffd170ddb2c2e27117c66b7e623e1a86921045ae
 }

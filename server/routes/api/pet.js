@@ -2,33 +2,52 @@
 const express = require('express');
 const router = express.Router();
 const Pet = require('../../models/pet');
+const User = require('../../models/user');
 
-// create
+// get/create
 router
   .route('/')
   .get((req, res) => {
     Pet
-      .find({})
+      .find({ user: req.user._id })
       .then(data => {
+        console.log(data);
         res.json({ success: true, data });
       })
       .catch(err => {
+        console.log(err);
         res.json({ success: false });
       });
+
+    // User
+    //   .findById(req.user._id)
+    //   .populate("pet")
+    //   .then(data => {
+    //     console.log("pet data");
+    //     console.log(data);
+    //     res.json({ success: true, data });
+    //   })
+    //   .catch(err => {
+    //     res.json({ success: false });
+    //   });
+
   }).post((req, res) => {
-    console.log('pet added');
+    console.log('pet params:');
+    console.log(req.params);
 
     const { petName, petBreed, petAge } = req.body;
-
-    Pet.create({
-      petName: petName,
-      petBreed: petBreed,
-      petAge: petAge
-    }).then(data => {
-      res.json({ success: true, data });
-    }).catch(err => {
-      res.json({ success: false });
-    });
+    console.log(req.user);
+    Pet
+      .create({
+        user: req.user._id,
+        petName: petName,
+        petBreed: petBreed,
+        petAge: petAge
+      }).then(data => {
+        res.json({ success: true, data });
+      }).catch(err => {
+        res.json({ success: false });
+      });
   });
 
 // delete
