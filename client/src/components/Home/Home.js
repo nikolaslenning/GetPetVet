@@ -13,8 +13,8 @@ class Home extends Component {
   render() {
     return (
       <div id="homeDiv">
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-  <ol class="carousel-indicators">
+        <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
+  <ol className="carousel-indicators">
     <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
     <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
     <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
