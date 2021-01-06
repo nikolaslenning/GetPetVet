@@ -1,31 +1,48 @@
 /* eslint-disable no-unused-vars */
 const express = require('express');
 const router = express.Router();
+const Pet = require('../../models/pet');
 const User = require('../../models/user');
 
 // get/create
 router
   .route('/')
   .get((req, res) => {
-    User
-      .find({})
+    Pet
+      .find({ user: req.user._id })
       .then(data => {
+        console.log(data);
         res.json({ success: true, data });
       })
       .catch(err => {
+        console.log(err);
         res.json({ success: false });
       });
+
+    // User
+    //   .findById(req.user._id)
+    //   .populate("pet")
+    //   .then(data => {
+    //     console.log("pet data");
+    //     console.log(data);
+    //     res.json({ success: true, data });
+    //   })
+    //   .catch(err => {
+    //     res.json({ success: false });
+    //   });
+
   }).post((req, res) => {
     console.log('pet params:');
     console.log(req.params);
 
     const { petName, petBreed, petAge } = req.body;
-
-    User
+    console.log(req.user);
+    Pet
       .create({
-          petName: petName,
-          petBreed: petBreed,
-          petAge: petAge
+        user: req.user._id,
+        petName: petName,
+        petBreed: petBreed,
+        petAge: petAge
       }).then(data => {
         res.json({ success: true, data });
       }).catch(err => {
@@ -40,7 +57,7 @@ router
     console.log("pet req params");
     console.log(req.params);
 
-    User
+    Pet
       .findByIdAndDelete(req.params.id)
       .then(data => {
         res.json({ success: true });

@@ -7,6 +7,7 @@ module.exports = {
     console.log(req.body);
     Calendar
       .create({
+        user: req.user._id,
         title: req.body.title,
         start: req.body.start,
         end: req.body.end,
@@ -17,16 +18,29 @@ module.exports = {
       });
   },
 
-  findAll: function (req, res) {
+  find: function(req, res) {
     Calendar
-      .find({})
-      .then(data => {
-        res.json({ success: true, data });
-      })
-      .catch(err => {
-        res.json({ success: false });
-      });
+    .find({ user: req.user._id })
+    .then(data => {
+      console.log(data);
+      res.json({ success: true, data });
+    })
+    .catch(err => {
+      console.log(err);
+      res.json({ success: false });
+    });
   },
+
+  // findAll: function (req, res) {
+  //   Calendar
+  //     .find({})
+  //     .then(data => {
+  //       res.json({ success: true, data });
+  //     })
+  //     .catch(err => {
+  //       res.json({ success: false });
+  //     });
+  // },
 
   remove: function (req, res) {
     // console.log(req);

@@ -5,7 +5,6 @@ mongoose.promise = Promise;
 
 // Define userSchema
 const userSchema = new Schema({
-
   email: { type: String, unique: false, required: true },
   password: { type: String, unique: false, required: true },
   firstName: { type: String, unique: false, required: false },
@@ -15,9 +14,9 @@ const userSchema = new Schema({
   zipCode: { type: Number, unique: false, required: false },
   phoneNumber: { type: Number, unique: false, required: false },
   pet: [{
-    petName: { type: String, unique: false, required: false },
-    petBreed: { type: String, unique: false, required: false },
-    petAge: { type: Number, unique: false, required: false },
+    type: Schema.Types.ObjectId,
+    ref: "Pet",
+    required: false
   }],
   calendar: [{
     type: Schema.Types.ObjectId,
