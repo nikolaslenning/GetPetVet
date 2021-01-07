@@ -1,4 +1,5 @@
-# Get Pet Vet [!Top Language Badge](https://img.shields.io/github/languages/top/nikolaslenning/GetPetVet)
+# Get Pet Vet 
+![GitHub top language](https://img.shields.io/github/languages/top/nikolaslenning/GetPetVet)
 
 ## Table of Contents
 

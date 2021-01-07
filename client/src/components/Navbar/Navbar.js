@@ -66,13 +66,13 @@ class Navbar extends Component {
                           <span className="text-secondary">Home</span>
                         </Link>
                       </li>
-                      {isDoctor ? (
-                        <li>
-                          <Link to="/scheduler" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                            <span className="text-secondary">Scheduler</span>
-                          </Link>
-                        </li>
-                      ) : (<span></span>)}
+
+                      <li>
+                        <Link to="/scheduler" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+                          <span className="text-secondary">Scheduler</span>
+                        </Link>
+                      </li>
+
                       <li>
                         <Link to="/profile" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                           <span className="text-secondary">Profile</span>
