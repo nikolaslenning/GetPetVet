@@ -1,5 +1,7 @@
+/* eslint-disable brace-style */
 /* eslint-disable no-unused-vars */
 import React from "react";
+import axios from 'axios';
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import DatePicker from "react-datepicker";
@@ -19,6 +21,8 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
   const [title, setTitle] = React.useState("");
   const [id, setId] = React.useState(null);
   const [docID, setDocId] = React.useState(null);
+  const [docList, setDocList] = React.useState([]);
+  const docElement = React.useRef(null);
 
   React.useEffect(() => {
     setTitle(calendarEvent.title);
@@ -33,6 +37,18 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
     calendarEvent._id,
     calendarEvent.docID
   ]);
+
+  React.useEffect(() => {
+    axios.get('/doctors')
+      .then(res => {
+        console.log("res.data");
+        console.log(res);
+        console.log(res.data.data);
+        setDocList(res.data.data);
+
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   const handleSubmit = async ev => {
     console.log(" CalenderForm ln 35");
@@ -74,7 +90,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
   const handleStartChange = date => setStart(date);
   const handleEndChange = date => setEnd(date);
   const handleTitleChange = ev => setTitle(ev.target.value);
-  const handleDocIDChange = ev => setDocId(ev.target.value);
+  const handleDocIDChange = ev => {console.log(docElement.current.value); setDocId(docElement.current.value)};
 
   const addCalendarEvent = async () => {
     // console.log(calendarEvent);
@@ -155,6 +171,24 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
             onChange={handleDocIDChange}
             isInvalid={!docID}
           />
+
+
+          <Form.Label>Custom select</Form.Label>
+          <Form.Control as="select" custom type="number"
+            name="docID"
+            placeholder="DocID"
+            value={docID || ""}
+            onChange={handleDocIDChange}
+            ref={docElement}
+            isInvalid={!docID}>
+              {docList.map(doctor =>
+            <option key={doctor._id} value={doctor._id}>{doctor.firstName}</option>
+
+                )}
+          </Form.Control>
+
+
+
           <Form.Control.Feedback type="invalid">{!docID}</Form.Control.Feedback>
         </Form.Group>
       </Form.Row>
