@@ -149,22 +149,7 @@ class App extends Component {
             }
             }
           />
-          <Route
-            exact path="/scheduler"
-            render={() => {
-              if (this.state.isDoctor) {
-                return (
-                  <Scheduler
-                    calendarStore={calendarStore} />
-                );
-              } else {
-                return (
-                  <Redirect to="/login" />
-                );
-              }
-            }
-            }
-          />
+
           <Route
             exact path="/profile"
             render={() => {

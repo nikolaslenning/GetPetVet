@@ -42,7 +42,7 @@ class AddPet extends Component {
         if (!response.data.errmsg) {
           console.log('successful profile');
           this.setState({ //redirect to home page
-            redirectTo: '/'
+            redirectTo: '/profile'
           });
         } else {
           console.log('profile already exists');
