@@ -51,22 +51,6 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
       .catch(err => console.log(err));
   }, []);
 
-  React.useEffect(() => {
-    async function getEvents() {
-      let response;
-      console.log('hello')
-      if(!isDoctor) {
-        response = await getCalendar();
-     } else {
-       console.log("HIt GetDocCalendar");
-        response = await getDocCalendar();
-     }
-    }
-
-    getEvents();
-
-  }, []);
-
   const handleSubmit = async ev => {
     console.log(" CalenderForm ln 35");
     console.log(ev);
