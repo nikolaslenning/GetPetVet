@@ -19,9 +19,23 @@ module.exports = {
       });
   },
 
-  find: function(req, res) {
+  findPatientEvents: function(req, res) {
     Calendar
     .find({ user: req.user._id })
+    .then(data => {
+      console.log(data);
+      res.json({ success: true, data });
+    })
+    .catch(err => {
+      console.log(err);
+      res.json({ success: false, err });
+    });
+  },
+
+  findDocEvents: function(req, res) {
+    console.log(req.user._id);
+    Calendar
+    .find({ docID: req.user._id})
     .then(data => {
       console.log(data);
       res.json({ success: true, data });

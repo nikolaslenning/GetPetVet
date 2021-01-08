@@ -5,11 +5,11 @@ import moment from "moment";
 import Modal from "react-bootstrap/Modal";
 import CalendarForm from "./CalendarForm";
 import { observer } from "mobx-react";
-import { getCalendar } from "./requests";
+import { getCalendar, getDocCalendar } from "./requests";
 
 const localizer = momentLocalizer(moment);
 
-function HomePage({ calendarStore }) {
+function HomePage({ calendarStore, isDoctor }) {
   // console.log("calendarStore.calendarEvents");
   // console.log(calendarStore.calendarEvents);
 
@@ -24,7 +24,16 @@ function HomePage({ calendarStore }) {
   };
 
   const getCalendarEvents = async () => {
-    const response = await getCalendar();
+    // const response = await getCalendar();
+
+    let response;
+    console.log('hello', isDoctor);
+    if (!isDoctor) {
+      response = await getCalendar();
+    } else {
+      console.log("HIt GetDocCalendar");
+      response = await getDocCalendar();
+    }
     // console.log(response.data.data);
     // const evs = [response.data.data].map(d => {
     //   return {
@@ -102,6 +111,7 @@ function HomePage({ calendarStore }) {
             calendarEvent={calendarEvent}
             onCancel={hideModals.bind(this)}
             edit={true}
+            isDoctor={isDoctor}
           />
         </Modal.Body>
       </Modal>

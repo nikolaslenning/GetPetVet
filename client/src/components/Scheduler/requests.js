@@ -2,6 +2,8 @@ const axios = require("axios");
 
 export const getCalendar = (data) => axios.get(`/scheduler`, data);
 
+export const getDocCalendar = (data) => axios.get(`/scheduler/doc`, data);
+
 export const addCalendar = data => axios.post(`/scheduler`, data);
 
 export const editCalendar = data =>

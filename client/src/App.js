@@ -139,7 +139,8 @@ class App extends Component {
               if (this.state.loggedIn) {
                 return (
                   <Scheduler
-                    calendarStore={calendarStore} />
+                    calendarStore={calendarStore}
+                    isDoctor={this.state.isDoctor} />
                 );
               } else {
                 return (

@@ -10,12 +10,13 @@ import {
   addCalendar,
   editCalendar,
   getCalendar,
+  getDocCalendar,
   deleteCalendar
 } from "./requests";
 import { observer } from "mobx-react";
 const buttonStyle = { marginRight: 10 };
 
-function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
+function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }) {
   const [start, setStart] = React.useState(null);
   const [end, setEnd] = React.useState(null);
   const [title, setTitle] = React.useState("");
@@ -50,6 +51,22 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
       .catch(err => console.log(err));
   }, []);
 
+  React.useEffect(() => {
+    async function getEvents() {
+      let response;
+      console.log('hello')
+      if(!isDoctor) {
+        response = await getCalendar();
+     } else {
+       console.log("HIt GetDocCalendar");
+        response = await getDocCalendar();
+     }
+    }
+
+    getEvents();
+
+  }, []);
+
   const handleSubmit = async ev => {
     console.log(" CalenderForm ln 35");
     console.log(ev);
@@ -73,7 +90,14 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
       await editCalendar(data);
     }
 
-    const response = await getCalendar();
+    let response = null;
+    console.log({isDoctor});
+    if(!isDoctor) {
+       response = await getCalendar();
+    } else {
+      console.log("HIt GetDocCalendar");
+       response = await getDocCalendar();
+    }
 
     // const evs = [...response.data.data].map(d => {
     //   return {
