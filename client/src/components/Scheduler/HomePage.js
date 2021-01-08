@@ -25,7 +25,6 @@ function HomePage({ calendarStore, isDoctor }) {
 
   const getCalendarEvents = async () => {
     // const response = await getCalendar();
-
     let response;
     console.log('hello', isDoctor);
     if (!isDoctor) {
@@ -44,7 +43,6 @@ function HomePage({ calendarStore, isDoctor }) {
     // });
     // console.log("evs evs evs evs");
     // console.log(evs);
-
     calendarStore.setCalendarEvents(response.data.data);
     // calendarStore.setCalendarEvents(evs);
     setInitialized(true);
