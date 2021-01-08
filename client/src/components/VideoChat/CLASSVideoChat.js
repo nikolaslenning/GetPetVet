@@ -48,7 +48,7 @@ class videoChat extends Component {
                     </div>
                   </div>
                   <div className="field">
-                    <label className="label">Select Room Name</label>
+                    <label className="label">Select Doctor</label>
                     <p className="control has-icons-left">
                       <select name="room" className="roomselect" aria-placeholder="Room Name" >
                         <option value="Kevorkian">Kevorkian</option>

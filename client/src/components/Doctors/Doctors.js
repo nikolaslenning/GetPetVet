@@ -49,6 +49,7 @@ class Doctors extends Component {
               <p>Phone Number: {doctor.phoneNumber}</p>
               <p>Email: {doctor.email}</p>
               <p>About: {doctor.about}</p>
+              <a href={`mailto:`+ doctor.email +`?subject=Appointment Request&body=Dr. `+doctor.lastName+`,%0D%0AI would like to request an appointment Date:%0D%0A(Specify Date Here)%0D%0APlease let me know avialable times?`}>Send Email</a>
               {/* <a href="{doctor.email}" target="_blank" rel="noreferrer" >Book Info</a>
                             <br></br>
                             <button className="btn btn-primary" onClick={onClick}>Save</button> */}

@@ -145,11 +145,12 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
           <Form.Label>Select Doctor</Form.Label>
           <Form.Control as="select" custom type="number"
             name="docID"
-            placeholder="DocID"
+            placeholder="Select Doctor"
             value={docID || ""}
             onChange={handleDocIDChange}
             ref={docElement}
             isInvalid={!docID}>
+              <option >Select your Veterinarian</option>
             {docList.map(doctor =>
               <option key={doctor._id} value={doctor._id}>Dr. {doctor.firstName} {doctor.lastName}</option>
 

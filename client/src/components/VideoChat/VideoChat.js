@@ -1,33 +1,41 @@
+/* eslint-disable brace-style */
+/* eslint-disable no-unused-vars */
 import React, { Component } from "react";
 import axios from "axios";
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
-  const [email, setEmail] = React.useState("");
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
+  const [mail, setMail] = React.useState("");
+  // const [firstName, setFirstName] = React.useState("");
+  // const [lastName, setLastName] = React.useState("");
   const [userName, setUserName] = React.useState("");
   const [docList, setDocList] = React.useState([]);
+  const [facility, setFacility] = React.useState(null);
+  const docElement = React.useRef(null);
 
 
   React.useEffect(() => {
     axios.get('/doctors')
       .then(res => {
-        console.log("res.data");
-        console.log(res);
-        console.log(res.data.data);
+        // console.log("res.data");
+        // console.log(res);
+        // console.log(res.data.data);
         setDocList(res.data.data);
 
       })
       .catch(err => console.log(err));
   }, []);
 
-  handleSubmit(e) {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = { firstName, lastName, facility};
+    console.log("HIT DATA IN VIDEOCHAT data");
+    console.log(data);
     axios.post("/scheduler", {
 
     });
-  }
+  };
 
+  const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
 
   return (
 
@@ -47,21 +55,25 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
             <div className="column is-5-tablet is-4-desktop is-3-widescreen">
               <form action="/videochat" method="POST" className="box">
                 <div className="field">
-                  <label className="label">Username</label>
-                  <h1>{this.props.firstName}</h1>
+                  <label className="label">Username:</label>
+                  {/* <h1>{firstName}</h1> */}
                   <div className="control has-icons-left">
-                    <p name="username">{this.props.firstName} {this.props.lastName}</p>
+                    <p name="username">{firstName} {lastName}</p>
                     <span className="icon is-small is-left">
                       <i className="fa fa-user"></i>
                     </span>
                   </div>
                 </div>
                 <div className="field">
-                  <label className="label">Select Room Name</label>
+                  <label className="label">Select Veterinarian</label>
                   <p className="control has-icons-left">
-                    <select name="room" className="roomselect" aria-placeholder="Room Name" >
+                    <select name="room" className="roomselect" placeholder="Room Name"
+                    value={facility|| ""}
+                    onChange={handleFacilityChange}
+                    ref={docElement} >
+                    <option >Select your Veterinarian</option>
                       {docList.map(doctor =>
-                        <option key={doctor._id} value={doctor._id}>Dr. {doctor.firstName} {doctor.lastName} at {doctor.facility}</option>
+                        <option key={doctor._id} value={doctor.facility}>Dr. {doctor.firstName} {doctor.lastName} at {doctor.facility}</option>
 
                       )}
                       {/* <option value="Kevorkian">Kevorkian</option>
@@ -74,7 +86,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
                   </p>
                 </div>
                 <div className="field ">
-                  <button onClick={this.handleSubmit} className="button is-link">
+                  <button onClick={handleSubmit} className="button is-link">
                     <span className="icon is-small is-left mr-1">
                       <i className="fas fa-person-booth"></i>
                     </span>
@@ -89,6 +101,5 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     </section>
   );
 }
-}
 
-export default videoChat;
+export default VideoChat;
