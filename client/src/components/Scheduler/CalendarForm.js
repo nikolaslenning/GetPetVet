@@ -75,12 +75,12 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     }
 
     let response = null;
-    console.log({isDoctor});
-    if(!isDoctor) {
-       response = await getCalendar();
+    console.log({ isDoctor });
+    if (!isDoctor) {
+      response = await getCalendar();
     } else {
       console.log("HIt GetDocCalendar");
-       response = await getDocCalendar();
+      response = await getDocCalendar();
     }
 
     // const evs = [...response.data.data].map(d => {
@@ -98,7 +98,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   const handleStartChange = date => setStart(date);
   const handleEndChange = date => setEnd(date);
   const handleTitleChange = ev => setTitle(ev.target.value);
-  const handleDocIDChange = ev => {console.log(docElement.current.value); setDocId(docElement.current.value);};
+  const handleDocIDChange = ev => { console.log(docElement.current.value); setDocId(docElement.current.value); };
 
   const addCalendarEvent = async () => {
     // console.log(calendarEvent);
@@ -189,10 +189,10 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
             onChange={handleDocIDChange}
             ref={docElement}
             isInvalid={!docID}>
-              {docList.map(doctor =>
-            <option key={doctor._id} value={doctor._id}>Dr. {doctor.firstName} {doctor.lastName}</option>
+            {docList.map(doctor =>
+              <option key={doctor._id} value={doctor._id}>Dr. {doctor.firstName} {doctor.lastName}</option>
 
-                )}
+            )}
           </Form.Control>
 
 
