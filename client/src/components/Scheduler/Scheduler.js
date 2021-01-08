@@ -12,28 +12,11 @@ import "./Scheduler.css";
 
 const history = createHistory();
 
-function Scheduler({ calendarStore }) {
+function Scheduler({ calendarStore, isDoctor}) {
   console.log("Calendar store variable ", calendarStore);
   return (
     <div>
-      <Router history={history}>
-        {/* <Navbar bg="primary" expand="lg" variant="dark">
-          <Navbar.Brand href="#home">Calendar App</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar> */}
-        <Route
-          path="/"
-          exact
-          render={props => (
-            <HomePage {...props} calendarStore={calendarStore} />
-          )}
-        />
-      </Router>
+       <HomePage isDoctor={isDoctor} calendarStore={calendarStore} />
     </div>
   );
 }
