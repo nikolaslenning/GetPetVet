@@ -15,7 +15,7 @@ module.exports = {
       }).then(data => {
         res.json({ success: true, data });
       }).catch(err => {
-        res.json({ success: false });
+        res.json({ success: false, err });
       });
   },
 
@@ -28,7 +28,7 @@ module.exports = {
     })
     .catch(err => {
       console.log(err);
-      res.json({ success: false });
+      res.json({ success: false, err });
     });
   },
 
@@ -52,7 +52,7 @@ module.exports = {
         res.json({ success: true, data });
       })
       .catch(err => {
-        res.json({ success: false });
+        res.json({ success: false, err });
       });
   },
   // };
