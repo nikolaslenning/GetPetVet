@@ -90,7 +90,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
   const handleStartChange = date => setStart(date);
   const handleEndChange = date => setEnd(date);
   const handleTitleChange = ev => setTitle(ev.target.value);
-  const handleDocIDChange = ev => {console.log(docElement.current.value); setDocId(docElement.current.value)};
+  const handleDocIDChange = ev => {console.log(docElement.current.value); setDocId(docElement.current.value);};
 
   const addCalendarEvent = async () => {
     // console.log(calendarEvent);
@@ -162,18 +162,18 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
       </Form.Row>
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="docID">
-          <Form.Label>DocID</Form.Label>
+          {/* <Form.Label>DocID</Form.Label>
           <Form.Control
             type="number"
             name="docID"
             placeholder="DocID"
-            value={docID || ""}
+            value={docID}
             onChange={handleDocIDChange}
             isInvalid={!docID}
-          />
+          /> */}
 
 
-          <Form.Label>Custom select</Form.Label>
+          <Form.Label>Select Doctor</Form.Label>
           <Form.Control as="select" custom type="number"
             name="docID"
             placeholder="DocID"
@@ -182,7 +182,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit }) {
             ref={docElement}
             isInvalid={!docID}>
               {docList.map(doctor =>
-            <option key={doctor._id} value={doctor._id}>{doctor.firstName}</option>
+            <option key={doctor._id} value={doctor._id}>Dr. {doctor.firstName} {doctor.lastName}</option>
 
                 )}
           </Form.Control>
