@@ -19,8 +19,5 @@ class CalendarStore {
       });
     }
   }
-  // CalendarStore = makeObservable(CalendarStore, {
-  //     calendarEvents: observable,
-  //     setCalendarEvents: action
-  // });
+
 export { CalendarStore };

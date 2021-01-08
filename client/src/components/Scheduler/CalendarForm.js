@@ -83,14 +83,6 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
       response = await getDocCalendar();
     }
 
-    // const evs = [...response.data.data].map(d => {
-    //   return {
-    //     ...d,
-    //     start: new Date(d.start),
-    //     end: new Date(d.end)
-    //   };
-    // });
-
     calendarStore.setCalendarEvents(response.data.data);
     onCancel();
   };
@@ -104,37 +96,17 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     // console.log(calendarEvent);
     await addCalendar(calendarEvent);
     const response = await getCalendar();
-    // console.log(response.data.data);
 
-    // const evs = [...response.data.data].map(d => {
-    //   return {
-    //     ...d,
-    //     start: new Date(d.start),
-    //     end: new Date(d.end)
-    //   };
-    // });
     calendarStore.setCalendarEvents(response.data.data);
     onCancel();
     getCalendar();
   };
 
   const deleteCalendarEvent = async () => {
-    // console.log(calendarEvent._id);
+
     await deleteCalendar(calendarEvent._id);
     const response = await getCalendar();
-    // console.log(response);
-    // console.log(response.data);
-    // console.log(response.data.data);
-    // console.log(response.data.data._id);
 
-    // const evs = [...response.data.data].map(d => {
-    //   return {
-    //     ...d,
-    //     start: new Date(d.start),
-    //     end: new Date(d.end)
-    //   };
-    // });
-    // console.log(evs);
     calendarStore.setCalendarEvents(response.data.data);
     onCancel();
     getCalendar();
@@ -142,10 +114,9 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   };
 
   const editCalendarEvent = async () => {
-    // console.log(calendarEvent);
+
     await editCalendar(calendarEvent._id);
     const response = await getCalendar();
-    //console.log(evs);
 
     calendarStore.setCalendarEvents(response.data.data);
     onCancel();
@@ -168,19 +139,9 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
           <Form.Control.Feedback type="invalid">{!title}</Form.Control.Feedback>
         </Form.Group>
       </Form.Row>
+
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="docID">
-          {/* <Form.Label>DocID</Form.Label>
-          <Form.Control
-            type="number"
-            name="docID"
-            placeholder="DocID"
-            value={docID}
-            onChange={handleDocIDChange}
-            isInvalid={!docID}
-          /> */}
-
-
           <Form.Label>Select Doctor</Form.Label>
           <Form.Control as="select" custom type="number"
             name="docID"
@@ -194,12 +155,10 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
 
             )}
           </Form.Control>
-
-
-
           <Form.Control.Feedback type="invalid">{!docID}</Form.Control.Feedback>
         </Form.Group>
       </Form.Row>
+
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="start">
           <Form.Label>Start</Form.Label>
@@ -212,6 +171,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
           />
         </Form.Group>
       </Form.Row>
+
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="end">
           <Form.Label>End</Form.Label>
@@ -224,6 +184,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
           />
         </Form.Group>
       </Form.Row>
+
       {!edit ? (
         <Button type="submit" style={buttonStyle} onClick={addCalendarEvent}>
           Save
@@ -232,9 +193,11 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
             Edit
           </Button>
         )}
+
       <Button type="button" style={buttonStyle} onClick={deleteCalendarEvent}>
         Delete
       </Button>
+
       <Button type="button" onClick={onCancel}>
         Cancel
       </Button>
