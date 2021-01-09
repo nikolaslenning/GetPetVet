@@ -12,6 +12,7 @@ class LoginForm extends Component {
       email: '',
       password: '',
       firstName: "",
+      lastName: "",
       redirectTo: null,
       isDoctor: false
     };
@@ -45,6 +46,7 @@ class LoginForm extends Component {
             loggedIn: true,
             email: response.data.email,
             firstName: response.data.firstName,
+            lastName: response.data.lastName,
             isDoctor: response.data.isDoctor
           });
           // update the state to redirect to home
