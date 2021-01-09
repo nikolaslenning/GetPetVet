@@ -2,9 +2,9 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from "react";
 import axios from "axios";
-import { Socket } from "socket.io-client";
+import { socket } from "socket.io-client";
 const { userJoin, getRoomUsers, getUser, userLeave } = require('../../utils/users');
-const socket = io();
+// const socket = io();
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
   const [mail, setMail] = React.useState("");
