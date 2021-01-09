@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from "react";
 import axios from "axios";
+import { Socket } from "socket.io-client";
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
   const [mail, setMail] = React.useState("");
@@ -30,9 +31,8 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     const data = { firstName, lastName, facility};
     console.log("HIT DATA IN VIDEOCHAT data");
     console.log(data);
-    axios.post("/scheduler", {
-
-    });
+    axios.post("api/videochat", data );
+    Socket.emit("join-room", ({firstName, userName, facility}));
   };
 
   const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
