@@ -28,15 +28,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
         //socket.on();
       });
       socket.on('room-users', ({ room, users }) => {
-        outputRoomName(room);
-        outputUsers(users);
-        // Get the user that has stream on and put it a icons
-        users.forEach(user => {
-          if (user.cam === true) {
-            addWebcamIcon(user.id);
-
-          }
-        });
+        setUsers(users);
 
       });
 
