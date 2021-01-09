@@ -3,6 +3,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Socket } from "socket.io-client";
+const { userJoin, getRoomUsers, getUser, userLeave } = require('../../utils/users');
+const socket = io();
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
   const [mail, setMail] = React.useState("");
@@ -12,7 +14,6 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const [docList, setDocList] = React.useState([]);
   const [facility, setFacility] = React.useState(null);
   const docElement = React.useRef(null);
-
 
   React.useEffect(() => {
     axios.get('/doctors')
@@ -32,7 +33,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     console.log("HIT DATA IN VIDEOCHAT data");
     console.log(data);
     axios.post("api/videochat", data );
-    Socket.emit("join-room", ({firstName, userName, facility}));
+    socket.emit("join-room", ({firstName, userName, facility}));
   };
 
   const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
