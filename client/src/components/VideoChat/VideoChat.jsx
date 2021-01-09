@@ -2,9 +2,10 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from "react";
 import axios from "axios";
-import { socket } from "socket.io-client";
+import io from "socket.io-client";
+import Users from "./Users";
 const { userJoin, getRoomUsers, getUser, userLeave } = require('../../utils/users');
-// const socket = io();
+//const socket1 = io();
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
   const [mail, setMail] = React.useState("");
@@ -13,8 +14,42 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const [userName, setUserName] = React.useState("");
   const [docList, setDocList] = React.useState([]);
   const [facility, setFacility] = React.useState(null);
+  const [socket, setSocket] = React.useState();
+  const [users, setUsers] = React.useState([]);
   const docElement = React.useRef(null);
 
+  const configureSocket = () => {
+
+    var socket = io();
+    socket.on('connect', () => {
+      setSocket(socket);
+      socket.on('enter-room', (event) => {
+        console.log(event);
+        //socket.on();
+      });
+      socket.on('room-users', ({ room, users }) => {
+        outputRoomName(room);
+        outputUsers(users);
+        // Get the user that has stream on and put it a icons
+        users.forEach(user => {
+          if (user.cam === true) {
+            addWebcamIcon(user.id);
+
+          }
+        });
+
+      });
+
+
+      // Message from server
+      socket.on('message', message => {
+        outputMessage(message);
+
+        // Scroll Down
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      });
+    });
+  };
   React.useEffect(() => {
     axios.get('/doctors')
       .then(res => {
@@ -25,15 +60,19 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
 
       })
       .catch(err => console.log(err));
+    configureSocket();
   }, []);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = { firstName, lastName, facility};
+    const data = { firstName, lastName, facility };
     console.log("HIT DATA IN VIDEOCHAT data");
     console.log(data);
-    axios.post("api/videochat", data );
-    socket.emit("join-room", ({firstName, userName, facility}));
+    // axios.post("api/videochat", data);
+    socket.emit("join-room", ({ firstName, userName, facility }));
+    console.log("THIS IS THE SOCKET BELOW");
+    console.log(socket);
   };
 
   const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
@@ -69,10 +108,10 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
                   <label className="label">Select Veterinarian</label>
                   <p className="control has-icons-left">
                     <select name="room" className="roomselect" placeholder="Room Name"
-                    value={facility|| ""}
-                    onChange={handleFacilityChange}
-                    ref={docElement} >
-                    <option >Select your Veterinarian</option>
+                      value={facility || ""}
+                      onChange={handleFacilityChange}
+                      ref={docElement} >
+                      <option >Select your Veterinarian</option>
                       {docList.map(doctor =>
                         <option key={doctor._id} value={doctor.facility}>Dr. {doctor.firstName} {doctor.lastName} at {doctor.facility}</option>
 

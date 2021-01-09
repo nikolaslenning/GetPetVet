@@ -58,57 +58,58 @@ app.use(routes);
 const botName = 'Chat Bot';
 
 io.on('connection', socket => {
-    socket.on('join-room', ({ id, username, room }) => {
-        const user = userJoin(id, username, room);
+  socket.on('join-room', ({ firstName, userName, facility }) => {
+    const user = userJoin(firstName, userName, facility);
 
-        socket.join(user.room);
+    socket.join(user.room);
 
-        socket.emit('message', formatMessage(botName, "Welcome to GetPetVet!"));
+    socket.emit('message', formatMessage(botName, "Welcome to GetPetVet!"));
+    socket.emit('enter-room', user.room);
 
-        // Broadcast when  a user connects
-        socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined the chat, be nice with him/her`));
+    // Broadcast when  a user connects
+    socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined the chat, be nice with him/her`));
 
-        // Send users and Room info
-        io.to(user.room).emit('room-users', {
-            room: user.room,
-            users: getRoomUsers(user.room)
-        });
-
-        // Listen for chatMessage
-        socket.on('user-message', msg => {
-            const user = getUser(id);
-            io.to(user.room).emit('message', formatMessage(user.username, msg));
-
-        });
-
-
-        // Runs when client disconnects
-        socket.on('disconnect', () => {
-            const user = userLeave(id);
-
-            if (user) {
-                io.to(user.room).emit('message', formatMessage(botName, `${user.username} has left the chat`));
-
-                // Send users and room info
-                io.to(user.room).emit('room-users', {
-                    room: user.room,
-                    users: getRoomUsers(user.room)
-                });
-            }
-        });
-
-        // Listen to WebcamOn
-        socket.on('webcam-on', () =>{
-            user.cam = true;
-            io.to(user.room).emit('add-webcam-icon', user.id);
-        });
-
-        // Listen to webcamOff
-        socket.on('webcam-off', () =>{
-            user.cam = false;
-            io.to(user.room).emit('remove-webcam-icon-stream-called', user.id);
-        });
+    // Send users and Room info
+    io.to(user.room).emit('room-users', {
+      room: user.room,
+      users: getRoomUsers(user.room)
     });
+
+    // Listen for chatMessage
+    socket.on('user-message', msg => {
+      const user = getUser(id);
+      io.to(user.room).emit('message', formatMessage(user.username, msg));
+
+    });
+
+
+    // Runs when client disconnects
+    socket.on('disconnect', () => {
+      const user = userLeave(id);
+
+      if (user) {
+        io.to(user.room).emit('message', formatMessage(botName, `${user.username} has left the chat`));
+
+        // Send users and room info
+        io.to(user.room).emit('room-users', {
+          room: user.room,
+          users: getRoomUsers(user.room)
+        });
+      }
+    });
+
+    // Listen to WebcamOn
+    socket.on('webcam-on', () => {
+      user.cam = true;
+      io.to(user.room).emit('add-webcam-icon', user.id);
+    });
+
+    // Listen to webcamOff
+    socket.on('webcam-off', () => {
+      user.cam = false;
+      io.to(user.room).emit('remove-webcam-icon-stream-called', user.id);
+    });
+  });
 
 });
 
@@ -170,5 +171,3 @@ if (process.env.NODE_ENV === "production") {
 }
 
 server.listen(PORT, () => console.log('server is running on port ' + PORT));
-
-
