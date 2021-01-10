@@ -220,18 +220,9 @@ class App extends Component {
             />
 
           <Route
-            exact path={`/stream/${this.state.value}`}
-            render={() => {
-              if (this.state.loggedIn) {
-                return (
-                  { Stream }
-                  );
-                } else {
-                  return (
-                    <Redirect to="/login" />
-                    );
-                  }
-                }
+            exact path={'/stream/:id'}
+            component={
+                  Stream
               }
               />
               </Switch>
