@@ -74,7 +74,13 @@ class Navbar extends Component {
                         </Link>
                       </li>
 
-                      {!isDoctor ? (
+                      <li>
+                        <Link to="/videochat" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+                          <span className="text-secondary">Video Chat</span>
+                        </Link>
+                      </li>
+
+                      {/* {!isDoctor ? (
                       <li>
                         <Link to="/patientvideochat" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
                           <span className="text-secondary">Video Chat</span>
@@ -87,7 +93,7 @@ class Navbar extends Component {
                           <span className="text-secondary">Video Chat</span>
                         </Link>
                       </li>
-                      )}
+                      )} */}
 
                       <li>
                         <Link to="/profile" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">

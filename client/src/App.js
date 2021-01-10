@@ -7,8 +7,9 @@ import Signup from './components/Sign-up/Sign-up';
 import LoginForm from './components/Login-form/Login-form';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
-import PatientVideoChat from './components/VideoChat/VideoChat';
-import DoctorVideoChat from './components/VideoChat/VideoChat';
+// import PatientVideoChat from './components/VideoChat/VideoChat';
+// import DoctorVideoChat from './components/VideoChat/VideoChat';
+import VideoChat from './components/VideoChat/VideoChat';
 import Scheduler from './components/Scheduler/Scheduler';
 import Profile from './components/Profile/Profile';
 import AddPet from './components/AddPet/AddPet';
@@ -198,7 +199,7 @@ class App extends Component {
             }
             }
           />
-          <Route
+          {/* <Route
             exact path="/patientvideochat"
             render={() => {
               if (this.state.loggedIn) {
@@ -219,6 +220,21 @@ class App extends Component {
               if (this.state.loggedIn) {
                 return (
                   <DoctorVideoChat firstName={this.state.firstName} lastName={this.state.lastName} />
+                );
+              } else {
+                return (
+                  <Redirect to="/login" />
+                );
+              }
+            }
+            }
+          /> */}
+          <Route
+            exact path="/videochat"
+            render={() => {
+              if (this.state.loggedIn) {
+                return (
+                  <VideoChat firstName={this.state.firstName} lastName={this.state.lastName} />
                 );
               } else {
                 return (

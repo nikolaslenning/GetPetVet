@@ -27,6 +27,11 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const partnerVideo = useRef();
   const socket = useRef();
 
+  // Get username and room from URL
+  // const { userName, room } = Qs.parse(location.search, {
+  //   ignoreQueryPrefix: true
+  // });
+
   // get doctors for docList
   useEffect(() => {
     axios.get('/doctors')
@@ -129,7 +134,6 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   }
 
   const handleSubmit = async (event) => {
-    callPeer(userName);
     event.preventDefault();
     const data = { firstName, lastName, facility };
     console.log("HIT DATA IN VIDEOCHAT data");
@@ -139,6 +143,8 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     socket.current.emit("join-room", ({ firstName, userName, facility }));
     console.log("SOCKET BELOW");
     console.log(socket);
+    console.log(socket.current.id);
+    callPeer(socket.current.id);
   };
 
   const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
