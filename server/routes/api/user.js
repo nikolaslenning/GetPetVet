@@ -65,10 +65,10 @@ router.post(
 
 // eslint-disable-next-line no-unused-vars
 router.get('/', (req, res, next) => {
-    console.log('===== user!!======');
-    console.log("line 60 user.js" + req.user);
-    console.log("line 61 user.js" + req.session.passport);
-    console.log(req.session.passport);
+    // console.log('===== user!!======');
+    // console.log("line 60 user.js" + req.user);
+    // console.log("line 61 user.js" + req.session.passport);
+    // console.log(req.session.passport);
     if (req.user) {
         res.json({ user: req.user, data: req.body });
     } else {

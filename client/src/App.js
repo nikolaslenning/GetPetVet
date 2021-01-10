@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 // components
-
 import Signup from './components/Sign-up/Sign-up';
 import LoginForm from './components/Login-form/Login-form';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
-import VideoChat from './components/VideoChat/VideoChat';
+import PatientVideoChat from './components/VideoChat/VideoChat';
+import DoctorVideoChat from './components/VideoChat/VideoChat';
 import Scheduler from './components/Scheduler/Scheduler';
 import Profile from './components/Profile/Profile';
 import AddPet from './components/AddPet/AddPet';
@@ -199,11 +199,26 @@ class App extends Component {
             }
           />
           <Route
-            exact path="/videochat"
+            exact path="/patientvideochat"
             render={() => {
               if (this.state.loggedIn) {
                 return (
-                  <VideoChat firstName={this.state.firstName} lastName={this.state.lastName} />
+                  <PatientVideoChat firstName={this.state.firstName} lastName={this.state.lastName} />
+                );
+              } else {
+                return (
+                  <Redirect to="/login" />
+                );
+              }
+            }
+            }
+          />
+          <Route
+            exact path="/doctorvideochat"
+            render={() => {
+              if (this.state.loggedIn) {
+                return (
+                  <DoctorVideoChat firstName={this.state.firstName} lastName={this.state.lastName} />
                 );
               } else {
                 return (
@@ -214,8 +229,6 @@ class App extends Component {
             }
           />
         </Router>
-
-        {/* <VideoChat username={this.state.firstName} /> */}
 
       </div>
     );

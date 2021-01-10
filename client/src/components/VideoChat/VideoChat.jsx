@@ -1,69 +1,143 @@
 /* eslint-disable brace-style */
 /* eslint-disable no-unused-vars */
-import React, { Component } from "react";
+import React, { Component, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import io from "socket.io-client";
-import Users from "./Users";
-const { userJoin, getRoomUsers, getUser, userLeave } = require('../../utils/users');
-//const socket1 = io();
+import Peer from "simple-peer";
+import Stream from "./Stream";
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
-  const [mail, setMail] = React.useState("");
+  const [mail, setMail] = useState("");
   // const [firstName, setFirstName] = React.useState("");
   // const [lastName, setLastName] = React.useState("");
-  const [userName, setUserName] = React.useState("");
-  const [docList, setDocList] = React.useState([]);
-  const [facility, setFacility] = React.useState(null);
-  const [socket, setSocket] = React.useState();
-  const [users, setUsers] = React.useState([]);
-  const docElement = React.useRef(null);
+  const [userName, setUserName] = useState("");
+  const [docList, setDocList] = useState([]);
+  const [facility, setFacility] = useState(null);
+  const [yourID, setYourID] = useState("");
+  const [users, setUsers] = useState({});
+  const [stream, setStream] = useState();
+  const [receivingCall, setReceivingCall] = useState(false);
+  const [caller, setCaller] = useState("");
+  const [callerSignal, setCallerSignal] = useState();
+  const [callAccepted, setCallAccepted] = useState(false);
+  const [initiatorName, setInitiatorName] = useState(null);
+  const docElement = useRef(null);
 
-  const configureSocket = () => {
+  const userVideo = useRef();
+  const partnerVideo = useRef();
+  const socket = useRef();
 
-    var socket = io();
-    socket.on('connect', () => {
-      setSocket(socket);
-      socket.on('enter-room', (event) => {
-        console.log(event);
-        //socket.on();
-      });
-      socket.on('room-users', ({ room, users }) => {
-        setUsers(users);
-
-      });
-
-
-      // Message from server
-      socket.on('message', message => {
-        outputMessage(message);
-
-        // Scroll Down
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      });
-    });
-  };
-  React.useEffect(() => {
+  // get doctors for docList
+  useEffect(() => {
     axios.get('/doctors')
       .then(res => {
         // console.log("res.data");
         // console.log(res);
         // console.log(res.data.data);
         setDocList(res.data.data);
-
       })
       .catch(err => console.log(err));
-    configureSocket();
   }, []);
 
+  // establish connection from client to server
+  useEffect(() => {
+    socket.current = io.connect("/");
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+      setStream(stream);
+      if (userVideo.current) {
+        userVideo.current.srcObject = stream;
+      }
+    });
+    socket.current.on("yourID", (id) => {
+      setYourID(id);
+    });
+    socket.current.on("allUsers", (users) => {
+      setUsers(users);
+    });
+    socket.current.on("hey", (data) => {
+      console.log(data);
+      setReceivingCall(true);
+      setCaller(data.from);
+      setCallerSignal(data.signal);
+    });
+  }, []);
+
+  // call peer
+  function callPeer(id) {
+    const peer = new Peer({
+      initiator: true,
+      trickle: false,
+      stream: stream,
+    });
+    // calls peer id
+    peer.on("signal", data => {
+      socket.current.emit("callUser", { userToCall: id, signalData: data });
+    });
+    peer.on("stream", stream => {
+      if (partnerVideo.current) {
+        partnerVideo.current.srcObject = stream;
+      }
+    });
+    // set peer to true to accept call
+    socket.current.on("callAccepted", signal => {
+      setCallAccepted(true);
+      peer.signal(signal);
+    });
+  }
+
+  // accept call
+  function acceptCall() {
+    setCallAccepted(true);
+    const peer = new Peer({
+      initiator: false,
+      trickle: false,
+      stream: stream,
+    });
+    // called peer
+    peer.on("signal", data => {
+      socket.current.emit("acceptCall", { signal: data, to: caller });
+    });
+    peer.on("stream", stream => {
+      partnerVideo.current.srcObject = stream;
+    });
+
+    peer.signal(callerSignal);
+  }
+
+  let UserVideo;
+  if (stream) {
+    UserVideo = (
+      <video className='video' playsInline muted ref={userVideo} autoPlay />
+    );
+  }
+
+  let PartnerVideo;
+  if (callAccepted) {
+    PartnerVideo = (
+      <video className='video' playsInline ref={partnerVideo} autoPlay />
+    );
+  }
+
+  let incomingCall;
+  if (receivingCall) {
+    incomingCall = (
+      <div>
+        <h1>{userName} is calling you</h1>
+        <button onClick={acceptCall}>Accept</button>
+      </div>
+    );
+  }
 
   const handleSubmit = async (event) => {
+    callPeer(userName);
     event.preventDefault();
     const data = { firstName, lastName, facility };
     console.log("HIT DATA IN VIDEOCHAT data");
     console.log(data);
-    // axios.post("api/videochat", data);
-    socket.emit("join-room", ({ firstName, userName, facility }));
-    console.log("THIS IS THE SOCKET BELOW");
+    console.log("SOCKET");
+    console.log(socket);
+    socket.current.emit("join-room", ({ firstName, userName, facility }));
+    console.log("SOCKET BELOW");
     console.log(socket);
   };
 
@@ -124,6 +198,9 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
                     </span>
                       JOIN
                      </button>
+                  <div>
+                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} />
+                  </div>
                 </div>
               </form>
             </div>
