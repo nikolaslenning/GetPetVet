@@ -23,10 +23,10 @@ function Stream(props) {
             <button onClick={() => callPeer(key)}>Call {prop.userName}</button>
           );
         })}
-      </row >
-      <row className="row">
-        {incomingCall}
       </row > */}
+      <row className="row">
+        {props.incomingCall}
+      </row >
     </container>
   );
 }

@@ -26,6 +26,11 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const userVideo = useRef();
   const partnerVideo = useRef();
   const socket = useRef();
+  const peer = useRef(new Peer({
+    initiator: true,
+    trickle: false,
+    stream: stream,
+  }));
 
   // Get username and room from URL
   // const { userName, room } = Qs.parse(location.search, {
@@ -64,21 +69,17 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
       setReceivingCall(true);
       setCaller(data.from);
       setCallerSignal(data.signal);
+      // callPeer(data.);
     });
   }, []);
 
-  // call peer
+  // call peer/ go to doctor
   function callPeer(id) {
-    const peer = new Peer({
-      initiator: true,
-      trickle: false,
-      stream: stream,
-    });
     // calls peer id
-    peer.on("signal", data => {
+    peer.current.on("signal", data => {
       socket.current.emit("callUser", { userToCall: id, signalData: data });
     });
-    peer.on("stream", stream => {
+    peer.current.on("stream", stream => {
       if (partnerVideo.current) {
         partnerVideo.current.srcObject = stream;
       }
@@ -86,27 +87,27 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     // set peer to true to accept call
     socket.current.on("callAccepted", signal => {
       setCallAccepted(true);
-      peer.signal(signal);
+      peer.current.signal(signal);
     });
   }
 
-  // accept call
+  // accept call / go to user
   function acceptCall() {
     setCallAccepted(true);
-    const peer = new Peer({
+    peer.current = new Peer({
       initiator: false,
       trickle: false,
       stream: stream,
     });
     // called peer
-    peer.on("signal", data => {
+    peer.current.on("signal", data => {
       socket.current.emit("acceptCall", { signal: data, to: caller });
     });
-    peer.on("stream", stream => {
+    peer.current.on("stream", stream => {
       partnerVideo.current.srcObject = stream;
     });
 
-    peer.signal(callerSignal);
+    peer.current.signal(callerSignal);
   }
 
   let UserVideo;
@@ -144,7 +145,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     console.log("SOCKET BELOW");
     console.log(socket);
     console.log(socket.current.id);
-    callPeer(socket.current.id);
+    // callPeer(socket.current.id);
   };
 
   const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
@@ -205,7 +206,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
                       JOIN
                      </button>
                   <div>
-                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} />
+                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall}/>
                   </div>
                 </div>
               </form>

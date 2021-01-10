@@ -117,7 +117,7 @@ app.use(routes);
 
 // server.listen(PORT, () => console.log(`Server running on http://127.0.0.1:${PORT}`));
 
-// sockets old
+// sockets old SOCKET IS CLIENT, IO IS THE SERVER
 const users = {};
 
 io.on('connection', socket => {
@@ -136,6 +136,13 @@ io.on('connection', socket => {
     delete users[socket.id];
     console.log("DISCONNECT USERS" + users);
     console.log(users);
+  });
+
+  socket.on("join-room", (data) => {
+    // socket.join(data.facility);
+    console.log("SOCKET ROOM " + data);
+    console.log("SOCKET ID " + socket.id);
+    socket.to(data.facility).emit(socket.id);
   });
 
   socket.on("callUser", (data) => {
