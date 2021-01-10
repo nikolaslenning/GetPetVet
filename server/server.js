@@ -57,9 +57,9 @@ app.use(routes);
 
 const botName = 'Chat Bot';
 
-io.on('connection', socket => {
-    socket.on('join-room', ({ id, username, room }) => {
-        const user = userJoin(id, username, room);
+io.of('/stream/:').on('connection', socket => {
+    socket.on('join-room', ({ id, username, petname, room }) => {
+        const user = userJoin(id, username, petname, room);
 
         socket.join(user.room);
 

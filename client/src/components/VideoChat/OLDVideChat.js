@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useRef } from 'react';
-import './VideoChat.css';
+import './NewVideoChat/VideoChat.css';
 import io from "socket.io-client";
 import Peer from "simple-peer";
 
@@ -65,7 +65,7 @@ function Stream(prop) {
 
   useEffect(() => {
     socket.current.emit('nameSelf', { id: yourID, username: initiatorName });
-  }, [initiatorName]);
+  }, [initiatorName, yourID]);
 
   function callPeer(id) {
     const peer = new Peer({

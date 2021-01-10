@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 // components
 
 import Signup from './components/Sign-up/Sign-up';
@@ -9,6 +9,7 @@ import LoginForm from './components/Login-form/Login-form';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import VideoChat from './components/VideoChat/VideoChat';
+import Stream from './components/VideoChat/OLDVideChat';
 import Scheduler from './components/Scheduler/Scheduler';
 import Profile from './components/Profile/Profile';
 import AddPet from './components/AddPet/AddPet';
@@ -17,13 +18,14 @@ import "./index.css";
 import Doctors from "./components/Doctors/Doctors";
 
 import { CalendarStore } from "../src/components/Scheduler/store";
+//import VideoChat from './components/VideoChat/VideoChat';
 const calendarStore = new CalendarStore();
 
 // import { Calendar } from 'react-big-calendar';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loggedIn: false,
       email: null,
@@ -79,6 +81,7 @@ class App extends Component {
       <div className="App">
 
         <Router>
+
           <Navbar isDoctor={this.state.isDoctor} updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
           {/* greet user if logged in: */}
           {this.state.loggedIn &&
@@ -92,40 +95,40 @@ class App extends Component {
                 return (
                   <Home
                     updateUser={this.updateUser}
-                  />
-                );
-              } else {
+                    />
+                    );
+                  } else {
                 return (
                   <Redirect to="/login" />
-                );
+                  );
+                }
               }
             }
-            }
-          />
+            />
           <Route
             exact path="/login"
             render={() => {
-
               if (!this.state.loggedIn) {
                 return (
                   <LoginForm
-                    updateUser={this.updateUser}
+                  updateUser={this.updateUser}
                   />
-                );
-              } else {
-                return (
-                  <Redirect to="/" />
-                );
+                  );
+                } else {
+                  return (
+                    <Redirect to="/" />
+                    );
+                  }
+                }
               }
-            }
-            }
-          />
+              />
           <Route
             exact path="/signup"
             render={() => {
               if (!this.state.loggedIn) {
                 return (
-                  <Signup />
+                  <Signup
+                  updateUser={this.updateUser}/>
                 );
               } else {
                 return (
@@ -133,25 +136,27 @@ class App extends Component {
                 );
               }
             }
-            }
+          }
           />
+          <Switch>
+
           <Route
             exact path="/scheduler"
             render={() => {
               if (this.state.loggedIn) {
                 return (
                   <Scheduler
-                    calendarStore={calendarStore}
+                  calendarStore={calendarStore}
                     isDoctor={this.state.isDoctor} />
-                );
-              } else {
+                    );
+                  } else {
                 return (
                   <Redirect to="/login" />
-                );
+                  );
               }
             }
-            }
-          />
+          }
+            />
 
           <Route
             exact path="/profile"
@@ -159,14 +164,14 @@ class App extends Component {
               if (this.state.loggedIn) {
                 return (
                   <Profile />
-                );
-              } else {
+                  );
+                } else {
                 return (
                   <Redirect to="/login" />
-                );
+                  );
               }
             }
-            }
+          }
           />
           <Route
             exact path="/addpet"
@@ -174,45 +179,62 @@ class App extends Component {
               if (this.state.loggedIn) {
                 return (
                   <AddPet />
-                );
-              } else {
-                return (
-                  <Redirect to="/login" />
-                );
+                  );
+                } else {
+                  return (
+                    <Redirect to="/login" />
+                    );
+                  }
+                }
               }
-            }
-            }
-          />
+              />
           <Route
             exact path="/doctors"
             render={() => {
               if (this.state.loggedIn) {
                 return (
                   <Doctors />
-                );
-              } else {
+                  );
+                } else {
                 return (
                   <Redirect to="/login" />
-                );
+                  );
               }
             }
-            }
+          }
           />
           <Route
             exact path="/videochat"
             render={() => {
               if (this.state.loggedIn) {
                 return (
-                  <VideoChat firstName={this.state.firstName} lastName={this.state.lastName} />
-                );
-              } else {
+                  <VideoChat />
+                  );
+                } else {
                 return (
                   <Redirect to="/login" />
-                );
+                  );
+                }
               }
             }
-            }
-          />
+            />
+
+          <Route
+            exact path={`/stream/${this.state.value}`}
+            render={() => {
+              if (this.state.loggedIn) {
+                return (
+                  { Stream }
+                  );
+                } else {
+                  return (
+                    <Redirect to="/login" />
+                    );
+                  }
+                }
+              }
+              />
+              </Switch>
         </Router>
 
         {/* <VideoChat username={this.state.firstName} /> */}
@@ -221,5 +243,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;
