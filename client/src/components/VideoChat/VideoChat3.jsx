@@ -1,15 +1,43 @@
+/* eslint-disable brace-style */
+/* eslint-disable no-unused-vars */
 import React, { Component, useEffect, useState, useRef } from "react";
 import axios from "axios";
+import io from "socket.io-client";
+import Peer from "simple-peer";
 import Stream from "./Stream.js";
 
-function VideoChat() {
+function VideoChat({ email, firstName, lastName, isDoctor }) {
+  const [mail, setMail] = useState("");
+  // const [firstName, setFirstName] = React.useState("");
+  // const [lastName, setLastName] = React.useState("");
+  const [userName, setUserName] = useState("");
   const [docList, setDocList] = useState([]);
+  const [facility, setFacility] = useState(null);
+  const [yourID, setYourID] = useState("");
+  const [users, setUsers] = useState({});
   const [stream, setStream] = useState();
-
+  const [receivingCall, setReceivingCall] = useState(false);
+  const [caller, setCaller] = useState("");
+  const [callerSignal, setCallerSignal] = useState();
+  const [callAccepted, setCallAccepted] = useState(false);
+  const [initiatorName, setInitiatorName] = useState(null);
   const docElement = useRef(null);
+
   const userVideo = useRef();
   const partnerVideo = useRef();
+  const socket = useRef();
+  const peer = useRef(new Peer({
+    initiator: true,
+    trickle: false,
+    stream: stream,
+  }));
 
+  // Get username and room from URL
+  // const { userName, room } = Qs.parse(location.search, {
+  //   ignoreQueryPrefix: true
+  // });
+
+  // get doctors for docList
   useEffect(() => {
     axios.get('/doctors')
       .then(res => {
@@ -21,21 +49,66 @@ function VideoChat() {
       .catch(err => console.log(err));
   }, []);
 
-  const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
+  // establish connection from client to server
+  useEffect(() => {
+    socket.current = io.connect("/");
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+      setStream(stream);
+      if (userVideo.current) {
+        userVideo.current.srcObject = stream;
+      }
+    });
+    socket.current.on("yourID", (id) => {
+      setYourID(id);
+    });
+    socket.current.on("allUsers", (users) => {
+      setUsers(users);
+    });
+    socket.current.on("hey", (data) => {
+      console.log(data);
+      setReceivingCall(true);
+      setCaller(data.from);
+      setCallerSignal(data.signal);
+      // callPeer(data.);
+    });
+  }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = { firstName, lastName, facility };
-    console.log("HIT DATA IN VIDEOCHAT data");
-    console.log(data);
-    console.log("SOCKET");
-    console.log(socket);
-    socket.current.emit("join-room", ({ firstName, userName, facility }));
-    console.log("SOCKET BELOW");
-    console.log(socket);
-    console.log(socket.current.id);
-    // callPeer(socket.current.id);
-  };
+  // call peer/ go to doctor
+  function callPeer(id) {
+    // calls peer id
+    peer.current.on("signal", data => {
+      socket.current.emit("callUser", { userToCall: id, signalData: data });
+    });
+    peer.current.on("stream", stream => {
+      if (partnerVideo.current) {
+        partnerVideo.current.srcObject = stream;
+      }
+    });
+    // set peer to true to accept call
+    socket.current.on("callAccepted", signal => {
+      setCallAccepted(true);
+      peer.current.signal(signal);
+    });
+  }
+
+  // accept call / go to user
+  function acceptCall() {
+    setCallAccepted(true);
+    peer.current = new Peer({
+      initiator: false,
+      trickle: false,
+      stream: stream,
+    });
+    // called peer
+    peer.current.on("signal", data => {
+      socket.current.emit("acceptCall", { signal: data, to: caller });
+    });
+    peer.current.on("stream", stream => {
+      partnerVideo.current.srcObject = stream;
+    });
+
+    peer.current.signal(callerSignal);
+  }
 
   let UserVideo;
   if (stream) {
@@ -60,6 +133,22 @@ function VideoChat() {
       </div>
     );
   }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = { firstName, lastName, facility };
+    console.log("HIT DATA IN VIDEOCHAT data");
+    console.log(data);
+    console.log("SOCKET");
+    console.log(socket);
+    socket.current.emit("join-room", ({ firstName, userName, facility }));
+    console.log("SOCKET BELOW");
+    console.log(socket);
+    console.log(socket.current.id);
+    // callPeer(socket.current.id);
+  };
+
+  const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
 
   return (
 
@@ -117,7 +206,7 @@ function VideoChat() {
                       JOIN
                      </button>
                   <div>
-                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} />
+                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall}/>
                   </div>
                 </div>
               </form>

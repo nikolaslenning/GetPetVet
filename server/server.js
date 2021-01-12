@@ -152,17 +152,6 @@ io.on('connection', socket => {
   socket.on("acceptCall", (data) => {
     io.to(data.to).emit('callAccepted', data.signal);
   });
-
-  socket.on('nameSelf', (data) => {
-    const id = data.id;
-
-    if (users[id]) {
-      users[id].username = data.username;
-      io.to(id).emit('success', {});
-    } else {
-      io.to(id).emit('invalid', { errors: ['Invalid name'] });
-    }
-  });
 });
 
 // // server
