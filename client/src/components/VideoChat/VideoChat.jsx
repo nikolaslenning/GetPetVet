@@ -65,6 +65,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
       setUsers(users);
     });
     socket.current.on("hey", (data) => {
+      console.log("HEY DATA IN VIDEOCHAT.jsx ");
       console.log(data);
       setReceivingCall(true);
       setCaller(data.from);
@@ -75,8 +76,10 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
 
   // call peer/ go to doctor
   function callPeer(id) {
-    // calls peer id
+// calls peer id
     peer.current.on("signal", data => {
+      console.log("signal data in Videochat.jsx ln 80");
+      console.log(data);
       socket.current.emit("callUser", { userToCall: id, signalData: data });
     });
     peer.current.on("stream", stream => {
@@ -141,6 +144,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     console.log(data);
     console.log("SOCKET");
     console.log(socket);
+    await callPeer(socket.current.id);
     socket.current.emit("join-room", ({ firstName, userName, facility }));
     console.log("SOCKET BELOW");
     console.log(socket);
@@ -166,7 +170,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
           <div className="columns is-centered">
 
             <div className="column is-5-tablet is-4-desktop is-3-widescreen">
-              <form action="/videochat" method="POST" className="box">
+              <form action="/videochat"className="box">
                 <div className="field">
                   <label className="label">Username:</label>
                   {/* <h1>{firstName}</h1> */}
@@ -205,8 +209,18 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
                     </span>
                       JOIN
                      </button>
+                  <row className="row">
+                    {/* {Object.keys(users).map(key => {
+                      if (key === yourID) {
+                        return null;
+                      }
+                      return (
+                        <button onClick={() => callPeer(facility)}>Call {userName}</button>
+                      );
+                    })} */}
+                  </row >
                   <div>
-                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall}/>
+                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} />
                   </div>
                 </div>
               </form>

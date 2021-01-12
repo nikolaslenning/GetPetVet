@@ -1,33 +1,24 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import './Stream.css';
 
 function Stream(props) {
 
   return (
-    <container className="container">
-      <row className="row">
-        <column>
+    <div className="container">
+      <div className="row">
+        <div>
           {props.UserVideo}
-        </column>
-        <column>
+        </div>
+        <div>
           {/* <h1>{callerName}</h1> */}
           {props.PartnerVideo}
-        </column>
-      </row >
-      {/* <row className="row">
-        {Object.keys(users).map(key => {
-          if (key === yourID) {
-            return null;
-          }
-          return (
-            <button onClick={() => callPeer(key)}>Call {prop.userName}</button>
-          );
-        })}
-      </row > */}
-      <row className="row">
+        </div>
+      </div >
+      <div className="row">
         {props.incomingCall}
-      </row >
-    </container>
+      </div >
+    </div>
   );
 }
 

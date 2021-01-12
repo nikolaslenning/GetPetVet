@@ -130,19 +130,24 @@ io.on('connection', socket => {
   socket.emit("yourID", socket.id);
 
   io.sockets.emit("allUsers", users);
-  console.log("ALL USERS SOCKET USERS" + users);
+  console.log("ALL USERS SOCKET USERS" , users);
 
   socket.on('disconnect', () => {
     delete users[socket.id];
-    console.log("DISCONNECT USERS" + users);
+    console.log("DISCONNECT USERS" , users);
     console.log(users);
   });
 
   socket.on("join-room", (data) => {
     // socket.join(data.facility);
-    console.log("SOCKET ROOM " + data);
-    console.log("SOCKET ID " + socket.id);
-    socket.to(data.facility).emit(socket.id);
+    console.log("SOCKET ROOM " );
+    console.log(data );
+    console.log("SOCKET ID " , socket.id);
+    // io.to(data.facility).emit(socket.id);
+    console.log("socket.adapter.rooms");
+    console.log(socket.adapter.rooms);
+    io.sockets.emit("signal", data );
+    socket.join(data.facility);
   });
 
   socket.on("callUser", (data) => {
@@ -153,16 +158,7 @@ io.on('connection', socket => {
     io.to(data.to).emit('callAccepted', data.signal);
   });
 
-  socket.on('nameSelf', (data) => {
-    const id = data.id;
-
-    if (users[id]) {
-      users[id].username = data.username;
-      io.to(id).emit('success', {});
-    } else {
-      io.to(id).emit('invalid', { errors: ['Invalid name'] });
-    }
-  });
+ 
 });
 
 // // server
