@@ -139,10 +139,10 @@ io.on('connection', socket => {
   });
 
   socket.on("join-room", (data) => {
-    // socket.join(data.facility);
+    socket.join(data.facility);
     console.log("SOCKET ROOM " + data);
     console.log("SOCKET ID " + socket.id);
-    socket.to(data.facility).emit(socket.id);
+    io.to(data.facility).emit(socket.id);
   });
 
   socket.on("callUser", (data) => {
@@ -153,16 +153,6 @@ io.on('connection', socket => {
     io.to(data.to).emit('callAccepted', data.signal);
   });
 
-  socket.on('nameSelf', (data) => {
-    const id = data.id;
-
-    if (users[id]) {
-      users[id].username = data.username;
-      io.to(id).emit('success', {});
-    } else {
-      io.to(id).emit('invalid', { errors: ['Invalid name'] });
-    }
-  });
 });
 
 // // server
