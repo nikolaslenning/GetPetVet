@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 // components
-
 import Signup from './components/Sign-up/Sign-up';
 import LoginForm from './components/Login-form/Login-form';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
+// import PatientVideoChat from './components/VideoChat/VideoChat';
+// import DoctorVideoChat from './components/VideoChat/VideoChat';
 import VideoChat from './components/VideoChat/VideoChat';
 import Scheduler from './components/Scheduler/Scheduler';
 import Profile from './components/Profile/Profile';
@@ -15,6 +16,7 @@ import AddPet from './components/AddPet/AddPet';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import Doctors from "./components/Doctors/Doctors";
+// import Temp from "./components/Temp/Temp";
 
 import { CalendarStore } from "../src/components/Scheduler/store";
 const calendarStore = new CalendarStore();
@@ -50,9 +52,9 @@ class App extends Component {
 
   getUser() {
     axios.get('/user/').then(response => {
-      console.log('Get user response: ');
-      console.log("response data", response.data);
-      console.log(response.data);
+      // console.log('Get user response: ');
+      // console.log("response data", response.data);
+      // console.log(response.data);
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ');
 
@@ -77,6 +79,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
 
         <Router>
           <Navbar isDoctor={this.state.isDoctor} updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
@@ -198,6 +201,36 @@ class App extends Component {
             }
             }
           />
+          {/* <Route
+            exact path="/patientvideochat"
+            render={() => {
+              if (this.state.loggedIn) {
+                return (
+                  <PatientVideoChat firstName={this.state.firstName} lastName={this.state.lastName} />
+                );
+              } else {
+                return (
+                  <Redirect to="/login" />
+                );
+              }
+            }
+            }
+          />
+          <Route
+            exact path="/doctorvideochat"
+            render={() => {
+              if (this.state.loggedIn) {
+                return (
+                  <DoctorVideoChat firstName={this.state.firstName} lastName={this.state.lastName} />
+                );
+              } else {
+                return (
+                  <Redirect to="/login" />
+                );
+              }
+            }
+            }
+          /> */}
           <Route
             exact path="/videochat"
             render={() => {
@@ -214,8 +247,6 @@ class App extends Component {
             }
           />
         </Router>
-
-        {/* <VideoChat username={this.state.firstName} /> */}
 
       </div>
     );
