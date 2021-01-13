@@ -86,6 +86,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     socket.current.on("callAccepted", signal => {
       setCallAccepted(true);
       peer.current.signal(signal);
+      socket.current.off("signal");
     });
   }
 

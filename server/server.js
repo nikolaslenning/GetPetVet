@@ -73,8 +73,8 @@ io.on('connection', socket => {
   });
 
   socket.on("callUser", (data) => {
-    console.log("callUser data");
-    console.log(data);
+    // console.log("callUser data");
+    // console.log(data);
     io.to(data.userToCall).emit('hey', { signal: data.signalData, from: data.from });
   });
 
