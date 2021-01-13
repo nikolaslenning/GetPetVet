@@ -9,8 +9,6 @@ import Stream from "./Stream";
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
   const [mail, setMail] = useState("");
-  // const [firstName, setFirstName] = React.useState("");
-  // const [lastName, setLastName] = React.useState("");
   const [userName, setUserName] = useState("");
   const [docList, setDocList] = useState([]);
   const [facility, setFacility] = useState(null);
@@ -30,18 +28,10 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const peer = useRef(
   );
 
-  // Get username and room from URL
-  // const { userName, room } = Qs.parse(location.search, {
-  //   ignoreQueryPrefix: true
-  // });
-
   // get doctors for docList
   useEffect(() => {
     axios.get('/doctors')
       .then(res => {
-        // console.log("res.data");
-        // console.log(res);
-        // console.log(res.data.data);
         setDocList(res.data.data);
       })
       .catch(err => console.log(err));
@@ -86,6 +76,8 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
       socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID });
     });
     peer.current.on("stream", stream => {
+      console.log("stream VIDEOCHAT");
+      console.log(stream);
       if (partnerVideo.current) {
         partnerVideo.current.srcObject = stream;
       }
@@ -94,6 +86,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     socket.current.on("callAccepted", signal => {
       setCallAccepted(true);
       peer.current.signal(signal);
+      socket.current.off("signal");
     });
   }
 
@@ -145,17 +138,10 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = { firstName, lastName, facility };
-    // console.log("HIT DATA IN VIDEOCHAT data");
-    // console.log(data);
-    // console.log("SOCKET");
-    // console.log(socket);
 
     socket.current.on(facility, (data) => { callPeer(data); });
     socket.current.emit("join-room", ({ firstName, userName, facility }));
-    // console.log("SOCKET BELOW");
-    // console.log(socket);
-    // console.log(socket.current.id);
-    // callPeer(socket.current.id);
+
   };
 
   const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
