@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-function */
 /* eslint-disable brace-style */
 /* eslint-disable no-unused-vars */
 import React, { Component, useEffect, useState, useRef } from "react";
@@ -26,11 +27,8 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const userVideo = useRef();
   const partnerVideo = useRef();
   const socket = useRef();
-  const peer = useRef(new Peer({
-    initiator: true,
-    trickle: false,
-    stream: stream,
-  }));
+  const peer = useRef(
+  );
 
   // Get username and room from URL
   // const { userName, room } = Qs.parse(location.search, {
@@ -76,11 +74,16 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
 
   // call peer/ go to doctor
   function callPeer(id) {
-// calls peer id
+    // calls peer id
+    peer.current = new Peer({
+      initiator: true,
+      trickle: false,
+      stream: stream,
+    });
     peer.current.on("signal", data => {
       console.log("signal data in Videochat.jsx ln 80");
       console.log(data);
-      socket.current.emit("callUser", { userToCall: id, signalData: data });
+      socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID });
     });
     peer.current.on("stream", stream => {
       if (partnerVideo.current) {
@@ -95,7 +98,9 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   }
 
   // accept call / go to user
-  function acceptCall() {
+  function acceptCall(event) {
+    event.preventDefault();
+    setReceivingCall(false);
     setCallAccepted(true);
     peer.current = new Peer({
       initiator: false,
@@ -140,15 +145,16 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = { firstName, lastName, facility };
-    console.log("HIT DATA IN VIDEOCHAT data");
-    console.log(data);
-    console.log("SOCKET");
-    console.log(socket);
-    await callPeer(socket.current.id);
+    // console.log("HIT DATA IN VIDEOCHAT data");
+    // console.log(data);
+    // console.log("SOCKET");
+    // console.log(socket);
+
+    socket.current.on(facility, (data) => { callPeer(data); });
     socket.current.emit("join-room", ({ firstName, userName, facility }));
-    console.log("SOCKET BELOW");
-    console.log(socket);
-    console.log(socket.current.id);
+    // console.log("SOCKET BELOW");
+    // console.log(socket);
+    // console.log(socket.current.id);
     // callPeer(socket.current.id);
   };
 
@@ -170,7 +176,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
           <div className="columns is-centered">
 
             <div className="column is-5-tablet is-4-desktop is-3-widescreen">
-              <form action="/videochat"className="box">
+              <form action="/videochat" className="box">
                 <div className="field">
                   <label className="label">Username:</label>
                   {/* <h1>{firstName}</h1> */}

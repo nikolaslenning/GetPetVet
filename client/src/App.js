@@ -16,6 +16,7 @@ import AddPet from './components/AddPet/AddPet';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import Doctors from "./components/Doctors/Doctors";
+// import Temp from "./components/Temp/Temp";
 
 import { CalendarStore } from "../src/components/Scheduler/store";
 const calendarStore = new CalendarStore();
@@ -51,9 +52,9 @@ class App extends Component {
 
   getUser() {
     axios.get('/user/').then(response => {
-      console.log('Get user response: ');
-      console.log("response data", response.data);
-      console.log(response.data);
+      // console.log('Get user response: ');
+      // console.log("response data", response.data);
+      // console.log(response.data);
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ');
 
@@ -78,6 +79,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
 
         <Router>
           <Navbar isDoctor={this.state.isDoctor} updateUser={this.updateUser} loggedIn={this.state.loggedIn} />

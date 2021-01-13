@@ -118,6 +118,7 @@ app.use(routes);
 // server.listen(PORT, () => console.log(`Server running on http://127.0.0.1:${PORT}`));
 
 // sockets old SOCKET IS CLIENT, IO IS THE SERVER
+// io.sockets is all clients
 const users = {};
 
 io.on('connection', socket => {
@@ -130,35 +131,36 @@ io.on('connection', socket => {
   socket.emit("yourID", socket.id);
 
   io.sockets.emit("allUsers", users);
-  console.log("ALL USERS SOCKET USERS" , users);
+  // console.log("ALL USERS SOCKET USERS" , users);
 
   socket.on('disconnect', () => {
     delete users[socket.id];
-    console.log("DISCONNECT USERS" , users);
-    console.log(users);
+    // console.log("DISCONNECT USERS" , users);
+    // console.log(users);
   });
 
   socket.on("join-room", (data) => {
     // socket.join(data.facility);
-    console.log("SOCKET ROOM " );
-    console.log(data );
+    // console.log("SOCKET ROOM " );
+    // console.log(data.facility );
     console.log("SOCKET ID " , socket.id);
-    // io.to(data.facility).emit(socket.id);
+    socket.join(data.facility);
+    socket.to(data.facility).emit(data.facility, socket.id);
     console.log("socket.adapter.rooms");
     console.log(socket.adapter.rooms);
-    io.sockets.emit("signal", data );
-    socket.join(data.facility);
+    // io.sockets.emit("signal", data );
+    // peer.signal(data);
   });
 
   socket.on("callUser", (data) => {
+    console.log("callUser data");
+    console.log(data);
     io.to(data.userToCall).emit('hey', { signal: data.signalData, from: data.from });
   });
 
   socket.on("acceptCall", (data) => {
     io.to(data.to).emit('callAccepted', data.signal);
   });
-
- 
 });
 
 // // server
