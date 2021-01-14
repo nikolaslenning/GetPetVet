@@ -6,6 +6,7 @@ import axios from "axios";
 import io from "socket.io-client";
 import Peer from "simple-peer";
 import Stream from "./Stream";
+import { useHistory } from "react-router-dom";
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
   // const [mail, setMail] = useState("");
@@ -139,20 +140,16 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     socket.current.emit("join-room", ({ firstName, userName, facility }));
   };
 
+  // handles the hang up. redirects to the homepage.
+  let history = useHistory();
+
   function handleHangup(event) {
     event.preventDefault();
-    socket.current.emit("disconnect");
-    console.log(socket.current.emit("disconnect"));
-    console.log(socket.current);
-    console.log(userVideo.current.srcObject);
-    MediaStream.active = false;
     setStream(null);
-    // navigator.mediaDevices.getUserMedia({ video: false, audio: false }).then(stream => {
-    //   setStream(stream);
-    //   if (userVideo.current) {
-    //     userVideo.current.srcObject = stream;
-    //   }
-    // });
+    stream.getTracks().forEach(function(track) {
+      track.stop();
+    });
+    history.push("/");
   }
 
   const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
