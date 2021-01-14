@@ -23,6 +23,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   const [id, setId] = React.useState(null);
   const [docID, setDocId] = React.useState(null);
   const [docList, setDocList] = React.useState([]);
+  const [petList, setPetList] = React.useState([]);
   const docElement = React.useRef(null);
 
   React.useEffect(() => {
@@ -42,10 +43,22 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   React.useEffect(() => {
     axios.get('/doctors')
       .then(res => {
+        // console.log("res.data");
+        // console.log(res);
+        // console.log(res.data.data);
+        setDocList(res.data.data);
+
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  React.useEffect(() => {
+    axios.get('/pet')
+      .then(res => {
         console.log("res.data");
         console.log(res);
         console.log(res.data.data);
-        setDocList(res.data.data);
+        setPetList(res.data.data);
 
       })
       .catch(err => console.log(err));
