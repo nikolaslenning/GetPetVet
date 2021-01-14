@@ -12,6 +12,7 @@ module.exports = {
         title: req.body.title,
         start: req.body.start,
         end: req.body.end,
+        pet: req.body.pet
       }).then(data => {
         res.json({ success: true, data });
       }).catch(err => {

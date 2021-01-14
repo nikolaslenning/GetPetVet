@@ -34,12 +34,14 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     setEnd(calendarEvent.end);
     setId(calendarEvent._id);
     setDocId(calendarEvent.docID);
+    setPet(calendarEvent.pet);
   }, [
     calendarEvent.title,
     calendarEvent.start,
     calendarEvent.end,
     calendarEvent._id,
-    calendarEvent.docID
+    calendarEvent.docID,
+    calendarEvent.pet
   ]);
 
   React.useEffect(() => {
@@ -157,7 +159,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
         </Form.Group>
       </Form.Row>
 
-      {/* <Form.Row>
+      <Form.Row>
         <Form.Group as={Col} md="12" controlId="docID">
           <Form.Label>Select Pet</Form.Label>
           <Form.Control as="select" custom type="number"
@@ -176,7 +178,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
 
           <Form.Control.Feedback type="invalid">{!pet}</Form.Control.Feedback>
         </Form.Group>
-      </Form.Row> */}
+      </Form.Row>
 
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="docID">
