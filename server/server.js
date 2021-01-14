@@ -34,6 +34,9 @@ app.use(passport.session()); // calls the deserializeUser
 // routes
 app.use(routes);
 
+
+// sockets old SOCKET IS CLIENT, IO IS THE SERVER
+// io.sockets is all clients
 const users = {};
 
 io.on('connection', socket => {
@@ -62,8 +65,8 @@ io.on('connection', socket => {
   });
 
   socket.on("callUser", (data) => {
-    console.log("callUser data");
-    console.log(data);
+    // console.log("callUser data");
+    // console.log(data);
     io.to(data.userToCall).emit('hey', { signal: data.signalData, from: data.from });
   });
 

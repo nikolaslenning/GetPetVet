@@ -9,7 +9,11 @@ import Stream from "./Stream";
 import { useHistory } from "react-router-dom";
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
+<<<<<<< HEAD
   // const [mail, setMail] = useState("");
+=======
+  const [mail, setMail] = useState("");
+>>>>>>> ef4ca372d3e753738dcffd3df8bcdf9c88b1543d
   const [userName, setUserName] = useState("");
   const [docList, setDocList] = useState([]);
   const [facility, setFacility] = useState(null);
@@ -76,6 +80,8 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
       socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID });
     });
     peer.current.on("stream", stream => {
+      console.log("stream VIDEOCHAT");
+      console.log(stream);
       if (partnerVideo.current) {
         partnerVideo.current.srcObject = stream;
       }
@@ -84,6 +90,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     socket.current.on("callAccepted", signal => {
       setCallAccepted(true);
       peer.current.signal(signal);
+      socket.current.off("signal");
     });
   }
 
@@ -138,6 +145,10 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
 
     socket.current.on(facility, (data) => { callPeer(data); });
     socket.current.emit("join-room", ({ firstName, userName, facility }));
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef4ca372d3e753738dcffd3df8bcdf9c88b1543d
   };
 
   // handles the hang up. redirects to the homepage.
