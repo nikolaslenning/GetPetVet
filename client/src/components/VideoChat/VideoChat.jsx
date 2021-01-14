@@ -6,9 +6,14 @@ import axios from "axios";
 import io from "socket.io-client";
 import Peer from "simple-peer";
 import Stream from "./Stream";
+import { useHistory } from "react-router-dom";
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
+<<<<<<< HEAD
+  // const [mail, setMail] = useState("");
+=======
   const [mail, setMail] = useState("");
+>>>>>>> ef4ca372d3e753738dcffd3df8bcdf9c88b1543d
   const [userName, setUserName] = useState("");
   const [docList, setDocList] = useState([]);
   const [facility, setFacility] = useState(null);
@@ -19,7 +24,6 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const [caller, setCaller] = useState("");
   const [callerSignal, setCallerSignal] = useState();
   const [callAccepted, setCallAccepted] = useState(false);
-  const [initiatorName, setInitiatorName] = useState(null);
   const docElement = useRef(null);
 
   const userVideo = useRef();
@@ -43,6 +47,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
       setStream(stream);
       if (userVideo.current) {
+        console.log(stream);
         userVideo.current.srcObject = stream;
       }
     });
@@ -58,7 +63,6 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
       setReceivingCall(true);
       setCaller(data.from);
       setCallerSignal(data.signal);
-      // callPeer(data.);
     });
   }, []);
 
@@ -141,8 +145,23 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
 
     socket.current.on(facility, (data) => { callPeer(data); });
     socket.current.emit("join-room", ({ firstName, userName, facility }));
+<<<<<<< HEAD
+=======
 
+>>>>>>> ef4ca372d3e753738dcffd3df8bcdf9c88b1543d
   };
+
+  // handles the hang up. redirects to the homepage.
+  let history = useHistory();
+
+  function handleHangup(event) {
+    event.preventDefault();
+    setStream(null);
+    stream.getTracks().forEach(function(track) {
+      track.stop();
+    });
+    history.push("/");
+  }
 
   const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
 
@@ -185,8 +204,6 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
                         <option key={doctor._id} value={doctor.facility}>Dr. {doctor.firstName} {doctor.lastName} at {doctor.facility}</option>
 
                       )}
-                      {/* <option value="Kevorkian">Kevorkian</option>
-                      <option value="Frank">Frankie</option> */}
                     </select>
                     {/* <!-- <input type="text" placeholder="Room Name" className="input" name="room" required> --></input> */}
                     <span className="icon is-small is-left">
@@ -201,18 +218,8 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
                     </span>
                       JOIN
                      </button>
-                  <row className="row">
-                    {/* {Object.keys(users).map(key => {
-                      if (key === yourID) {
-                        return null;
-                      }
-                      return (
-                        <button onClick={() => callPeer(facility)}>Call {userName}</button>
-                      );
-                    })} */}
-                  </row >
                   <div>
-                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} />
+                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} handleHangup={handleHangup} />
                   </div>
                 </div>
               </form>

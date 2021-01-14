@@ -8,9 +8,7 @@ const socket = require("socket.io");
 const io = socket(server);
 const routes = require('./routes');
 
-
 const path = require('path');
-// const users = require("./models/user");
 require('./config/db')();
 
 // PORT
@@ -51,25 +49,19 @@ io.on('connection', socket => {
   socket.emit("yourID", socket.id);
 
   io.sockets.emit("allUsers", users);
-  // console.log("ALL USERS SOCKET USERS" , users);
 
   socket.on('disconnect', () => {
+    console.log("DISCONNECT USERS" , users);
+    console.log(users);
     delete users[socket.id];
-    // console.log("DISCONNECT USERS" , users);
-    // console.log(users);
   });
 
   socket.on("join-room", (data) => {
-    // socket.join(data.facility);
-    // console.log("SOCKET ROOM " );
-    // console.log(data.facility );
     console.log("SOCKET ID " , socket.id);
     socket.join(data.facility);
     socket.to(data.facility).emit(data.facility, socket.id);
     console.log("socket.adapter.rooms");
     console.log(socket.adapter.rooms);
-    // io.sockets.emit("signal", data );
-    // peer.signal(data);
   });
 
   socket.on("callUser", (data) => {

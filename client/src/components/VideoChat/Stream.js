@@ -18,6 +18,9 @@ function Stream(props) {
       <div className="row">
         {props.incomingCall}
       </div >
+      <div>
+        <button onClick={props.handleHangup} >Hang up</button>
+      </div>
     </div>
   );
 }
