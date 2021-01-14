@@ -214,7 +214,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
         </Form.Group>
       </Form.Row>
 
-      <Form.Row>
+      {/* <Form.Row>
         <Form.Group as={Col} md="12" controlId="end">
           <Form.Label>End</Form.Label>
           <br />
@@ -225,7 +225,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
             onChange={handleEndChange}
           />
         </Form.Group>
-      </Form.Row>
+      </Form.Row> */}
       {!edit ? (
         <Button type="submit" style={buttonStyle} onClick={addCalendarEvent}>
           Save
