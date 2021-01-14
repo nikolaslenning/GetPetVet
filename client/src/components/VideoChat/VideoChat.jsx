@@ -8,9 +8,7 @@ import Peer from "simple-peer";
 import Stream from "./Stream";
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
-  const [mail, setMail] = useState("");
-  // const [firstName, setFirstName] = React.useState("");
-  // const [lastName, setLastName] = React.useState("");
+  // const [mail, setMail] = useState("");
   const [userName, setUserName] = useState("");
   const [docList, setDocList] = useState([]);
   const [facility, setFacility] = useState(null);
@@ -21,7 +19,6 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const [caller, setCaller] = useState("");
   const [callerSignal, setCallerSignal] = useState();
   const [callAccepted, setCallAccepted] = useState(false);
-  const [initiatorName, setInitiatorName] = useState(null);
   const docElement = useRef(null);
 
   const userVideo = useRef();
@@ -30,18 +27,10 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const peer = useRef(
   );
 
-  // Get username and room from URL
-  // const { userName, room } = Qs.parse(location.search, {
-  //   ignoreQueryPrefix: true
-  // });
-
   // get doctors for docList
   useEffect(() => {
     axios.get('/doctors')
       .then(res => {
-        // console.log("res.data");
-        // console.log(res);
-        // console.log(res.data.data);
         setDocList(res.data.data);
       })
       .catch(err => console.log(err));
@@ -53,6 +42,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
       setStream(stream);
       if (userVideo.current) {
+        console.log(stream);
         userVideo.current.srcObject = stream;
       }
     });
@@ -68,7 +58,6 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
       setReceivingCall(true);
       setCaller(data.from);
       setCallerSignal(data.signal);
-      // callPeer(data.);
     });
   }, []);
 
@@ -145,18 +134,26 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = { firstName, lastName, facility };
-    // console.log("HIT DATA IN VIDEOCHAT data");
-    // console.log(data);
-    // console.log("SOCKET");
-    // console.log(socket);
 
     socket.current.on(facility, (data) => { callPeer(data); });
     socket.current.emit("join-room", ({ firstName, userName, facility }));
-    // console.log("SOCKET BELOW");
-    // console.log(socket);
-    // console.log(socket.current.id);
-    // callPeer(socket.current.id);
   };
+
+  function handleHangup(event) {
+    event.preventDefault();
+    socket.current.emit("disconnect");
+    console.log(socket.current.emit("disconnect"));
+    console.log(socket.current);
+    console.log(userVideo.current.srcObject);
+    MediaStream.active = false;
+    setStream(null);
+    // navigator.mediaDevices.getUserMedia({ video: false, audio: false }).then(stream => {
+    //   setStream(stream);
+    //   if (userVideo.current) {
+    //     userVideo.current.srcObject = stream;
+    //   }
+    // });
+  }
 
   const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
 
@@ -199,8 +196,6 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
                         <option key={doctor._id} value={doctor.facility}>Dr. {doctor.firstName} {doctor.lastName} at {doctor.facility}</option>
 
                       )}
-                      {/* <option value="Kevorkian">Kevorkian</option>
-                      <option value="Frank">Frankie</option> */}
                     </select>
                     {/* <!-- <input type="text" placeholder="Room Name" className="input" name="room" required> --></input> */}
                     <span className="icon is-small is-left">
@@ -215,18 +210,8 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
                     </span>
                       JOIN
                      </button>
-                  <row className="row">
-                    {/* {Object.keys(users).map(key => {
-                      if (key === yourID) {
-                        return null;
-                      }
-                      return (
-                        <button onClick={() => callPeer(facility)}>Call {userName}</button>
-                      );
-                    })} */}
-                  </row >
                   <div>
-                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} />
+                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} handleHangup={handleHangup} />
                   </div>
                 </div>
               </form>
