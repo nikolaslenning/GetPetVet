@@ -10,20 +10,14 @@ router
     Pet
       .find({ user: req.user._id })
       .then(data => {
-        // console.log(data);
         res.json({ success: true, data });
       })
       .catch(err => {
-        // console.log(err);
         res.json({ success: false });
       });
 
   }).post((req, res) => {
-    // console.log('pet params:');
-    // console.log(req.params);
-
     const { petName, petBreed, petAge } = req.body;
-    // console.log(req.user);
     Pet
       .create({
         user: req.user._id,
@@ -41,9 +35,6 @@ router
 router
   .route('/:id')
   .delete((req, res) => {
-    // console.log("pet req params");
-    // console.log(req.params);
-
     Pet
       .findByIdAndDelete(req.params.id)
       .then(data => {

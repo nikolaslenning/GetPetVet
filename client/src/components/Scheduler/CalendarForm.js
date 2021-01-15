@@ -42,9 +42,6 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   React.useEffect(() => {
     axios.get('/doctors')
       .then(res => {
-        // console.log("res.data");
-        // console.log(res);
-        // console.log(res.data.data);
         setDocList(res.data.data);
 
       })
@@ -52,8 +49,6 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   }, []);
 
   const handleSubmit = async ev => {
-    // console.log(" CalenderForm ln 35");
-    // console.log(ev);
     ev.preventDefault();
     if (!title || !start || !end) {
       return;
@@ -65,8 +60,6 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     }
 
     const data = { id, docID, title, start, end };
-    // console.log("data calendarForm ln 49");
-    // console.log(data);
 
     if (!edit) {
       await addCalendar(data);
@@ -75,11 +68,9 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     }
 
     let response = null;
-    // console.log({ isDoctor });
     if (!isDoctor) {
       response = await getCalendar();
     } else {
-      // console.log("HIt GetDocCalendar");
       response = await getDocCalendar();
     }
 
@@ -93,7 +84,6 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   const handleDocIDChange = ev => { console.log(docElement.current.value); setDocId(docElement.current.value); };
 
   const addCalendarEvent = async () => {
-    // console.log(calendarEvent);
     await addCalendar(calendarEvent);
     const response = await getCalendar();
 
@@ -103,21 +93,17 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   };
 
   const deleteCalendarEvent = async () => {
-    // console.log(calendarEvent._id);
     await deleteCalendar(calendarEvent._id);
     const response = await getCalendar();
 
     calendarStore.setCalendarEvents(response.data.data);
     onCancel();
     getCalendar();
-
   };
 
   const editCalendarEvent = async () => {
-    // console.log(calendarEvent);
     await editCalendar(calendarEvent._id);
     const response = await getCalendar();
-    //console.log(evs);
 
     calendarStore.setCalendarEvents(response.data.data);
     onCancel();
