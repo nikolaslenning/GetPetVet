@@ -87,8 +87,17 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     onCancel();
   };
 
-  const handleStartChange = date => setStart(date);
-  const handleEndChange = date => setEnd(date);
+  function endDate(startDate) {
+    let date = new Date(startDate);
+    console.log(date);
+    date.setHours(date.getHours() + 1);
+    let isoDate = date.toISOString();
+    console.log(isoDate);
+    return isoDate;
+   }
+
+  const handleStartChange = date => {setStart(date); setEnd(endDate(date));};
+  // const handleEndChange = date => setEnd(date);
   const handleTitleChange = ev => setTitle(ev.target.value);
   const handleDocIDChange = ev => { console.log(docElement.current.value); setDocId(docElement.current.value); };
 
@@ -173,7 +182,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
         </Form.Group>
       </Form.Row>
 
-      <Form.Row>
+      {/* <Form.Row>
         <Form.Group as={Col} md="12" controlId="end">
           <Form.Label>End</Form.Label>
           <br />
@@ -184,7 +193,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
             onChange={handleEndChange}
           />
         </Form.Group>
-      </Form.Row>
+      </Form.Row> */}
       {!edit ? (
         <Button type="submit" style={buttonStyle} onClick={addCalendarEvent}>
           Save
