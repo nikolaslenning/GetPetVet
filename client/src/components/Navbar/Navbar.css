@@ -21,7 +21,7 @@
   .navbar-brand {
     float: left;
     display: inline;
-    width: 60%;
+    width: 90%;
   }
 }
 
@@ -32,3 +32,7 @@
     width: 60%;
   }
 }
+
+/* .navbar-toggler {
+  float: right !important;
+} */
