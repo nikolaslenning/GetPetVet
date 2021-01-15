@@ -104,8 +104,10 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     onCancel();
   };
 
-  const handleStartChange = date => setStart(date);
-  const handleEndChange = date => setEnd(date);
+  const handleStartChange = date => {console.log(date); setStart(date); console.log(start); setEnd(start.setHours(start.getHours() + 1)); console.log(end); console.log(start.setHours(start.getHours() + 1));};
+  // eslint-disable-next-line no-use-before-define
+  // const handleEndChange = date => setEnd(start.setHours(start.getHours() + 1)); console.log(end); console.log(start.setHours(start.getHours() + 1));
+  // const handleEndChange = date => setEnd(date);
   const handleTitleChange = ev => setTitle(ev.target.value);
   const handleDocIDChange = ev => { console.log(docElement.current.value); setDocId(docElement.current.value); };
   const handlePetChange = ev => { console.log(petElement.current.value); setPet(petElement.current.value); };
