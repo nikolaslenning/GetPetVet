@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import "./Login.css";
+import logoDarkGray from "../assets/logoDarkGray.png";
 
 class LoginForm extends Component {
   constructor() {
@@ -66,7 +67,10 @@ class LoginForm extends Component {
     } else {
       return (
         <div id="loginCentering">
-          <h4>Login</h4>
+          <div className="loginIntro">
+            <img src={logoDarkGray} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
+            <h1 id="welcomeHomepg">Login</h1>
+          </div>
           <form className="form-horizontal">
             <div className="form-group">
               <div className="col-1 col-ml-auto">

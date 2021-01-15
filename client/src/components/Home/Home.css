@@ -16,9 +16,61 @@ body {
 #carouselExampleCaptions {
   margin-left: 10%;
   margin-right: 10%;
+  margin-bottom: 4%;
+}
+#carouselExampleCaptions1 {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 1%;
 }
 
 #captionTxt {
   font-size: 130%;
   text-shadow: 2px 2px 8px black;
+}
+
+.aboutIntro {
+  background-color: rgb(230, 233, 240);
+  align-content: center;
+  /* background-image: linear-gradient(0deg, #323F4B, rgb(230,233,240)); */
+  border-color: transparent !important;
+  border-bottom: 0% !important;
+  border-style: hidden !important;
+}
+
+.aboutlogo {
+  display: block;
+  text-align: center;
+  padding: 1%;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  padding: 0%;
+  text-shadow: 3px 3px 19px gray;
+  color: #adcbd6;
+}
+
+#about {
+  color: #38748a;
+  padding: 0%;
+}
+
+.getpetemail {
+  font-weight: bold;
+}
+
+.card {
+  margin: 1%;
+  width: 85% !important;
+  background-color: transparent !important;
+  color: white;
+  border: 0% !important;
+  border-color: transparent !important;
+}
+
+.card-body {
+  background-color: transparent !important;
 }

@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import logoLightBlue from "../assets/logoLightBlue.png";
 import './Navbar.css';
-// import '../App.css';
 
 class Navbar extends Component {
 
@@ -42,6 +42,7 @@ class Navbar extends Component {
       <div>
         <nav className="navbar navbar-dark bg-dark" id="nav-container">
           <div className="container-fluid">
+            <img src={logoLightBlue} className="navlogo" alt="pet1"></img>
             <a className="navbar-brand" href="/">GetPetVet</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>

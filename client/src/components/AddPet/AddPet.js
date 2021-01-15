@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import "./AddPet.css";
+import logoBlueGreen from '../assets/logoBlueGreen.png';
 
 class AddPet extends Component {
   constructor() {
@@ -59,63 +60,69 @@ class AddPet extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <div className="ProfileForm">
-          <form className="form-horizontal">
-            <h4>New Pet Profile</h4>
-            <div className="form-group">
-              <div className="col-1 col-ml-auto">
-                <label className="form-label">Pet Name: </label>
+        <div>
+
+          <div className="loginIntro">
+            <img src={logoBlueGreen} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
+            <h1 id="welcomeHomepg">Add New Pet Profile</h1>
+          </div>
+          <div className="ProfileForm">
+            <form className="form-horizontal">
+              <div className="form-group">
+                <div className="col-1 col-ml-auto">
+                  <label className="form-label">Pet Name: </label>
+                </div>
+                <div className="col-3 col-mr-auto">
+                  <input className="form-input"
+                    type="text"
+                    id="petName"
+                    name="petName"
+                    placeholder="pet name"
+                    value={this.state.petName}
+                    onChange={this.handleChange}
+                  />
+                </div>
               </div>
-              <div className="col-3 col-mr-auto">
-                <input className="form-input"
-                  type="text"
-                  id="petName"
-                  name="petName"
-                  placeholder="pet name"
-                  value={this.state.petName}
-                  onChange={this.handleChange}
-                />
+              <div className="form-group">
+                <div className="col-1 col-ml-auto">
+                  <label className="form-label">Pet Breed: </label>
+                </div>
+                <div className="col-3 col-mr-auto">
+                  <input className="form-input"
+                    placeholder="pet breed"
+                    type="text"
+                    id="petBreed"
+                    name="petBreed"
+                    value={this.state.petBreed}
+                    onChange={this.handleChange}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="form-group">
-              <div className="col-1 col-ml-auto">
-                <label className="form-label">Pet Breed: </label>
+              <div className="form-group">
+                <div className="col-1 col-ml-auto">
+                  <label className="form-label">Pet Age: </label>
+                </div>
+                <div className="col-3 col-mr-auto">
+                  <input className="form-input"
+                    placeholder="pet age"
+                    type="text"
+                    id="petAge"
+                    name="petAge"
+                    value={this.state.petAge}
+                    onChange={this.handleChange}
+                  />
+                </div>
               </div>
-              <div className="col-3 col-mr-auto">
-                <input className="form-input"
-                  placeholder="pet breed"
-                  type="text"
-                  id="petBreed"
-                  name="petBreed"
-                  value={this.state.petBreed}
-                  onChange={this.handleChange}
-                />
+              <div className="form-group ">
+                <div className="col-7"></div>
+                <button
+                  className="btn btn-primary"
+                  onClick={this.handleSubmit}
+                  type="submit"
+                >Create</button>
               </div>
-            </div>
-            <div className="form-group">
-              <div className="col-1 col-ml-auto">
-                <label className="form-label">Pet Age: </label>
-              </div>
-              <div className="col-3 col-mr-auto">
-                <input className="form-input"
-                  placeholder="pet age"
-                  type="text"
-                  id="petAge"
-                  name="petAge"
-                  value={this.state.petAge}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="form-group ">
-              <div className="col-7"></div>
-              <button
-                className="btn btn-primary"
-                onClick={this.handleSubmit}
-                type="submit"
-              >Create</button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       );
     }

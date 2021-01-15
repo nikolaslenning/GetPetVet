@@ -27,6 +27,7 @@ h1 {
 
 .form-label {
   text-align: center;
+  display: inline;
 }
 
 #addPetCentering {
@@ -36,7 +37,11 @@ h1 {
   background-color: #323F4B;
 }
 
-.form-label, h4 {
+h4 {
+  color: #38748a;
+}
+
+.form-label {
   color: #adcbd6;
 }
 
@@ -49,4 +54,5 @@ h1 {
   width: 75%;
   display: flex;
   justify-content: center;
+  background-color: rgb(230, 233, 240);
 }
