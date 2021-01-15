@@ -41,7 +41,15 @@ This is a list of all the technologies used in the creation of this application!
 
 3. [Passport.js](http://www.passportjs.org/) was used for our authentication/login services.
 
-4. PLEASE INSERT MORE TECH HERE
+4. [Travis CI](https://travis-ci.org/) was used to help us manage our merges.
+
+5. [React Big Calendar](https://www.npmjs.com/package/react-big-calendar) was used to help with our scheduler.
+
+6. [React Date Picker](https://www.npmjs.com/package/react-datepicker) was used with the scheduler to help allow users to pick dates and times.
+
+7. [BCrypt](https://www.npmjs.com/package/bcrypt) was used to user security and the use of hashing passwords.
+
+8. []
 
 <a name = "screenshots"></a>
 
