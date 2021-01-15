@@ -24,6 +24,10 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   const [docID, setDocId] = React.useState(null);
   const [docList, setDocList] = React.useState([]);
   const docElement = React.useRef(null);
+  const [petList, setPetList] = React.useState([]);
+  const [pet, setPet] = React.useState([]);
+  const petElement = React.useRef(null);
+
 
   React.useEffect(() => {
     setTitle(calendarEvent.title);
@@ -31,18 +35,32 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     setEnd(calendarEvent.end);
     setId(calendarEvent._id);
     setDocId(calendarEvent.docID);
+    setPet(calendarEvent.pet);
   }, [
     calendarEvent.title,
     calendarEvent.start,
     calendarEvent.end,
     calendarEvent._id,
-    calendarEvent.docID
+    calendarEvent.docID,
+    calendarEvent.pet
   ]);
 
   React.useEffect(() => {
     axios.get('/doctors')
       .then(res => {
         setDocList(res.data.data);
+
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  React.useEffect(() => {
+    axios.get('/pet')
+      .then(res => {
+        // console.log("res.data");
+        // console.log(res);
+        // console.log(res.data.data);
+        setPetList(res.data.data);
 
       })
       .catch(err => console.log(err));
@@ -58,8 +76,10 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
       alert("Start date must be earlier than end date");
       return;
     }
-
-    const data = { id, docID, title, start, end };
+    
+    const data = { id, docID, title, start, end, pet };
+    // console.log("data calendarForm ln 49");
+    // console.log(data);
 
     if (!edit) {
       await addCalendar(data);
@@ -78,10 +98,20 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     onCancel();
   };
 
-  const handleStartChange = date => setStart(date);
-  const handleEndChange = date => setEnd(date);
+  function endDate(startDate) {
+    let date = new Date(startDate);
+    console.log(date);
+    date.setHours(date.getHours() + 1);
+    let isoDate = date.toISOString();
+    console.log(isoDate);
+    return isoDate;
+   }
+
+  const handleStartChange = date => {setStart(date); setEnd(endDate(date));};
+  // const handleEndChange = date => setEnd(date);
   const handleTitleChange = ev => setTitle(ev.target.value);
   const handleDocIDChange = ev => { console.log(docElement.current.value); setDocId(docElement.current.value); };
+  const handlePetChange = ev => { console.log(petElement.current.value); setPet(petElement.current.value); };
 
   const addCalendarEvent = async () => {
     await addCalendar(calendarEvent);
@@ -126,6 +156,28 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
           <Form.Control.Feedback type="invalid">{!title}</Form.Control.Feedback>
         </Form.Group>
       </Form.Row>
+
+      <Form.Row>
+        <Form.Group as={Col} md="12" controlId="docID">
+          <Form.Label>Select Pet</Form.Label>
+          <Form.Control as="select" custom type="number"
+            name="pet"
+            placeholder="Select Pet"
+            value={pet || ""}
+            onChange={handlePetChange}
+            ref={petElement}
+            isInvalid={!pet}>
+              <option >Select your Pet</option>
+            {petList.map(pet =>
+              <option key={pet._id} value={pet.petName}> {pet.petName} {pet.petBreed}</option>
+
+            )}
+          </Form.Control>
+
+          <Form.Control.Feedback type="invalid">{!pet}</Form.Control.Feedback>
+        </Form.Group>
+      </Form.Row>
+
       <Form.Row>
         <Form.Group as={Col} md="12" controlId="docID">
           <Form.Label>Select Doctor</Form.Label>
@@ -159,7 +211,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
         </Form.Group>
       </Form.Row>
 
-      <Form.Row>
+      {/* <Form.Row>
         <Form.Group as={Col} md="12" controlId="end">
           <Form.Label>End</Form.Label>
           <br />
@@ -170,7 +222,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
             onChange={handleEndChange}
           />
         </Form.Group>
-      </Form.Row>
+      </Form.Row> */}
       {!edit ? (
         <Button type="submit" style={buttonStyle} onClick={addCalendarEvent}>
           Save
