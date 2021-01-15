@@ -1,0 +1,25 @@
+.roomselect {
+    font-size: 1.25rem;
+}
+
+.joinBtn {
+    background-color: forestgreen;
+    border-radius: 6px;
+    border: solid black 1px;
+    font-size: 1.25rem;
+    margin-left: 1.25rem;
+}
+
+.acceptCall {
+    background-color: rgb(45, 182, 45);
+    border-radius: 6px;
+    border: solid black 1px;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+}

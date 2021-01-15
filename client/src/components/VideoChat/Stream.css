@@ -2,17 +2,33 @@
     border: 1px solid transparent;
     width: 16rem;
     height: 16rem;
+    display: block;
+    margin: auto;
 }
 
 .partnervideo {
     border: 1px solid transparent;
     width: 32rem;
     height: 32rem;
+    display: block;
+    margin-top: 2rem;
 }
 
 .row {
     display: flex;
     width: 100%;
+}
+
+.hangupBtn {
+    background-color: rgb(189, 2, 2) !important;
+    border-radius: 6px;
+    border: solid black 1px;
+    font-size: 1.25rem;
+}
+
+.userName {
+    text-align: none !important;
+    margin-top: 2rem;
 }
 
 .container {

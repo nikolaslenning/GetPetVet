@@ -7,6 +7,7 @@ import io from "socket.io-client";
 import Peer from "simple-peer";
 import Stream from "./Stream";
 import { useHistory } from "react-router-dom";
+import "./VideoChat.css";
 
 function VideoChat({ firstName, lastName, isDoctor }) {
   const [userName, setUserName] = useState("");
@@ -127,9 +128,8 @@ function VideoChat({ firstName, lastName, isDoctor }) {
   let incomingCall;
   if (receivingCall) {
     incomingCall = (
-      <div>
-        <h1>Incoming Call: </h1>
-        <button onClick={acceptCall}>Accept</button>
+      <div className="row">
+        <button className="acceptCall" onClick={acceptCall}>ACCEPT CALL</button>
       </div>
     );
   }
@@ -174,16 +174,6 @@ function VideoChat({ firstName, lastName, isDoctor }) {
             <div className="column is-5-tablet is-4-desktop is-3-widescreen">
               <form action="/videochat" className="box">
                 <div className="field">
-                  <label className="label">Username:</label>
-                  <div className="control has-icons-left">
-                    <p name="username">{firstName} {lastName}</p>
-                    <span className="icon is-small is-left">
-                      <i className="fa fa-user"></i>
-                    </span>
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Select Veterinarian</label>
                   <p className="control has-icons-left">
                     <select name="room" className="roomselect" placeholder="Room Name"
                       value={facility || ""}
@@ -195,6 +185,12 @@ function VideoChat({ firstName, lastName, isDoctor }) {
 
                       )}
                     </select>
+                    <button onClick={handleSubmit} className="button is-link joinBtn">
+                      {/* <span className="icon is-small is-left mr-1">
+                      <i className="fas fa-person-booth"></i>
+                    </span> */}
+                      JOIN
+                    </button>
                     {/* <!-- <input type="text" placeholder="Room Name" className="input" name="room" required> --></input> */}
                     <span className="icon is-small is-left">
                       <i className="fas fa-comment-alt"></i>
@@ -202,14 +198,8 @@ function VideoChat({ firstName, lastName, isDoctor }) {
                   </p>
                 </div>
                 <div className="field ">
-                  <button onClick={handleSubmit} className="button is-link">
-                    <span className="icon is-small is-left mr-1">
-                      <i className="fas fa-person-booth"></i>
-                    </span>
-                      JOIN
-                     </button>
                   <div>
-                    <Stream UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} handleHangup={handleHangup} />
+                    <Stream firstName={firstName} lastName={lastName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} handleHangup={handleHangup} />
                   </div>
                 </div>
               </form>

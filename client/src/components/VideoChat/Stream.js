@@ -6,19 +6,22 @@ function Stream(props) {
 
   return (
     <div className="container">
+      <div>
+        {props.incomingCall}
+      </div >
       <div className="row">
+        <button className="hangupBtn" onClick={props.handleHangup} >TERMINATE</button>
+      </div>
+      <div className="row">
+        <h3 className="userName">{props.firstName} {props.lastName}</h3>
         <div className="uservideo">
           {props.UserVideo}
         </div>
+      </div>
+      <div className="row" >
         <div className="partnervideo">
           {props.PartnerVideo}
-        </div>
-      </div >
-      <div className="row">
-        {props.incomingCall}
-      </div >
-      <div>
-        <button onClick={props.handleHangup} >Hang up</button>
+        </div >
       </div>
     </div>
   );
