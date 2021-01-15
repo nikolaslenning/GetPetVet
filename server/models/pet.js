@@ -11,7 +11,6 @@ const petSchema = new Schema({
   petName: { type: String, unique: false, required: true },
   petBreed: { type: String, unique: false, required: true },
   petAge: { type: Number, unique: false, required: true },
-
 });
 
 const Pet = mongoose.model('Pet', petSchema);

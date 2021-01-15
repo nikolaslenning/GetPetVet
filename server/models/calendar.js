@@ -14,8 +14,6 @@ const calendarSchema = new Schema({
   start: { type: Date, unique: false, required: true },
   end: { type: Date, unique: false, required: true },
   allDay: { type: Boolean },
-  // resource: {any},
-
 });
 
 const Calendar = mongoose.model('Calendar', calendarSchema);
