@@ -26,22 +26,16 @@ class AddPet extends Component {
   }
 
   handleSubmit(event) {
-    console.log('Profile handleSubmit, petName: ');
-    console.log(this.state.petName);
     event.preventDefault();
 
     //request to server to add a pet profile
-
     axios.post('/pet', {
       petName: this.state.petName,
       petBreed: this.state.petBreed,
       petAge: this.state.petAge
     })
       .then(response => {
-        console.log(response);
-        console.log(response.data);
         if (!response.data.errmsg) {
-          console.log('successful profile');
           this.setState({ //redirect to home page
             redirectTo: '/profile'
           });

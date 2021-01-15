@@ -5,10 +5,7 @@ const User = require('../../models/user');
 const passport = require('../../passport');
 
 router.post('/', (req, res) => {
-  // console.log('user signup');
-
   const { email, password, firstName, lastName, address, province, zipCode, phoneNumber, isDoctor } = req.body;
-  // ADD VALIDATION
   User.findOne({ email: email }, (err, user) => {
     if (err) {
       // console.log('User.js post error: ', err);
@@ -42,14 +39,11 @@ router.post('/', (req, res) => {
 router.post(
   '/login',
   function (req, res, next) {
-    // console.log('routes/user.js, login, req.body: ');
-    // console.log(req.body);
     next();
   },
   passport.authenticate('local'),
   (req, res) => {
-    // console.log('logged in', req.user);
-    var userInfo = {
+    const userInfo = {
       email: req.user.email,
       firstName: req.user.firstName,
       lastName: req.user.lastName,
@@ -65,10 +59,6 @@ router.post(
 
 // eslint-disable-next-line no-unused-vars
 router.get('/', (req, res, next) => {
-  // console.log('===== user!!======');
-  // console.log("line 60 user.js" + req.user);
-  // console.log("line 61 user.js" + req.session.passport);
-  // console.log(req.session.passport);
   if (req.user) {
     res.json({ user: req.user, data: req.body });
   } else {

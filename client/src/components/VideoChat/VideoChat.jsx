@@ -42,7 +42,6 @@ function VideoChat({ firstName, lastName, isDoctor }) {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
       setStream(stream);
       if (userVideo.current) {
-        // console.log(stream);
         userVideo.current.srcObject = stream;
       }
     });
@@ -53,8 +52,6 @@ function VideoChat({ firstName, lastName, isDoctor }) {
       setUsers(users);
     });
     socket.current.on("hey", (data) => {
-      // console.log("HEY DATA IN VIDEOCHAT.jsx ");
-      // console.log(data);
       setReceivingCall(true);
       setCaller(data.from);
       setCallerSignal(data.signal);
@@ -70,13 +67,9 @@ function VideoChat({ firstName, lastName, isDoctor }) {
       stream: stream,
     });
     peer.current.on("signal", data => {
-      // console.log("signal data in Videochat.jsx ln 80");
-      // console.log(data);
       socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID });
     });
     peer.current.on("stream", stream => {
-      // console.log("stream VIDEOCHAT");
-      // console.log(stream);
       if (partnerVideo.current) {
         partnerVideo.current.srcObject = stream;
       }
@@ -195,7 +188,6 @@ function VideoChat({ firstName, lastName, isDoctor }) {
 
                       )}
                     </select>
-                    {/* <!-- <input type="text" placeholder="Room Name" className="input" name="room" required> --></input> */}
                     <span className="icon is-small is-left">
                       <i className="fas fa-comment-alt"></i>
                     </span>

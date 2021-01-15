@@ -51,22 +51,15 @@ io.on('connection', socket => {
   io.sockets.emit("allUsers", users);
 
   socket.on('disconnect', () => {
-    console.log("DISCONNECT USERS", users);
-    console.log(users);
     delete users[socket.id];
   });
 
   socket.on("join-room", (data) => {
-    console.log("SOCKET ID ", socket.id);
     socket.join(data.facility);
     socket.to(data.facility).emit(data.facility, socket.id);
-    console.log("socket.adapter.rooms");
-    console.log(socket.adapter.rooms);
   });
 
   socket.on("callUser", (data) => {
-    // console.log("callUser data");
-    // console.log(data);
     io.to(data.userToCall).emit('hey', { signal: data.signalData, from: data.from });
   });
 

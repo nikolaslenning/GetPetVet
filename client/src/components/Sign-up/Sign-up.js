@@ -32,8 +32,6 @@ class Signup extends Component {
   }
 
   handleSubmit(event) {
-    // console.log('sign-up handleSubmit, email: ');
-    // console.log(this.state.email);
     event.preventDefault();
 
     //request to server to add a new email/password
@@ -48,20 +46,15 @@ class Signup extends Component {
       phoneNumber: this.state.phoneNumber
     })
       .then(response => {
-        // console.log(response);
-        // console.log(response.data);
         if (!response.data.errmsg) {
-          // console.log('successful signup');
           this.setState({ //redirect to login page
             redirectTo: '/login'
           });
         } else {
-          // console.log('email already taken');
+          console.log('email already taken');
         }
       }).catch(error => {
-        // console.log('signup error: ');
-        // console.log(error);
-
+        console.log(error);
       });
   }
 

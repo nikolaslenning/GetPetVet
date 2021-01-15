@@ -10,8 +10,6 @@ import { getCalendar, getDocCalendar } from "./requests";
 const localizer = momentLocalizer(moment);
 
 function HomePage({ calendarStore, isDoctor }) {
-  // console.log("calendarStore.calendarEvents");
-  // console.log(calendarStore.calendarEvents);
 
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showEditModal, setShowEditModal] = React.useState(false);
@@ -24,33 +22,18 @@ function HomePage({ calendarStore, isDoctor }) {
   };
 
   const getCalendarEvents = async () => {
-    // const response = await getCalendar();
     let response;
-    // console.log('hello', isDoctor);
     if (!isDoctor) {
       response = await getCalendar();
     } else {
-      // console.log("HIt GetDocCalendar");
       response = await getDocCalendar();
     }
-    // console.log(response.data.data);
-    // const evs = [response.data.data].map(d => {
-    //   return {
-    //     ...d,
-    //     start: new Date(d.start),
-    //     end: new Date(d.end)
-    //   };
-    // });
-    // console.log("evs evs evs evs");
-    // console.log(evs);
     calendarStore.setCalendarEvents(response.data.data);
-    // calendarStore.setCalendarEvents(evs);
     setInitialized(true);
   };
 
   const handleSelect = (event, e) => {
     const { start, end } = event;
-    // console.log(event);
     const data = { title: "", start, end, allDay: false };
     setShowAddModal(true);
     setShowEditModal(false);
@@ -58,8 +41,6 @@ function HomePage({ calendarStore, isDoctor }) {
   };
 
   const handleSelectEvent = (event, e) => {
-    // console.log("event");
-    // console.log(event);
     setShowAddModal(false);
     setShowEditModal(true);
     let { _id, title, start, end, allDay } = event;
@@ -67,8 +48,6 @@ function HomePage({ calendarStore, isDoctor }) {
     start = new Date(start);
     end = new Date(end);
     const data = { _id, title, start, end, allDay };
-    //  console.log("data");
-    // console.log(data);
     setCalendarEvent(data);
   };
 
@@ -117,7 +96,6 @@ function HomePage({ calendarStore, isDoctor }) {
       <Calendar
         localizer={localizer}
         events={calendarStore.calendarEvents}
-        // events={getCalendar}
         startAccessor="start"
         endAccessor="end"
         selectable={true}

@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from "react-bootstrap/Card";
 import { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Footer2 extends Component {
   render() {
