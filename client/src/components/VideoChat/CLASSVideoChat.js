@@ -17,7 +17,7 @@ class videoChat extends Component {
     axios.post("/scheduler", {
 
     });
-}
+  }
 
   render() {
     return (

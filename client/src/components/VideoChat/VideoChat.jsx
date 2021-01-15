@@ -9,7 +9,7 @@ import Stream from "./Stream";
 import { useHistory } from "react-router-dom";
 
 function VideoChat({ email, firstName, lastName, isDoctor }) {
-  const [mail, setMail] = useState("");
+  // const [mail, setMail] = useState("");
   const [userName, setUserName] = useState("");
   const [docList, setDocList] = useState([]);
   const [facility, setFacility] = useState(null);

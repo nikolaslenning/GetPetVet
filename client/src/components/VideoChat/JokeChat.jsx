@@ -1,11 +1,33 @@
-/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState, useRef } from 'react';
-import './VideoChat.css';
+import './App.css';
 import io from "socket.io-client";
 import Peer from "simple-peer";
+import styled from "styled-components";
+
+// eslint-disable-next-line no-unused-vars
+const Container = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+// eslint-disable-next-line no-unused-vars
+const Row = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+// eslint-disable-next-line no-unused-vars
+const Video = styled.video`
+  border: 1px solid blue;
+  width: 50%;
+  height: 50%;
+`;
 
 
-
+// eslint-disable-next-line no-unused-vars
 function NameSelf({
   setName,
 }) {
@@ -23,7 +45,7 @@ function NameSelf({
   );
 }
 
-function Stream(prop) {
+function Joke() {
   const [yourID, setYourID] = useState("");
   const [users, setUsers] = useState({});
   const [stream, setStream] = useState();
@@ -31,7 +53,7 @@ function Stream(prop) {
   const [caller, setCaller] = useState("");
   const [callerSignal, setCallerSignal] = useState();
   const [callAccepted, setCallAccepted] = useState(false);
-  // const [callerName, setCallerName] = useState(null);
+  const [callerName, setCallerName] = useState(null);
   const [initiatorName, setInitiatorName] = useState(null);
 
   const userVideo = useRef();
@@ -40,12 +62,17 @@ function Stream(prop) {
 
   useEffect(() => {
     socket.current = io.connect("/");
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
-      setStream(stream);
-      if (userVideo.current) {
-        userVideo.current.srcObject = stream;
-      }
-    });
+
+    // checks if user will allow video/audio -> run on load
+    navigator
+      .mediaDevices
+      .getUserMedia({ video: true, audio: true })
+      .then(stream => {
+        setStream(stream);
+        if (userVideo.current) {
+          userVideo.current.srcObject = stream;
+        }
+      });
 
     socket.current.on("yourID", (id) => {
       setYourID(id);
@@ -108,67 +135,52 @@ function Stream(prop) {
     peer.signal(callerSignal);
   }
 
-  let UserVideo;
-  if (stream) {
-    UserVideo = (
-      <video className='video' playsInline muted ref={userVideo} autoPlay />
-    );
-  }
-
-  let PartnerVideo;
-  if (callAccepted) {
-    PartnerVideo = (
-      <video className='video' playsInline ref={partnerVideo} autoPlay />
-    );
-  }
-
-  let incomingCall;
-  if (receivingCall) {
-    incomingCall = (
-      <div>
-        <h1>{prop.username} is calling you</h1>
-        <button onClick={acceptCall}>Accept</button>
-      </div>
-    );
-  }
-
-
   function handleInitiatorname(value) {
     setInitiatorName(value);
   }
 
-  // function handleCallerName(target) {
-  //   setCallerName(target.value)
-  // }
+  // eslint-disable-next-line no-unused-vars
+  function handleCallerName(target) {
+    setCallerName(target.value);
+  }
 
   return (
-    <container className="container">
-      <row className="row">
+    <Container>
+      <Row>
         {!initiatorName && (<NameSelf setName={handleInitiatorname} />)}
         <column>
-          <h1>{prop.username}</h1>
-          {UserVideo}
+          <h1>{initiatorName}</h1>
+          {stream && (
+            <Video playsInline muted ref={userVideo} autoPlay />
+          )}
         </column>
         <column>
-          {/* <h1>{callerName}</h1> */}
-          {PartnerVideo}
+          <h1>{callerName}</h1>
+          {callAccepted && (
+            <Video playsInline ref={partnerVideo} autoPlay />
+          )}
         </column>
-      </row >
-      <row className="row">
+      </Row>
+      <Row>
         {Object.keys(users).map(key => {
           if (key === yourID) {
             return null;
           }
           return (
-            <button onClick={() => callPeer(key)}>Call {prop.username}</button>
+            <button onClick={() => callPeer(key)}>Call {key}</button>
           );
         })}
-      </row >
-      <row className="row">
-        {incomingCall}
-      </row >
-    </container>
+      </Row>
+      <Row>
+        {receivingCall && (
+          <div>
+            <h1>{caller} is calling you</h1>
+            <button onClick={acceptCall}>Accept</button>
+          </div>
+        )}
+      </Row>
+    </Container>
   );
 }
 
-export default Stream;
+export default Joke;
