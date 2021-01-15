@@ -7,10 +7,10 @@ function Stream(props) {
   return (
     <div className="container">
       <div className="row">
-        <div>
+        <div className="uservideo">
           {props.UserVideo}
         </div>
-        <div>
+        <div className="partnervideo">
           {props.PartnerVideo}
         </div>
       </div >

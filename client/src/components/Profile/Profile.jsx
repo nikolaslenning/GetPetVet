@@ -40,10 +40,8 @@ class Profile extends Component {
           <img src={logoBlueGreen} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
           <h1 id="welcomeHomepg">Pet Profiles</h1>
         </div>
-        {console.log("this.state.pet")}
-        {console.log(this.state.pet)}
         {this.state.pet.map(pet =>
-          <div className="card text-center" id="cardbackground">
+          <div className="card text-center" id="cardbackground" key={pet._id}>
             <div className="card-body">
               <div className="card-header">
                 <h2>{pet.petName}</h2>
