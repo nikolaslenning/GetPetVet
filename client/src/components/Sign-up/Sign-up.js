@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import "./Sign-up.css";
 import logoDarkGray from "../assets/logoDarkGray.png";
+import "./Sign-up.css";
 
 class Signup extends Component {
   constructor() {
@@ -32,8 +32,8 @@ class Signup extends Component {
   }
 
   handleSubmit(event) {
-    console.log('sign-up handleSubmit, email: ');
-    console.log(this.state.email);
+    // console.log('sign-up handleSubmit, email: ');
+    // console.log(this.state.email);
     event.preventDefault();
 
     //request to server to add a new email/password
@@ -48,19 +48,19 @@ class Signup extends Component {
       phoneNumber: this.state.phoneNumber
     })
       .then(response => {
-        console.log(response);
-        console.log(response.data);
+        // console.log(response);
+        // console.log(response.data);
         if (!response.data.errmsg) {
-          console.log('successful signup');
+          // console.log('successful signup');
           this.setState({ //redirect to login page
             redirectTo: '/login'
           });
         } else {
-          console.log('email already taken');
+          // console.log('email already taken');
         }
       }).catch(error => {
-        console.log('signup error: ');
-        console.log(error);
+        // console.log('signup error: ');
+        // console.log(error);
 
       });
   }
@@ -72,9 +72,9 @@ class Signup extends Component {
       return (
         <div id="signupCentering">
           <div className="loginIntro">
-          <img src={logoDarkGray} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
-          <h1 id="welcomeHomepg">Sign up</h1>
-        </div>
+            <img src={logoDarkGray} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
+            <h1 id="welcomeHomepg">Sign up</h1>
+          </div>
           <form className="form-horizontal">
             <div className="form-group">
               <div className="col-1 col-ml-auto">
@@ -206,7 +206,6 @@ class Signup extends Component {
             </div>
           </form>
         </div>
-
       );
     }
   }

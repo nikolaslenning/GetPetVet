@@ -11,9 +11,9 @@ import VideoChat from './components/VideoChat/VideoChat';
 import Scheduler from './components/Scheduler/Scheduler';
 import Profile from './components/Profile/Profile';
 import AddPet from './components/AddPet/AddPet';
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.css";
 import Doctors from "./components/Doctors/Doctors";
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { CalendarStore } from "../src/components/Scheduler/store";
 const calendarStore = new CalendarStore();
@@ -70,14 +70,9 @@ class App extends Component {
     return (
       <div className="App">
 
-
         <Router>
           <Navbar isDoctor={this.state.isDoctor} updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-          {/* greet user if logged in: */}
-          {/* {this.state.loggedIn &&
-            <h2>Welcome, {this.state.firstName}!</h2>
-          } */}
-          {/* Routes to different components */}
+
           <Route
             exact path="/"
             render={() => {
@@ -146,7 +141,6 @@ class App extends Component {
             }
             }
           />
-
           <Route
             exact path="/profile"
             render={() => {

@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import pet1 from "../assets/pet1.jpg";
 import patient2 from "../assets/patient2.jpg";
 import doctor3 from "../assets/doctor3.jpg";
-import "./Home.css";
 import logoDarkGray from "../assets/logoDarkGray.png";
 import Card from 'react-bootstrap/Card';
 import pet5 from "../assets/pet5.jpg";
 import pet2 from "../assets/pet2.jpg";
+import "./Home.css";
 
 
 class Home extends Component {
@@ -17,11 +17,11 @@ class Home extends Component {
       firstName: ""
     };
   }
-    render(props) {
-      console.log(props);
-      return (
+  render(props) {
+    console.log(props);
+    return (
       <div id="homeDiv">
-            <h2>Welcome, {this.props.firstName}!</h2>
+        <h2>Welcome, {this.props.firstName}!</h2>
         <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
           <ol className="carousel-indicators">
             <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active"></li>
@@ -87,13 +87,12 @@ class Home extends Component {
           <Card.Body>
             <Card.Text>
               If you are a doctor and would like to use GetPetVet to meet with your patients, please email us to verify your account. Have any other questions? We'd like to hear from you!
-               <p className="getpetemail">contact@getpetvet.com</p>
-      </Card.Text>
+               <a className="getpetemail">contact@getpetvet.com</a>
+            </Card.Text>
           </Card.Body>
         </Card>
       </div>
     );
-
   }
 }
 

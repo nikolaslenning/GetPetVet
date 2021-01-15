@@ -51,13 +51,13 @@ io.on('connection', socket => {
   io.sockets.emit("allUsers", users);
 
   socket.on('disconnect', () => {
-    console.log("DISCONNECT USERS" , users);
+    console.log("DISCONNECT USERS", users);
     console.log(users);
     delete users[socket.id];
   });
 
   socket.on("join-room", (data) => {
-    console.log("SOCKET ID " , socket.id);
+    console.log("SOCKET ID ", socket.id);
     socket.join(data.facility);
     socket.to(data.facility).emit(data.facility, socket.id);
     console.log("socket.adapter.rooms");

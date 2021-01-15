@@ -42,9 +42,9 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   React.useEffect(() => {
     axios.get('/doctors')
       .then(res => {
-        console.log("res.data");
-        console.log(res);
-        console.log(res.data.data);
+        // console.log("res.data");
+        // console.log(res);
+        // console.log(res.data.data);
         setDocList(res.data.data);
 
       })
@@ -52,8 +52,8 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   }, []);
 
   const handleSubmit = async ev => {
-    console.log(" CalenderForm ln 35");
-    console.log(ev);
+    // console.log(" CalenderForm ln 35");
+    // console.log(ev);
     ev.preventDefault();
     if (!title || !start || !end) {
       return;
@@ -65,8 +65,8 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     }
 
     const data = { id, docID, title, start, end };
-    console.log("data calendarForm ln 49");
-    console.log(data);
+    // console.log("data calendarForm ln 49");
+    // console.log(data);
 
     if (!edit) {
       await addCalendar(data);
@@ -75,11 +75,11 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     }
 
     let response = null;
-    console.log({ isDoctor });
+    // console.log({ isDoctor });
     if (!isDoctor) {
       response = await getCalendar();
     } else {
-      console.log("HIt GetDocCalendar");
+      // console.log("HIt GetDocCalendar");
       response = await getDocCalendar();
     }
 
@@ -150,10 +150,9 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
             onChange={handleDocIDChange}
             ref={docElement}
             isInvalid={!docID}>
-              <option >Select your Veterinarian</option>
+            <option >Select your Veterinarian</option>
             {docList.map(doctor =>
               <option key={doctor._id} value={doctor._id}>Dr. {doctor.firstName} {doctor.lastName}</option>
-
             )}
           </Form.Control>
 
@@ -203,4 +202,5 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     </Form>
   );
 }
+
 export default observer(CalendarForm);

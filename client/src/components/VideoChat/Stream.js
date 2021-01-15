@@ -11,7 +11,6 @@ function Stream(props) {
           {props.UserVideo}
         </div>
         <div>
-          {/* <h1>{callerName}</h1> */}
           {props.PartnerVideo}
         </div>
       </div >

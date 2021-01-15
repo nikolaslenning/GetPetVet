@@ -62,69 +62,68 @@ class AddPet extends Component {
       return (
         <div>
 
-        <div className="loginIntro">
-          <img src={logoBlueGreen} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
-          <h1 id="welcomeHomepg">Add New Pet Profile</h1>
-        </div>
-            <div className="ProfileForm">
-          <form className="form-horizontal">
-            <div className="form-group">
-              <div className="col-1 col-ml-auto">
-                <label className="form-label">Pet Name: </label>
-              </div>
-              <div className="col-3 col-mr-auto">
-                <input className="form-input"
-                  type="text"
-                  id="petName"
-                  name="petName"
-                  placeholder="pet name"
-                  value={this.state.petName}
-                  onChange={this.handleChange}
+          <div className="loginIntro">
+            <img src={logoBlueGreen} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
+            <h1 id="welcomeHomepg">Add New Pet Profile</h1>
+          </div>
+          <div className="ProfileForm">
+            <form className="form-horizontal">
+              <div className="form-group">
+                <div className="col-1 col-ml-auto">
+                  <label className="form-label">Pet Name: </label>
+                </div>
+                <div className="col-3 col-mr-auto">
+                  <input className="form-input"
+                    type="text"
+                    id="petName"
+                    name="petName"
+                    placeholder="pet name"
+                    value={this.state.petName}
+                    onChange={this.handleChange}
                   />
+                </div>
               </div>
-            </div>
-            <div className="form-group">
-              <div className="col-1 col-ml-auto">
-                <label className="form-label">Pet Breed: </label>
-              </div>
-              <div className="col-3 col-mr-auto">
-                <input className="form-input"
-                  placeholder="pet breed"
-                  type="text"
-                  id="petBreed"
-                  name="petBreed"
-                  value={this.state.petBreed}
-                  onChange={this.handleChange}
+              <div className="form-group">
+                <div className="col-1 col-ml-auto">
+                  <label className="form-label">Pet Breed: </label>
+                </div>
+                <div className="col-3 col-mr-auto">
+                  <input className="form-input"
+                    placeholder="pet breed"
+                    type="text"
+                    id="petBreed"
+                    name="petBreed"
+                    value={this.state.petBreed}
+                    onChange={this.handleChange}
                   />
+                </div>
               </div>
-            </div>
-            <div className="form-group">
-              <div className="col-1 col-ml-auto">
-                <label className="form-label">Pet Age: </label>
-              </div>
-              <div className="col-3 col-mr-auto">
-                <input className="form-input"
-                  placeholder="pet age"
-                  type="text"
-                  id="petAge"
-                  name="petAge"
-                  value={this.state.petAge}
-                  onChange={this.handleChange}
+              <div className="form-group">
+                <div className="col-1 col-ml-auto">
+                  <label className="form-label">Pet Age: </label>
+                </div>
+                <div className="col-3 col-mr-auto">
+                  <input className="form-input"
+                    placeholder="pet age"
+                    type="text"
+                    id="petAge"
+                    name="petAge"
+                    value={this.state.petAge}
+                    onChange={this.handleChange}
                   />
+                </div>
               </div>
-            </div>
-            <div className="form-group ">
-              <div className="col-7"></div>
-              <button
-                className="btn btn-primary"
-                onClick={this.handleSubmit}
-                type="submit"
+              <div className="form-group ">
+                <div className="col-7"></div>
+                <button
+                  className="btn btn-primary"
+                  onClick={this.handleSubmit}
+                  type="submit"
                 >Create</button>
-            </div>
-          </form>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-
       );
     }
   }

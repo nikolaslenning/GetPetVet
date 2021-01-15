@@ -27,7 +27,7 @@ The GitHub repository can be found [here](https://github.com/nikolaslenning/GetP
 
 ### 2. Description
 
-Get Pet Vet was born out of an idea to create an application to help the health of pets while decrease the risk of contracting and spreading Covid-19. Get Pet Vet allows the user to schedule an appointment with a vet for the minor needs that might be needed when caring for a pet. If your pet has a small rash, or other not serious ailment you can schedule an appointment with a vetrinarian and get your pet checked out to learn the remedies needed to keep your pets safe.
+Get Pet Vet was born out of an idea to create an application to help the health of pets while decrease the risk of contracting and spreading Covid-19. Get Pet Vet allows the user to schedule an appointment with a vet for the minor needs that might be needed when caring for a pet. If your pet has a small rash, or other not serious ailment you can schedule an appointment with a veterinarian and get your pet checked out to learn the remedies needed to keep your pets safe.
 
 <a name = "technologies" ></a>
 
@@ -37,9 +37,9 @@ This is a list of all the technologies used in the creation of this application!
 
 1. [Socket.io](https://socket.io/) was used to help create the use of our video chatting.
 
-2. PLEASE INSERT MORE TECH HERE
+2. [Simple-Peer](https://www.npmjs.com/package/simple-peer) was used to connect the audio/data/video from one person to another.
 
-3. PLEASE INSERT MORE TECH HERE
+3. [Passport.js](http://www.passportjs.org/) was used for our authentication/login services.
 
 4. PLEASE INSERT MORE TECH HERE
 
@@ -75,7 +75,7 @@ This project could never have been accomplished without the help of.....
 
 [Nikolas Lenning](https://github.com/nikolaslenning) - I'm baby occaecat tofu asymmetrical tilde pariatur leggings. Veniam la croix vegan tumblr, cornhole in adaptogen vape intelligentsia skateboard et literally sed fingerstache fashion axe. Slow-carb 3 wolf moon consequat, activated charcoal nostrud green juice fixie fingerstache kale chips deserunt snackwave subway tile sunt. Hell of meh food truck venmo. Keffiyeh nulla yuccie nostrud flexitarian typewriter, umami offal farm-to-table fixie art party crucifix next level cred.
 
-[Seth Martineau](https://github.com/slothings) - I'm baby cliche hella kinfolk consequat pitchfork humblebrag cred meggings ut mustache. Excepteur actually photo booth direct trade. Williamsburg kombucha hot chicken, id elit copper mug umami laboris ad sunt small batch wayfarers retro organic 90's. Trust fund velit poutine +1 everyday carry, laboris viral ugh farm-to-table street art butcher cold-pressed yr consequat.
+[Seth Martineau](https://github.com/slothings) - The biggest challenge for me was working on sockets.io and getting to understand it and how it interacts with each other in a full stack app and integrating the front end with the back end. This project helped me fully understand the workings of a full stack app with all its integration, process, and problems.
 
 [Sydney Goodwill](https://github.com/SydneyGoodwill) - I'm baby deep v messenger bag aliquip, laboris try-hard seitan gochujang in vape semiotics quinoa thundercats nostrud deserunt dolore. Kogi whatever celiac fixie, sartorial tilde +1. Banh mi kickstarter thundercats glossier letterpress consequat actually tempor flexitarian cold-pressed labore PBR&B lorem blue bottle af. Banh mi raw denim selvage, prism occupy austin direct trade aliqua normcore. Aesthetic VHS seitan bespoke neutra, raclette salvia pork belly waistcoat offal.
 

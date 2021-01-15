@@ -26,11 +26,11 @@ function HomePage({ calendarStore, isDoctor }) {
   const getCalendarEvents = async () => {
     // const response = await getCalendar();
     let response;
-    console.log('hello', isDoctor);
+    // console.log('hello', isDoctor);
     if (!isDoctor) {
       response = await getCalendar();
     } else {
-      console.log("HIt GetDocCalendar");
+      // console.log("HIt GetDocCalendar");
       response = await getDocCalendar();
     }
     // console.log(response.data.data);
@@ -128,4 +128,5 @@ function HomePage({ calendarStore, isDoctor }) {
     </div>
   );
 }
+
 export default observer(HomePage);

@@ -20,16 +20,16 @@ class Passport extends Component {
     this.getUser();
   }
 
-  updateUser (userObject) {
+  updateUser(userObject) {
     this.setState(userObject);
   }
 
   getUser() {
     axios.get('/user').then(response => {
-      console.log('Get user response: ');
-      console.log(response.data);
+      // console.log('Get user response: ');
+      // console.log(response.data);
       if (response.data.user) {
-        console.log('Get User: There is a user saved in the server session: ');
+        // console.log('Get User: There is a user saved in the server session: ');
 
         this.setState({
           loggedIn: true,
@@ -37,7 +37,7 @@ class Passport extends Component {
           isDoctor: response.data.user.isDoctor
         });
       } else {
-        console.log('Get user: no user');
+        // console.log('Get user: no user');
         this.setState({
           loggedIn: false,
           email: null

@@ -2,11 +2,9 @@
 import React, { Component } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
-// import '../App.css';
 import axios from 'axios';
-import './Navbar.css';
 import logoLightBlue from "../assets/logoLightBlue.png";
-// import $ from 'jquery';
+import './Navbar.css';
 
 class Navbar extends Component {
 
@@ -34,15 +32,6 @@ class Navbar extends Component {
     });
   }
 
-  // jQuerycode = () => {
-  //   $('navbar-nav>section>ul>li>Link').on('click', function() {
-  //     $('.navbar-collapse').collapse('hide');
-  //   });
-  // }
-  // componentDidMount() {
-  //   this.jQuerycode();
-  // }
-
   render() {
     const isDoctor = this.props.isDoctor;
     const loggedIn = this.props.loggedIn;
@@ -53,7 +42,7 @@ class Navbar extends Component {
       <div>
         <nav className="navbar navbar-dark bg-dark" id="nav-container">
           <div className="container-fluid">
-          <img src={logoLightBlue} className="navlogo" alt="pet1"></img>
+            <img src={logoLightBlue} className="navlogo" alt="pet1"></img>
             <a className="navbar-brand" href="/">GetPetVet</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
@@ -81,21 +70,6 @@ class Navbar extends Component {
                           <span className="text-secondary">Video Chat</span>
                         </Link>
                       </li>
-
-                      {/* {!isDoctor ? (
-                      <li>
-                        <Link to="/patientvideochat" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                          <span className="text-secondary">Video Chat</span>
-                        </Link>
-                      </li>
-
-                      ) : (
-                        <li>
-                        <Link to="/doctorvideochat" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                          <span className="text-secondary">Video Chat</span>
-                        </Link>
-                      </li>
-                      )} */}
 
                       <li>
                         <Link to="/profile" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
@@ -146,4 +120,5 @@ class Navbar extends Component {
     );
   }
 }
+
 export default Navbar;

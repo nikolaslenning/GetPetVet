@@ -8,8 +8,7 @@ import Peer from "simple-peer";
 import Stream from "./Stream";
 import { useHistory } from "react-router-dom";
 
-function VideoChat({ email, firstName, lastName, isDoctor }) {
-  // const [mail, setMail] = useState("");
+function VideoChat({ firstName, lastName, isDoctor }) {
   const [userName, setUserName] = useState("");
   const [docList, setDocList] = useState([]);
   const [facility, setFacility] = useState(null);
@@ -43,7 +42,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
       setStream(stream);
       if (userVideo.current) {
-        console.log(stream);
+        // console.log(stream);
         userVideo.current.srcObject = stream;
       }
     });
@@ -54,8 +53,8 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
       setUsers(users);
     });
     socket.current.on("hey", (data) => {
-      console.log("HEY DATA IN VIDEOCHAT.jsx ");
-      console.log(data);
+      // console.log("HEY DATA IN VIDEOCHAT.jsx ");
+      // console.log(data);
       setReceivingCall(true);
       setCaller(data.from);
       setCallerSignal(data.signal);
@@ -71,13 +70,13 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
       stream: stream,
     });
     peer.current.on("signal", data => {
-      console.log("signal data in Videochat.jsx ln 80");
-      console.log(data);
+      // console.log("signal data in Videochat.jsx ln 80");
+      // console.log(data);
       socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID });
     });
     peer.current.on("stream", stream => {
-      console.log("stream VIDEOCHAT");
-      console.log(stream);
+      // console.log("stream VIDEOCHAT");
+      // console.log(stream);
       if (partnerVideo.current) {
         partnerVideo.current.srcObject = stream;
       }
@@ -149,7 +148,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   function handleHangup(event) {
     event.preventDefault();
     setStream(null);
-    stream.getTracks().forEach(function(track) {
+    stream.getTracks().forEach(function (track) {
       track.stop();
     });
     history.push("/");
@@ -176,7 +175,6 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
               <form action="/videochat" className="box">
                 <div className="field">
                   <label className="label">Username:</label>
-                  {/* <h1>{firstName}</h1> */}
                   <div className="control has-icons-left">
                     <p name="username">{firstName} {lastName}</p>
                     <span className="icon is-small is-left">

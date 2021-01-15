@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import axios from 'axios';
-import "./Profile.css";
 import logoBlueGreen from "../assets/logoBlueGreen.png";
+import "./Profile.css";
 
 class Profile extends Component {
   constructor(props) {
@@ -15,8 +15,8 @@ class Profile extends Component {
   getPet() {
     axios.get('/pet')
       .then(res => {
-        console.log("res.data");
-        console.log(res.data.data);
+        // console.log("res.data");
+        // console.log(res.data.data);
         this.setState({
           pet: res.data.data
         });

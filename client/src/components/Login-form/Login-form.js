@@ -36,7 +36,6 @@ class LoginForm extends Component {
         email: this.state.email,
         password: this.state.password,
         isDoctor: this.state.isDoctor
-        // firstName: this.state.firstname
       })
       .then(response => {
         console.log('login response: ');
@@ -69,9 +68,9 @@ class LoginForm extends Component {
       return (
         <div id="loginCentering">
           <div className="loginIntro">
-          <img src={logoDarkGray} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
-          <h1 id="welcomeHomepg">Login</h1>
-        </div>
+            <img src={logoDarkGray} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
+            <h1 id="welcomeHomepg">Login</h1>
+          </div>
           <form className="form-horizontal">
             <div className="form-group">
               <div className="col-1 col-ml-auto">
