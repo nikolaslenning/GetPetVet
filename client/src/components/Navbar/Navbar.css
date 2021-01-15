@@ -3,8 +3,32 @@
   background-color: #1F2933;
   color: #adcbd6;
   padding: 0%;
+  box-shadow: 2px 2px 8px black;
 }
 
 .navbar-section {
   color: #adcbd6;
+}
+
+.navlogo {
+  height: 6%;
+  width: 6%;
+  margin: 0.5%;
+}
+
+
+@media (min-width: 447px) {
+  .navbar-brand {
+    float: left;
+    display: inline;
+    width: 60%;
+  }
+}
+
+@media (max-width: 847px) {
+  .navbar-brand {
+    float: left;
+    display: inline;
+    width: 60%;
+  }
 }

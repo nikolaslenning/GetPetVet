@@ -36,6 +36,7 @@ h1, h2 {
 
 .form-label {
   text-align: center;
+  color: #adcbd6;
 }
 
 /* .box {
@@ -54,4 +55,20 @@ h1, h2 {
   align-content: center;
   background-color: #323F4B;
   color: #adcbd6;
+}
+
+h4 {
+  padding-top: 7%;
+  padding-bottom: 2%;
+  border-color: transparent !important;
+  color: #adcbd6 !important;
+}
+
+.loginIntro {
+  padding-top: 4%;
+  padding-bottom: 2%;
+  background-image: linear-gradient(0deg, #323F4B, rgb(230,233,240));
+  border-color: transparent;
+  border-style: none !important;
+  
 }

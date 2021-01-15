@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 // import '../App.css';
 import axios from 'axios';
 import './Navbar.css';
+import logoLightBlue from "../assets/logoLightBlue.png";
 // import $ from 'jquery';
 
 class Navbar extends Component {
@@ -52,6 +53,7 @@ class Navbar extends Component {
       <div>
         <nav className="navbar navbar-dark bg-dark" id="nav-container">
           <div className="container-fluid">
+          <img src={logoLightBlue} className="navlogo" alt="pet1"></img>
             <a className="navbar-brand" href="/">GetPetVet</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
@@ -140,38 +142,6 @@ class Navbar extends Component {
             </div>
           </div>
         </nav>
-        {/* <header className="navbar App-header" id="nav-container">
-            <div className="col-4" >
-              {loggedIn ? (
-                <section className="navbar-section">
-                  <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
-                    <span className="text-secondary">logout</span></Link>
-                    <Link to="/" className="btn btn-link text-secondary">
-                      <span className="text-secondary">Home</span>
-                    </Link>
-                    <Link to="/Scheduler" className="btn btn-link">
-                      <span className="text-secondary">Scheduler</span>
-                    </Link>
-                </section>
-              ) : (
-                  <section className="navbar-section">
-                    <Link to="/login" className="btn btn-link text-secondary">
-                      <span className="text-secondary">Login</span>
-                    </Link>
-                    <Link to="/signup" className="btn btn-link">
-                      <span className="text-secondary">Sign up</span>
-                    </Link>
-                    <Link to="/scheduler" classname="btn btn-link">
-                      <span className="text-secondary">Scheduler</span>
-                    </Link>
-                  </section>
-                )}
-            </div>
-            <div className="col-4 col-mr-auto">
-              <div id="top-filler"></div>
-              <h1 className="App-title">GetPetVet</h1>
-            </div>
-              </header> */}
       </div >
     );
   }

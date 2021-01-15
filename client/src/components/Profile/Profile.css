@@ -1,6 +1,11 @@
 h3 {
   text-align: center;
-  color: #adcbd6;
+  color: white;
+}
+
+h2 {
+  color: #38748a;
+  font-weight: bold;
 }
 
 .card {
@@ -12,4 +17,21 @@ h3 {
   width: 75%;
   display: flex;
   justify-content: center;
+}
+
+.card-body {
+  background-color: rgb(230, 233, 240);
+}
+.card-header {
+  background-color: rgb(230, 233, 240) !important;
+  color: #38748a;
+  font-weight: bold;
+}
+
+#cardbackground {
+  background-color: rgb(230, 233, 240);
+}
+
+.ProfileForm {
+  background-color: transparent !important;
 }
