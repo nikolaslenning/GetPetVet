@@ -11,13 +11,17 @@ import pet2 from "../assets/pet2.jpg";
 
 
 class Home extends Component {
-  // constructor() {
-  //   super()
-  // }
-
-  render() {
-    return (
+  constructor() {
+    super();
+    this.state = {
+      firstName: ""
+    };
+  }
+    render(props) {
+      console.log(props);
+      return (
       <div id="homeDiv">
+            <h2>Welcome, {this.props.firstName}!</h2>
         <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
           <ol className="carousel-indicators">
             <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active"></li>
