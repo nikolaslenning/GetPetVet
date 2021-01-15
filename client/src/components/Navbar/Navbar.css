@@ -19,20 +19,16 @@
 
 @media (min-width: 447px) {
   .navbar-brand {
-    float: left;
+    /* float: left; */
     display: inline;
-    width: 90%;
+    /* width: 90%; */
   }
 }
 
 @media (max-width: 847px) {
   .navbar-brand {
     float: left;
-    display: inline;
-    width: 60%;
+    /* display: inline; */
+    /* width: 90%; */
   }
 }
-
-/* .navbar-toggler {
-  float: right !important;
-} */
