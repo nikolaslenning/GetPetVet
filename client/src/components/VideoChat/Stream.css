@@ -1,5 +1,5 @@
 .uservideo {
-    border: 1px solid transparent;
+    /* border: 1px solid transparent; */
     width: 16rem;
     height: 16rem;
     display: block;
@@ -7,11 +7,11 @@
 }
 
 .partnervideo {
-    border: 1px solid transparent;
-    width: 32rem;
-    height: 32rem;
+    /* border: 1px solid transparent; */
+    width: 52rem;
+    height: 52rem;
     display: block;
-    margin-top: 2rem;
+    margin: auto;
 }
 
 .row {
@@ -20,20 +20,21 @@
 }
 
 .hangupBtn {
-    background-color: rgb(189, 2, 2) !important;
+    background-color: rgb(189, 2, 2);
     border-radius: 6px;
     border: solid black 1px;
     font-size: 1.25rem;
+    margin-left: .9rem;
 }
 
 .userName {
-    text-align: none !important;
+    text-align: none;
     margin-top: 2rem;
 }
 
 .container {
-    height: 100vh;
-    width: 100%;
+    /* height: 100vh;
+    width: 100%; */
     display: flex;
     flex-direction: column;
 }

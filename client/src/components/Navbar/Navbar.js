@@ -40,18 +40,20 @@ class Navbar extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-dark bg-dark" id="nav-container">
+        <nav className="navbar navbar-dark bg-dark container-fluid" id="nav-container">
           <div className="container-fluid">
-            <img src={logoLightBlue} className="navlogo" alt="pet1"></img>
-            <div className="navbar-brand m-0">GetPetVet</div>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <div className="container-fluid">
+              <img src={logoLightBlue} className="navlogo" alt="pet1"></img>
+              <h1 className="navbar-brand m-0">GetPetVet</h1>
+            <button className="navbar-toggler float-right mt-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
+            </div>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav mr-auto">
                 {loggedIn ? (
                   <section className="navbar-section" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
-                    <ul className="navList">
+                    <ul className="navList float-right">
 
                       <li>
                         <Link to="/" className="btn btn-link text-secondary" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">

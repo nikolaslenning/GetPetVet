@@ -7,6 +7,7 @@ import io from "socket.io-client";
 import Peer from "simple-peer";
 import Stream from "./Stream";
 import { useHistory } from "react-router-dom";
+import logoBlueGreen from '../assets/logoBlueGreen.png';
 import "./VideoChat.css";
 
 function VideoChat({ firstName, lastName, isDoctor }) {
@@ -114,14 +115,14 @@ function VideoChat({ firstName, lastName, isDoctor }) {
   let UserVideo;
   if (stream) {
     UserVideo = (
-      <video className='uservideo' playsInline muted ref={userVideo} autoPlay />
+      <video playsInline muted ref={userVideo} autoPlay />
     );
   }
 
   let PartnerVideo;
   if (callAccepted) {
     PartnerVideo = (
-      <video className='partnervideo' playsInline ref={partnerVideo} autoPlay />
+      <video playsInline ref={partnerVideo} autoPlay />
     );
   }
 
@@ -157,7 +158,12 @@ function VideoChat({ firstName, lastName, isDoctor }) {
   const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
 
   return (
+    <div>
 
+    <div className="loginIntro">
+            <img src={logoBlueGreen} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
+            <h1 id="welcomeHomepg">Video Chat</h1>
+          </div>
     <section className="hero light is-fullheight">
       <div className="hero-body">
         <div className="container">
@@ -166,12 +172,11 @@ function VideoChat({ firstName, lastName, isDoctor }) {
               <span className="icon is-large">
                 <i className="fa fa-comments"></i>
               </span>
-              <h2 className="title is-3"> VIDEO CHAT ROOMS</h2>
             </div>
           </div>
           <div className="columns is-centered">
 
-            <div className="column is-5-tablet is-4-desktop is-3-widescreen">
+            <div className="column is-5-tablet is-4-desktop is-3-widescreen container-fluid">
               <form action="/videochat" className="box">
                 <div className="field">
                   <p className="control has-icons-left">
@@ -198,7 +203,7 @@ function VideoChat({ firstName, lastName, isDoctor }) {
                   </p>
                 </div>
                 <div className="field ">
-                  <div>
+                  <div className="container-fluid">
                     <Stream firstName={firstName} lastName={lastName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} handleHangup={handleHangup} />
                   </div>
                 </div>
@@ -208,6 +213,8 @@ function VideoChat({ firstName, lastName, isDoctor }) {
         </div>
       </div>
     </section>
+
+    </div>
   );
 }
 

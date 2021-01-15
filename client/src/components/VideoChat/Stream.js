@@ -10,7 +10,7 @@ function Stream(props) {
         {props.incomingCall}
       </div >
       <div className="row">
-        <button className="hangupBtn" onClick={props.handleHangup} >TERMINATE</button>
+        <button className="hangupBtn" onClick={props.handleHangup}>TERMINATE</button>
       </div>
       <div className="row">
         <h3 className="userName">{props.firstName} {props.lastName}</h3>
@@ -18,6 +18,7 @@ function Stream(props) {
           {props.UserVideo}
         </div>
       </div>
+      <br></br>
       <div className="row" >
         <div className="partnervideo">
           {props.PartnerVideo}

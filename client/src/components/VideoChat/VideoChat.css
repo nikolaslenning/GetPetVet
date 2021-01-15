@@ -17,9 +17,15 @@
     font-size: 1.25rem;
     margin-bottom: 1.5rem;
     margin-top: 1rem;
+    margin-left: .9rem;
+
 }
 
 .row {
     display: flex;
     width: 100%;
+}
+
+.hero {
+  text-align: center;
 }
