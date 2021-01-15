@@ -9,7 +9,7 @@
 .partnervideo {
     /* border: 1px solid transparent; */
     width: 52rem;
-    height: 52rem;
+    height: 44rem;
     display: block;
     margin: auto;
 }
@@ -17,6 +17,23 @@
 .row {
     display: flex;
     width: 100%;
+    text-align: center;
+}
+
+.user-row {
+    width: 16rem;
+    height: 12rem;
+    display: flex;
+    width: 100%;
+    text-align: center;
+}
+
+.partner-row {
+    width: 52rem;
+    height: 40rem;
+    display: flex;
+    width: 100%;
+    text-align: center;
 }
 
 .hangupBtn {

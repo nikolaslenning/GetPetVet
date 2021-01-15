@@ -115,14 +115,14 @@ function VideoChat({ firstName, lastName, isDoctor }) {
   let UserVideo;
   if (stream) {
     UserVideo = (
-      <video playsInline muted ref={userVideo} autoPlay />
+      <video className="uservideo" playsInline muted ref={userVideo} autoPlay />
     );
   }
 
   let PartnerVideo;
   if (callAccepted) {
     PartnerVideo = (
-      <video playsInline ref={partnerVideo} autoPlay />
+      <video className="partnervideo" playsInline ref={partnerVideo} autoPlay />
     );
   }
 
@@ -164,20 +164,20 @@ function VideoChat({ firstName, lastName, isDoctor }) {
             <img src={logoBlueGreen} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
             <h1 id="welcomeHomepg">Video Chat</h1>
           </div>
-    <section className="hero light is-fullheight">
+    <section className="hero light ">
       <div className="hero-body">
         <div className="container">
-          <div className="columns is-centered">
-            <div className="column  is-5-tablet is-4-desktop is-3-widescreen has-text-centered">
+          {/* <div className="columns ">
+            <div className="column">
               <span className="icon is-large">
                 <i className="fa fa-comments"></i>
               </span>
             </div>
-          </div>
-          <div className="columns is-centered">
+          </div> */}
+          <div className="row">
 
-            <div className="column is-5-tablet is-4-desktop is-3-widescreen container-fluid">
-              <form action="/videochat" className="box">
+            <div className="col-12 container-fluid">
+              <form action="/videochat" className="box col-12">
                 <div className="field">
                   <p className="control has-icons-left">
                     <select name="room" className="roomselect" placeholder="Room Name"
