@@ -87,7 +87,7 @@ This project could never have been accomplished without the help of.....
 
 [Sydney Goodwill](https://github.com/SydneyGoodwill) - I'm baby deep v messenger bag aliquip, laboris try-hard seitan gochujang in vape semiotics quinoa thundercats nostrud deserunt dolore. Kogi whatever celiac fixie, sartorial tilde +1. Banh mi kickstarter thundercats glossier letterpress consequat actually tempor flexitarian cold-pressed labore PBR&B lorem blue bottle af. Banh mi raw denim selvage, prism occupy austin direct trade aliqua normcore. Aesthetic VHS seitan bespoke neutra, raclette salvia pork belly waistcoat offal.
 
-[Zach LaFleur](https://github.com/MrCartree) - I'm baby sed cardigan tumeric, viral hell of listicle twee pariatur enim minim mollit hella. VHS cliche velit artisan, tousled mustache incididunt enamel pin. Four loko in biodiesel tumblr, mumblecore non hashtag palo santo freegan. Try-hard air plant anim shaman live-edge. Pickled incididunt try-hard edison bulb literally est culpa actually tousled before they sold out ad locavore enamel pin.
+[Zach LaFleur](https://github.com/MrCartree) - The biggest challenge for me during this project was socket.io. I had worked with it previously on other apps but bring it in here for the use of video and audio proved to be quite the challenge. It was interesting to make the hang up button because you cannot cancel both audio and video at the same time and need to target them individually in order to shut them off. There was so much to learn from this project, from the way things interact with each other in full stack, as well as little stylings that made the whole thing unbearable.
 
 <a name = "license" ></a>
 
