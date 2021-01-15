@@ -61,7 +61,7 @@ class AddPet extends Component {
       return (
         <div className="ProfileForm">
           <form className="form-horizontal">
-          <h4>New Pet Profile</h4>
+            <h4>New Pet Profile</h4>
             <div className="form-group">
               <div className="col-1 col-ml-auto">
                 <label className="form-label">Pet Name: </label>
@@ -117,7 +117,6 @@ class AddPet extends Component {
             </div>
           </form>
         </div>
-
       );
     }
   }

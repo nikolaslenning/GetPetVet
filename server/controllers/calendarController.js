@@ -19,43 +19,32 @@ module.exports = {
       });
   },
 
-  findPatientEvents: function(req, res) {
+  findPatientEvents: function (req, res) {
     Calendar
-    .find({ user: req.user._id })
-    .then(data => {
-      console.log(data);
-      res.json({ success: true, data });
-    })
-    .catch(err => {
-      console.log(err);
-      res.json({ success: false, err });
-    });
+      .find({ user: req.user._id })
+      .then(data => {
+        console.log(data);
+        res.json({ success: true, data });
+      })
+      .catch(err => {
+        console.log(err);
+        res.json({ success: false, err });
+      });
   },
 
-  findDocEvents: function(req, res) {
+  findDocEvents: function (req, res) {
     console.log(req.user._id);
     Calendar
-    .find({ docID: req.user._id})
-    .then(data => {
-      console.log(data);
-      res.json({ success: true, data });
-    })
-    .catch(err => {
-      console.log(err);
-      res.json({ success: false, err });
-    });
+      .find({ docID: req.user._id })
+      .then(data => {
+        console.log(data);
+        res.json({ success: true, data });
+      })
+      .catch(err => {
+        console.log(err);
+        res.json({ success: false, err });
+      });
   },
-
-  // findAll: function (req, res) {
-  //   Calendar
-  //     .find({})
-  //     .then(data => {
-  //       res.json({ success: true, data });
-  //     })
-  //     .catch(err => {
-  //       res.json({ success: false });
-  //     });
-  // },
 
   remove: function (req, res) {
     // console.log(req);
@@ -69,7 +58,7 @@ module.exports = {
         res.json({ success: false, err });
       });
   },
-  // };
+
   update: function (req, res) {
     console.log('HELP FIND IT');
     console.log(req.body);
@@ -78,16 +67,4 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-
-
-  // module.exports = {
-  //     createEvent: function (req, res) {
-  //         Calendar.findOneAndUpdate({ _id: req.params.id }, req.body)
-  //             .then(dbModel => res.json(dbModel))
-  //             .catch(err => res.status(422).json(err));
-  //     },
-
-  // findAll: function (req, res) {
-  //     res.json([]);
-  // }
 };

@@ -149,7 +149,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
   function handleHangup(event) {
     event.preventDefault();
     setStream(null);
-    stream.getTracks().forEach(function(track) {
+    stream.getTracks().forEach(function (track) {
       track.stop();
     });
     history.push("/");

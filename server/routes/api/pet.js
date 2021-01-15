@@ -2,7 +2,6 @@
 const express = require('express');
 const router = express.Router();
 const Pet = require('../../models/pet');
-const User = require('../../models/user');
 
 // get/create
 router
@@ -18,18 +17,6 @@ router
         console.log(err);
         res.json({ success: false });
       });
-
-    // User
-    //   .findById(req.user._id)
-    //   .populate("pet")
-    //   .then(data => {
-    //     console.log("pet data");
-    //     console.log(data);
-    //     res.json({ success: true, data });
-    //   })
-    //   .catch(err => {
-    //     res.json({ success: false });
-    //   });
 
   }).post((req, res) => {
     console.log('pet params:');

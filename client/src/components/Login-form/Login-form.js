@@ -35,7 +35,6 @@ class LoginForm extends Component {
         email: this.state.email,
         password: this.state.password,
         isDoctor: this.state.isDoctor
-        // firstName: this.state.firstname
       })
       .then(response => {
         console.log('login response: ');

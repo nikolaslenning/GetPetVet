@@ -13,7 +13,7 @@ const userSchema = new Schema({
   province: { type: String, unique: false, required: false },
   zipCode: { type: Number, unique: false, required: false },
   phoneNumber: { type: Number, unique: false, required: false },
-  isDoctor: { type: Boolean, default: false},
+  isDoctor: { type: Boolean, default: false },
   pet: [{
     type: Schema.Types.ObjectId,
     ref: "Pet",

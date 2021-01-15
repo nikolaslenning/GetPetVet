@@ -20,7 +20,7 @@ class Passport extends Component {
     this.getUser();
   }
 
-  updateUser (userObject) {
+  updateUser(userObject) {
     this.setState(userObject);
   }
 

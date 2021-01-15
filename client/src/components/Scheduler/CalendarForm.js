@@ -150,7 +150,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
             onChange={handleDocIDChange}
             ref={docElement}
             isInvalid={!docID}>
-              <option >Select your Veterinarian</option>
+            <option >Select your Veterinarian</option>
             {docList.map(doctor =>
               <option key={doctor._id} value={doctor._id}>Dr. {doctor.firstName} {doctor.lastName}</option>
 
@@ -203,4 +203,5 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     </Form>
   );
 }
+
 export default observer(CalendarForm);

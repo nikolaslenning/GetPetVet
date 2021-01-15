@@ -128,4 +128,5 @@ function HomePage({ calendarStore, isDoctor }) {
     </div>
   );
 }
+
 export default observer(HomePage);
