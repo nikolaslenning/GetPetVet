@@ -87,7 +87,7 @@ class Home extends Component {
           <Card.Body>
             <Card.Text>
               If you are a doctor and would like to use GetPetVet to meet with your patients, please email us to verify your account. Have any other questions? We'd like to hear from you!
-               <a className="getpetemail">contact@getpetvet.com</a>
+               <a href={`mailto: contact@getpetvet.com ?subject=Appointment Request&body=Hey GetPetVet,%0D%0A contacting you because:%0D%0A(Specify Here).`} className="getpetemail"> contact@getpetvet.com</a>
             </Card.Text>
           </Card.Body>
         </Card>

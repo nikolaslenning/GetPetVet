@@ -43,7 +43,7 @@ class Navbar extends Component {
         <nav className="navbar navbar-dark bg-dark" id="nav-container">
           <div className="container-fluid">
             <img src={logoLightBlue} className="navlogo" alt="pet1"></img>
-            <a className="navbar-brand" href="/">GetPetVet</a>
+            <div className="navbar-brand">GetPetVet</div>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
