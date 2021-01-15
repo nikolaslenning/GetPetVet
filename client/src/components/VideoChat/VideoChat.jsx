@@ -113,14 +113,14 @@ function VideoChat({ firstName, lastName, isDoctor }) {
   let UserVideo;
   if (stream) {
     UserVideo = (
-      <video className='video' playsInline muted ref={userVideo} autoPlay />
+      <video className='uservideo' playsInline muted ref={userVideo} autoPlay />
     );
   }
 
   let PartnerVideo;
   if (callAccepted) {
     PartnerVideo = (
-      <video className='video' playsInline ref={partnerVideo} autoPlay />
+      <video className='partnervideo' playsInline ref={partnerVideo} autoPlay />
     );
   }
 
@@ -128,7 +128,7 @@ function VideoChat({ firstName, lastName, isDoctor }) {
   if (receivingCall) {
     incomingCall = (
       <div>
-        <h1>{userName} is calling you</h1>
+        <h1>Incoming Call:</h1>
         <button onClick={acceptCall}>Accept</button>
       </div>
     );
@@ -209,7 +209,7 @@ function VideoChat({ firstName, lastName, isDoctor }) {
                       JOIN
                      </button>
                   <div>
-                    <Stream userName={userName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} handleHangup={handleHangup} />
+                    <Stream UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} handleHangup={handleHangup} />
                   </div>
                 </div>
               </form>

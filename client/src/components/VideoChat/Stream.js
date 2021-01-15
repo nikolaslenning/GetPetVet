@@ -7,17 +7,17 @@ function Stream(props) {
   return (
     <div className="container">
       <div className="row">
-        <div>
+        <div className="uservideo">
           {props.UserVideo}
         </div>
-        <div>
+        <div className="partnervideo">
           {props.PartnerVideo}
         </div>
       </div >
       <div className="row">
         {props.incomingCall}
       </div >
-      <div>
+      <div className="hangup">
         <button onClick={props.handleHangup} >Hang up</button>
       </div>
     </div>
