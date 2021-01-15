@@ -87,7 +87,7 @@ class Home extends Component {
           <Card.Body>
             <Card.Text>
               If you are a doctor and would like to use GetPetVet to meet with your patients, please email us to verify your account. Have any other questions? We'd like to hear from you!
-               <p className="getpetemail">contact@getpetvet.com</p>
+               <a className="getpetemail">contact@getpetvet.com</a>
       </Card.Text>
           </Card.Body>
         </Card>
