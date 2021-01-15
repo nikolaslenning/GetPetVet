@@ -47,7 +47,7 @@ function VideoChat({ email, firstName, lastName, isDoctor }) {
               <span className="icon is-large">
                 <i className="fa fa-comments"></i>
               </span>
-              <h2 className="title is-3"> VIDEO CHAT ROOMS</h2>
+              <h2 className="title is-3">Join Your Virtual Vet Visit</h2>
             </div>
           </div>
           <div className="columns is-centered">

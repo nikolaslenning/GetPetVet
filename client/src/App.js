@@ -82,7 +82,7 @@ class App extends Component {
           <Navbar isDoctor={this.state.isDoctor} updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
           {/* greet user if logged in: */}
           {this.state.loggedIn &&
-            <h2>Welcome, {this.state.firstName}!</h2>
+            <h1 id="welcomeHomepg">Welcome, {this.state.firstName}!</h1>
           }
           {/* Routes to different components */}
           <Route
@@ -215,7 +215,6 @@ class App extends Component {
           />
         </Router>
 
-        {/* <VideoChat username={this.state.firstName} /> */}
 
       </div>
     );
