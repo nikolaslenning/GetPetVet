@@ -72,11 +72,7 @@ class App extends Component {
 
         <Router>
           <Navbar isDoctor={this.state.isDoctor} updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-          {/* greet user if logged in: */}
-          {this.state.loggedIn &&
-            <h2>Welcome, {this.state.firstName}!</h2>
-          }
-          {/* Routes to different components */}
+
           <Route
             exact path="/"
             render={() => {
@@ -84,6 +80,7 @@ class App extends Component {
                 return (
                   <Home
                     updateUser={this.updateUser}
+                    firstName={this.state.firstName}
                   />
                 );
               } else {

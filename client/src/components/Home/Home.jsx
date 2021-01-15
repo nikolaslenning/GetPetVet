@@ -11,10 +11,17 @@ import "./Home.css";
 
 
 class Home extends Component {
-
-  render() {
+  constructor() {
+    super();
+    this.state = {
+      firstName: ""
+    };
+  }
+  render(props) {
+    console.log(props);
     return (
       <div id="homeDiv">
+        <h2>Welcome, {this.props.firstName}!</h2>
         <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
           <ol className="carousel-indicators">
             <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active"></li>
