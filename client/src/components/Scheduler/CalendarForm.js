@@ -28,7 +28,6 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   const [pet, setPet] = React.useState([]);
   const petElement = React.useRef(null);
 
-
   React.useEffect(() => {
     setTitle(calendarEvent.title);
     setStart(calendarEvent.start);
@@ -49,7 +48,6 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     axios.get('/doctors')
       .then(res => {
         setDocList(res.data.data);
-
       })
       .catch(err => console.log(err));
   }, []);
@@ -57,11 +55,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
   React.useEffect(() => {
     axios.get('/pet')
       .then(res => {
-        // console.log("res.data");
-        // console.log(res);
-        // console.log(res.data.data);
         setPetList(res.data.data);
-
       })
       .catch(err => console.log(err));
   }, []);
@@ -76,10 +70,8 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
       alert("Start date must be earlier than end date");
       return;
     }
-    
+
     const data = { id, docID, title, start, end, pet };
-    // console.log("data calendarForm ln 49");
-    // console.log(data);
 
     if (!edit) {
       await addCalendar(data);
@@ -105,10 +97,9 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
     let isoDate = date.toISOString();
     console.log(isoDate);
     return isoDate;
-   }
+  }
 
-  const handleStartChange = date => {setStart(date); setEnd(endDate(date));};
-  // const handleEndChange = date => setEnd(date);
+  const handleStartChange = date => { setStart(date); setEnd(endDate(date)); };
   const handleTitleChange = ev => setTitle(ev.target.value);
   const handleDocIDChange = ev => { console.log(docElement.current.value); setDocId(docElement.current.value); };
   const handlePetChange = ev => { console.log(petElement.current.value); setPet(petElement.current.value); };
@@ -167,7 +158,7 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
             onChange={handlePetChange}
             ref={petElement}
             isInvalid={!pet}>
-              <option >Select your Pet</option>
+            <option >Select your Pet</option>
             {petList.map(pet =>
               <option key={pet._id} value={pet.petName}> {pet.petName} {pet.petBreed}</option>
 
@@ -211,18 +202,6 @@ function CalendarForm({ calendarStore, calendarEvent, onCancel, edit, isDoctor }
         </Form.Group>
       </Form.Row>
 
-      {/* <Form.Row>
-        <Form.Group as={Col} md="12" controlId="end">
-          <Form.Label>End</Form.Label>
-          <br />
-          <DatePicker
-            showTimeSelect
-            className="form-control"
-            selected={end}
-            onChange={handleEndChange}
-          />
-        </Form.Group>
-      </Form.Row> */}
       {!edit ? (
         <Button type="submit" style={buttonStyle} onClick={addCalendarEvent}>
           Save
