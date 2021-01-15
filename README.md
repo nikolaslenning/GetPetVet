@@ -49,7 +49,7 @@ This is a list of all the technologies used in the creation of this application!
 
 7. [BCrypt](https://www.npmjs.com/package/bcrypt) was used to user security and the use of hashing passwords.
 
-8. []
+8. [ESLint](https://eslint.org/) was used in helping make cleaner code.
 
 <a name = "screenshots"></a>
 
@@ -69,9 +69,9 @@ This is a list of all the technologies used in the creation of this application!
 
 This project could never have been accomplished without the help of.....
 
-1. insert name of person here
+1. [Mason Short](https://github.com/LtWilhelm) helping us with our issues with sockets, both on the clock and off this man made it possible.
 
-2. insert name of person here
+2. [Alex Ulfich](https://github.com/alex-117) helping us with our scheduler and making sure that we are getting things done in a timely manner.
 
 3. insert name of person here
 
@@ -81,7 +81,7 @@ This project could never have been accomplished without the help of.....
 
 ### 6. Challenges and Learning
 
-[Nikolas Lenning](https://github.com/nikolaslenning) - I'm baby occaecat tofu asymmetrical tilde pariatur leggings. Veniam la croix vegan tumblr, cornhole in adaptogen vape intelligentsia skateboard et literally sed fingerstache fashion axe. Slow-carb 3 wolf moon consequat, activated charcoal nostrud green juice fixie fingerstache kale chips deserunt snackwave subway tile sunt. Hell of meh food truck venmo. Keffiyeh nulla yuccie nostrud flexitarian typewriter, umami offal farm-to-table fixie art party crucifix next level cred.
+[Nikolas Lenning](https://github.com/nikolaslenning) - The biggest challenge for me was the back and for of socket.io in establishing rooms as well as connecting the users to their respective rooms. 
 
 [Seth Martineau](https://github.com/slothings) - The biggest challenge for me was working on sockets.io and getting to understand it and how it interacts with each other in a full stack app and integrating the front end with the back end. This project helped me fully understand the workings of a full stack app with all its integration, process, and problems.
 
