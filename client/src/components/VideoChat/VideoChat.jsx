@@ -7,6 +7,8 @@ import io from "socket.io-client";
 import Peer from "simple-peer";
 import Stream from "./Stream";
 import { useHistory } from "react-router-dom";
+import logoBlueGreen from '../assets/logoBlueGreen.png';
+import "./VideoChat.css";
 
 function VideoChat({ firstName, lastName, isDoctor }) {
   const [userName, setUserName] = useState("");
@@ -106,23 +108,22 @@ function VideoChat({ firstName, lastName, isDoctor }) {
   let UserVideo;
   if (stream) {
     UserVideo = (
-      <video className='uservideo' playsInline muted ref={userVideo} autoPlay />
+      <video className="uservideo" playsInline muted ref={userVideo} autoPlay />
     );
   }
 
   let PartnerVideo;
   if (callAccepted) {
     PartnerVideo = (
-      <video className='partnervideo' playsInline ref={partnerVideo} autoPlay />
+      <video className="partnervideo" playsInline ref={partnerVideo} autoPlay />
     );
   }
 
   let incomingCall;
   if (receivingCall) {
     incomingCall = (
-      <div>
-        <h1>Incoming Call: </h1>
-        <button onClick={acceptCall}>Accept</button>
+      <div className="row justify-content-center">
+        <button className="acceptCall col-sm-12 col-md-6 col-lg-4" onClick={acceptCall}>ACCEPT CALL</button>
       </div>
     );
   }
@@ -150,35 +151,29 @@ function VideoChat({ firstName, lastName, isDoctor }) {
   const handleFacilityChange = ev => { console.log(docElement.current.value); setFacility(docElement.current.value); };
 
   return (
+    <div>
 
-    <section className="hero light is-fullheight">
+    <div className="loginIntro">
+            <img src={logoBlueGreen} alt="Girl in a jacket" width="20%" height="20%" className="aboutlogo"></img>
+            <h1 id="welcomeHomepg">Video Chat</h1>
+          </div>
+    <section className="hero light ">
       <div className="hero-body">
-        <div className="container">
-          <div className="columns is-centered">
-            <div className="column  is-5-tablet is-4-desktop is-3-widescreen has-text-centered">
+        <div className="container-fluid">
+          {/* <div className="columns ">
+            <div className="column">
               <span className="icon is-large">
                 <i className="fa fa-comments"></i>
               </span>
-              <h2 className="title is-3"> VIDEO CHAT ROOMS</h2>
             </div>
-          </div>
-          <div className="columns is-centered">
+          </div> */}
+          <div className="row container-fluid m-0">
 
-            <div className="column is-5-tablet is-4-desktop is-3-widescreen">
-              <form action="/videochat" className="box">
+            <div className="col-12 container-fluid">
+              <form action="/videochat" className="box col-12">
                 <div className="field">
-                  <label className="label">Username:</label>
-                  <div className="control has-icons-left">
-                    <p name="username">{firstName} {lastName}</p>
-                    <span className="icon is-small is-left">
-                      <i className="fa fa-user"></i>
-                    </span>
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Select Veterinarian</label>
-                  <p className="control has-icons-left">
-                    <select name="room" className="roomselect" placeholder="Room Name"
+                  {/* <p className="control col-12"> */}
+                    <select name="room" className="roomselect col-sm-10 col-md-6" placeholder="Room Name"
                       value={facility || ""}
                       onChange={handleFacilityChange}
                       ref={docElement} >
@@ -188,20 +183,23 @@ function VideoChat({ firstName, lastName, isDoctor }) {
 
                       )}
                     </select>
+
+                    <button onClick={handleSubmit} className="button joinBtn">
+                      {/* <span className="icon is-small is-left mr-1">
+                      <i className="fas fa-person-booth"></i>
+                    </span> */}
+                      JOIN
+                    </button>
+                    {/* <!-- <input type="text" placeholder="Room Name" className="input" name="room" required> --></input> */}
+
                     <span className="icon is-small is-left">
                       <i className="fas fa-comment-alt"></i>
                     </span>
-                  </p>
+                  {/* </p> */}
                 </div>
                 <div className="field ">
-                  <button onClick={handleSubmit} className="button is-link">
-                    <span className="icon is-small is-left mr-1">
-                      <i className="fas fa-person-booth"></i>
-                    </span>
-                      JOIN
-                     </button>
-                  <div>
-                    <Stream UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} handleHangup={handleHangup} />
+                  <div className="container-fluid">
+                    <Stream firstName={firstName} lastName={lastName} UserVideo={UserVideo} PartnerVideo={PartnerVideo} incomingCall={incomingCall} handleHangup={handleHangup} />
                   </div>
                 </div>
               </form>
@@ -210,6 +208,8 @@ function VideoChat({ firstName, lastName, isDoctor }) {
         </div>
       </div>
     </section>
+
+    </div>
   );
 }
 

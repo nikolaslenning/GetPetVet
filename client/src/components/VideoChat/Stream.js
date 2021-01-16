@@ -6,19 +6,22 @@ function Stream(props) {
 
   return (
     <div className="container">
-      <div className="row">
+      <div>
+        {props.incomingCall}
+      </div >
+      <div className="row justify-content-center">
+        <button className="hangupBtn col-sm-12 col-md-6 col-lg-4" onClick={props.handleHangup}>TERMINATE</button>
+      </div>
+        <h3 className="userName">{props.firstName} {props.lastName}</h3>
+      <div className="user-row justify-content-center">
         <div className="uservideo">
           {props.UserVideo}
         </div>
+      </div>
+      <div className="partner-row justify-content-center" >
         <div className="partnervideo">
           {props.PartnerVideo}
-        </div>
-      </div >
-      <div className="row">
-        {props.incomingCall}
-      </div >
-      <div>
-        <button onClick={props.handleHangup} >Hang up</button>
+        </div >
       </div>
     </div>
   );
