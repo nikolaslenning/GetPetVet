@@ -17,11 +17,11 @@
 
 #### Deployed Site
 
-The deployed site is hosted on heroku and can be found [here](https://evening-stream-63366.herokuapp.com/login).
+The deployed site is hosted on [Heroku](https://evening-stream-63366.herokuapp.com/login).
 
 #### Git Hub Repository
 
-The GitHub repository can be found [here](https://github.com/nikolaslenning/GetPetVet)
+The code can be viewed on our [GitHub repository](https://github.com/nikolaslenning/GetPetVet).
 
 <a name = "description"></a>
 
@@ -69,7 +69,7 @@ This is a list of all the technologies used in the creation of this application!
 
 This project could never have been accomplished without the help of.....
 
-1. [Mason Short](https://github.com/LtWilhelm) helping us with our issues with sockets, both on the clock and off this man made it possible.
+1. [Mason Short](https://github.com/LtWilhelm) helping us with our issues with sockets, both on the clock and off, this man made it possible.
 
 2. [Alex Ulfich](https://github.com/alex-117) helping us with our scheduler and making sure that we are getting things done in a timely manner.
 
@@ -81,7 +81,7 @@ This project could never have been accomplished without the help of.....
 
 ### 6. Challenges and Learning
 
-[Nikolas Lenning](https://github.com/nikolaslenning) - The biggest challenge for me was the back and for of socket.io in establishing rooms as well as connecting the users to their respective rooms. 
+[Nikolas Lenning](https://github.com/nikolaslenning) - The biggest challenge for me was implementing the back and forth communication of socket.io from the server and client, in establishing rooms as well as connecting the users to their respective rooms. I learned a great deal abou the back and forth communication that might be involved in video conferencing tools connecting users. 
 
 [Seth Martineau](https://github.com/slothings) - The biggest challenge for me was working on sockets.io and getting to understand it and how it interacts with each other in a full stack app and integrating the front end with the back end. This project helped me fully understand the workings of a full stack app with all its integration, process, and problems.
 
