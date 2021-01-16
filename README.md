@@ -17,11 +17,11 @@
 
 #### Deployed Site
 
-The deployed site is hosted on heroku and can be found [here](https://evening-stream-63366.herokuapp.com/login).
+The deployed site is hosted on [Heroku](https://evening-stream-63366.herokuapp.com/login).
 
 #### Git Hub Repository
 
-The GitHub repository can be found [here](https://github.com/nikolaslenning/GetPetVet)
+The code can be viewed on our [GitHub repository](https://github.com/nikolaslenning/GetPetVet).
 
 <a name = "description"></a>
 
