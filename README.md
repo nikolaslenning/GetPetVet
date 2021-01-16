@@ -73,10 +73,6 @@ This project could never have been accomplished without the help of.....
 
 2. [Alex Ulfich](https://github.com/alex-117) helping us with our scheduler and making sure that we are getting things done in a timely manner.
 
-3. insert name of person here
-
-4. insert name of person here
-
 <a name = "challenges/learning" >
 
 ### 6. Challenges and Learning
@@ -114,5 +110,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-[!License: XYZ]()
