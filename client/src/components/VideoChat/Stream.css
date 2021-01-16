@@ -1,7 +1,7 @@
 .uservideo {
     /* border: 1px solid transparent; */
     width: 16rem;
-    height: 16rem;
+    height: 12rem;
     display: block;
     margin: auto;
 }
@@ -9,14 +9,70 @@
 .partnervideo {
     /* border: 1px solid transparent; */
     width: 52rem;
-    height: 44rem;
+    height: 40rem;
     display: block;
     margin: auto;
 }
+ @media (max-width: 900px) {
+    .partnervideo {
+        /* border: 1px solid transparent; */
+        width: 40rem;
+        height: 38rem;
+        display: block;
+        margin: auto;
+    }
+ }
+ @media (max-width: 700px) {
+    .partnervideo {
+        /* border: 1px solid transparent; */
+        width: 34rem;
+        height: 38rem;
+        display: block;
+        margin: auto;
+    }
+ }
+ @media (max-width: 600px) {
+    .partnervideo {
+        /* border: 1px solid transparent; */
+        width: 30rem;
+        height: 38rem;
+        display: block;
+        margin: auto;
+    }
+ }
+ @media (max-width: 500px) {
+    .partnervideo {
+        /* border: 1px solid transparent; */
+        width: 26rem;
+        height: 38rem;
+        display: block;
+        margin: auto;
+    }
+ }
+ @media (max-width: 450px) {
+    .partnervideo {
+        /* border: 1px solid transparent; */
+        width: 24rem;
+        height: 28rem;
+        display: block;
+        margin: auto;
+    }
+ }
+ @media (max-width: 400px) {
+    .partnervideo {
+        /* border: 1px solid transparent; */
+        width: 22rem;
+        height: 38rem;
+        display: block;
+        margin: auto;
+    }
+ }
 
 .row {
+    /* display: flex; */
+    /* width: 100%; */
     display: flex;
-    width: 100%;
+    margin: auto;
     text-align: center;
 }
 
@@ -41,7 +97,7 @@
     border-radius: 6px;
     border: solid black 1px;
     font-size: 1.25rem;
-    margin-left: .9rem;
+    /* margin-left: .9rem; */
 }
 
 .userName {

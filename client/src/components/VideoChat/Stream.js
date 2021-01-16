@@ -5,20 +5,20 @@ import './Stream.css';
 function Stream(props) {
 
   return (
-    <div className="">
+    <div className="container">
       <div>
         {props.incomingCall}
       </div >
-      <div className="row">
-        <button className="hangupBtn" onClick={props.handleHangup}>TERMINATE</button>
+      <div className="row justify-content-center">
+        <button className="hangupBtn col-sm-12 col-md-6 col-lg-4" onClick={props.handleHangup}>TERMINATE</button>
       </div>
-      <div className="user-row">
         <h3 className="userName">{props.firstName} {props.lastName}</h3>
+      <div className="user-row justify-content-center">
         <div className="uservideo">
           {props.UserVideo}
         </div>
       </div>
-      <div className="partner-row" >
+      <div className="partner-row justify-content-center" >
         <div className="partnervideo">
           {props.PartnerVideo}
         </div >

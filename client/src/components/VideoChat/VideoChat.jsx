@@ -129,8 +129,8 @@ function VideoChat({ firstName, lastName, isDoctor }) {
   let incomingCall;
   if (receivingCall) {
     incomingCall = (
-      <div className="row">
-        <button className="acceptCall" onClick={acceptCall}>ACCEPT CALL</button>
+      <div className="row justify-content-center">
+        <button className="acceptCall col-sm-12 col-md-6 col-lg-4" onClick={acceptCall}>ACCEPT CALL</button>
       </div>
     );
   }
@@ -166,7 +166,7 @@ function VideoChat({ firstName, lastName, isDoctor }) {
           </div>
     <section className="hero light ">
       <div className="hero-body">
-        <div className="container">
+        <div className="container-fluid">
           {/* <div className="columns ">
             <div className="column">
               <span className="icon is-large">
@@ -174,13 +174,13 @@ function VideoChat({ firstName, lastName, isDoctor }) {
               </span>
             </div>
           </div> */}
-          <div className="row">
+          <div className="row container-fluid m-0">
 
             <div className="col-12 container-fluid">
               <form action="/videochat" className="box col-12">
                 <div className="field">
-                  <p className="control has-icons-left">
-                    <select name="room" className="roomselect" placeholder="Room Name"
+                  {/* <p className="control col-12"> */}
+                    <select name="room" className="roomselect col-sm-10 col-md-6" placeholder="Room Name"
                       value={facility || ""}
                       onChange={handleFacilityChange}
                       ref={docElement} >
@@ -190,7 +190,7 @@ function VideoChat({ firstName, lastName, isDoctor }) {
 
                       )}
                     </select>
-                    <button onClick={handleSubmit} className="button is-link joinBtn">
+                    <button onClick={handleSubmit} className="button joinBtn">
                       {/* <span className="icon is-small is-left mr-1">
                       <i className="fas fa-person-booth"></i>
                     </span> */}
@@ -200,7 +200,7 @@ function VideoChat({ firstName, lastName, isDoctor }) {
                     <span className="icon is-small is-left">
                       <i className="fas fa-comment-alt"></i>
                     </span>
-                  </p>
+                  {/* </p> */}
                 </div>
                 <div className="field ">
                   <div className="container-fluid">
