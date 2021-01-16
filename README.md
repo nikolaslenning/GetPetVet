@@ -95,7 +95,7 @@ This project could never have been accomplished without the help of.....
 
 MIT License
 
-Copyright (c) 2020 Team of Champions
+Copyright (c) 2020 Team LaFleur
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
