@@ -15,8 +15,6 @@ class Profile extends Component {
   getPet() {
     axios.get('/pet')
       .then(res => {
-        // console.log("res.data");
-        // console.log(res.data.data);
         this.setState({
           pet: res.data.data
         });
